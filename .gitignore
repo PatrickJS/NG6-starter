@@ -1,0 +1,6 @@
+.git
+node_modules
+.settings
+*.log
+client/app/bundle.js
+client/app/bundle.js.map
