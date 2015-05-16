@@ -11,6 +11,7 @@ This repo serves as a starter for anyone looking to get up and running with Angu
 * Task for generating component boilerplate with angular, including test
 * Testing system ready to go
 * [Stylus]() support
+
 ___
 
 # TOC
