@@ -5,12 +5,13 @@
 # NG6
 > Starter repo for [Angular](http://angular.io) + ES6 + [Webpack]()
 
-This repo serves as a starter for anyone looking to get up and running with Angular and ES6. Using a combo of [Gulp]() and [Webpack]() for building our files and assiting with boilerplate. **Features include**:
+This repo serves as a starter for anyone looking to get up and running with Angular and ES6. Using a combo of [Gulp](http://gulpjs.com/) and [Webpack](http://webpack.github.io/) for building our files and assiting with boilerplate.
+**This seed is not a yeoman generator!** Its just a minmal starter with tasks to build and create boilerplate. **Features include**:
 * Best practice in file organization for Angular
 * Ready to go build system for working with ES6
 * Task for generating component boilerplate with angular, including test
 * Testing system ready to go
-* [Stylus]() support
+* [Stylus](https://learnboost.github.io/stylus/) support
 ___
 
 # TOC
@@ -19,18 +20,19 @@ ___
     * [File structure](#file-structure)
     * [Testing setup](#testing-setup)
 * [Getting Started](#getting-started)
+		* [Dependencies](#dependencies)
     * [Installing](#installing)
-    * [Dependencies](#dependencies)
     * [Running the app](#running-the-app)
         * [Gulp tasks](#gulp-tasks)
         * [Testing](#testing)
+		* [Generating Components](#generating-components)		
 
 # Walkthrough
 ## Build System
 NG6 uses Gulp and Webpack together for its build system. Yes, you don't need Gulp if you'r using Webpack. This is true if you're build system is only responsible for file manipulation, which ours is not.
 
 `Webpack` handles all the file related things. This inlcudes:
-* Transpiling from ES6 to ES5
+* Transpiling from ES6 to ES5 with `Babel`
 * Loading HTML files as modules
 * Loading CSS and Stylus files and appending the styles to the DOM
 * Bundling our app
@@ -63,5 +65,67 @@ client
 ```
 
 ## Testing Setup
+All test are written in ES6 too because why not! So we use Webpack to take care of all the logistics of getting those files run in browsers just like our client files. `Karma` combined with webpack will run al files that match `.spec.js` inside the `app` folder. This is awesome because we can write tests for our components in the same folder with the rest of the component. `spec.bundle.js` is the bundle file for all our spec files that karma will run. Our testing setup is:
+* Karma
+* Webpack + Babel
+* Mocha
+* Chai
+
+To run test just `npm test` or `karma start`.
 
 
+# Getting Started
+## Dependencies
+What you need to run this app:
+* `node` and `npm`
+Once you have those, you should install these globals with `npm i -g`:
+* `karma-cli`
+* `gulp`
+* `karma`
+* `webpack`
+
+## Installing
+* `fork` me
+* `clone` your fork
+* `npm i` to install all dependencies
+
+
+## Running the app
+NG6 uses Gulp to build and start the dev environment. After you have installed all dependencies you can now run the app.
+Run `gulp` to start bundle with `webpack`, start a dev server and watch all files. The port will displayed to you.
+ 
+### Gulp tasks
+Here's a list of possible Gulp task to run:
+* `webpack`
+  * runs webpack which will transpile, compile, and bundle all assets and modules into `client/bundle.js`
+* `serve`
+  * starts a dev server with `browser-sync` serving the client folder
+* `watch`
+  * listens for file chagnes and rebuilds with webpack then refreshes the browser
+* `default`
+	* runs `webpack`, `serve`, and `watch` in that order.
+* `component`
+  * builds out boilerplate for a new angular component, [read below](#generating-components) to see how to use this in more detail
+  
+### Testing
+To run test, just run `npm test` or `karma start`.
+Be sure to include your `spec` files in the appropriate component directory. You must name the spec file like so, `[name].spec.js`. If you don't want to use the `.spec.js` extentsion, you must change the `regex` in `spec.bundle.js` to look for whatever file(s) you want.
+`Mocha` is the testing suite being used and `chai` is the assestion library. If you would like to change this, change it in `karma.conf.js`.
+
+
+## Generating components
+Following a good practice allows us to garuntee certain things. We can take advantage of these garuntees and use a task to automate things. Because the components we make will almost always have the same structure, we can generate this boilerplate for you. Boilerplate includes:
+* Component folder
+* Component entry file which will `import` all of its dependencies
+* Component component file, or directive file will will also `import` its dependencies
+* Component template
+* Component controller
+* Component spec with passing tests already written
+
+You can create all this by hand, but it gets old fast!
+To generate a component, we must use the `gulp component --name componentName` task. The `--name` flag is the name of the component you want to create. Besure to be unique, or it will override an existing component.
+The component will be created by default on the root of `client/app/components`. We can change this by passing in the `--parent` flag. You can pass in a path relative to `cleint/app/components/` and your component will be made there.
+So running `gulp component --name signup --parent auth` will create a `signup` component at `client/app/components/auth/signup`.
+Running `gulp component --name footer --parent ../common` will create a `footer` component at `client/app/common/footer`. Because `--name` is used to create folder name too, use camel or snakeCase and stay consitant.
+
+enjoy -- Angular Class 
