@@ -21,7 +21,7 @@ ___
     * [File structure](#file-structure)
     * [Testing setup](#testing-setup)
 * [Getting Started](#getting-started)
-		* [Dependencies](#dependencies)
+    * [Dependencies](#dependencies)
     * [Installing](#installing)
     * [Running the app](#running-the-app)
         * [Gulp tasks](#gulp-tasks)
