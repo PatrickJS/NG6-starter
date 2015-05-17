@@ -3,15 +3,16 @@
 </p>
 
 # NG6
-> Starter repo for [Angular](http://angular.io) + ES6 + [Webpack]()
+> Starter repo for [Angular](http://angular.io) + ES6 + [Webpack](http://webpack.github.io/)
 
-This repo serves as a starter for anyone looking to get up and running with Angular and ES6. Using a combo of [Gulp](http://gulpjs.com/) and [Webpack](http://webpack.github.io/) for building our files and assiting with boilerplate.
+This repo serves as an extremely minmal starter for anyone looking to get up and running with Angular and ES6. Using a combo of [Gulp](http://gulpjs.com/) and [Webpack](http://webpack.github.io/) for building our files and assiting with boilerplate.
 **This seed is not a yeoman generator!** Its just a minmal starter with tasks to build and create boilerplate. **Features include**:
 * Best practice in file organization for Angular
 * Ready to go build system for working with ES6
 * Task for generating component boilerplate with angular, including test
 * Testing system ready to go
 * [Stylus](https://learnboost.github.io/stylus/) support
+
 ___
 
 # TOC
@@ -140,4 +141,6 @@ Running `gulp component --name footer --parent ../common` will create a `footer`
 
 Because `--name` is used to create folder name too, use camel or snakeCase and stay consitant.
 
-enjoy -- Angular Class 
+___
+
+enjoy -- **Angular Class** 
