@@ -121,6 +121,7 @@ Following a good practice allows us to garuntee certain things. We can take adva
 * Component component file, or directive file will will also `import` its dependencies
 * Component template
 * Component controller
+* Component styl, a stylus file for the component. can replace with css, less, or sass
 * Component spec with passing tests already written
 
 You can create all this by hand, but it gets old fast!
@@ -133,7 +134,7 @@ The component will be created by default on the root of `client/app/components`.
 
 We can change this by passing in the `--parent` flag. 
 
-You can pass in a path relative to `cleint/app/components/` and your component will be made there.
+You can pass in a path relative to `client/app/components/` and your component will be made there.
 
 So running `gulp component --name signup --parent auth` will create a `signup` component at `client/app/components/auth/signup`.
 
