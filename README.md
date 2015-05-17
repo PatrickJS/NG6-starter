@@ -123,9 +123,21 @@ Following a good practice allows us to garuntee certain things. We can take adva
 * Component spec with passing tests already written
 
 You can create all this by hand, but it gets old fast!
-To generate a component, we must use the `gulp component --name componentName` task. The `--name` flag is the name of the component you want to create. Besure to be unique, or it will override an existing component.
-The component will be created by default on the root of `client/app/components`. We can change this by passing in the `--parent` flag. You can pass in a path relative to `cleint/app/components/` and your component will be made there.
+To generate a component, we must use the `gulp component --name componentName` task.
+
+The `--name` flag is the name of the component you want to create. Besure to be unique, or it will override an existing component.
+
+
+The component will be created by default on the root of `client/app/components`.
+
+We can change this by passing in the `--parent` flag. 
+
+You can pass in a path relative to `cleint/app/components/` and your component will be made there.
+
 So running `gulp component --name signup --parent auth` will create a `signup` component at `client/app/components/auth/signup`.
-Running `gulp component --name footer --parent ../common` will create a `footer` component at `client/app/common/footer`. Because `--name` is used to create folder name too, use camel or snakeCase and stay consitant.
+
+Running `gulp component --name footer --parent ../common` will create a `footer` component at `client/app/common/footer`. 
+
+Because `--name` is used to create folder name too, use camel or snakeCase and stay consitant.
 
 enjoy -- Angular Class 
