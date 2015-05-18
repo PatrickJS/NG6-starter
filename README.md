@@ -2,9 +2,8 @@
     <img src="http://res.cloudinary.com/angularclass/image/upload/v1431802814/ng6_vrmd60.png" alt="NG6" width="320px;"/>
 </p>
 
-# NG6
+# NG6 [![Join the chat at https://gitter.im/angular-class/NG6-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-class/NG6-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![Join the chat at https://gitter.im/angular-class/NG6-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-class/NG6-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > Starter repo for [Angular](https://angularjs.org) + ES6 + [Webpack](http://webpack.github.io/)
 
 This repo serves as an extremely minmal starter for anyone looking to get up and running with Angular and ES6. Using a combo of [Gulp](http://gulpjs.com/) and [Webpack](http://webpack.github.io/) for building our files and assiting with boilerplate.
@@ -31,6 +30,7 @@ ___
         * [Gulp tasks](#gulp-tasks)
         * [Testing](#testing)
 		* [Generating Components](#generating-components)		
+* [Starter Kit Support and Questions](#starter-kit-support-and-questions)
 
 # Walkthrough
 ## Build System
@@ -145,6 +145,12 @@ So running `gulp component --name signup --parent auth` will create a `signup` c
 Running `gulp component --name footer --parent ../common` will create a `footer` component at `client/app/common/footer`. 
 
 Because `--name` is used to create folder name too, use camel or snakeCase and stay consitant.
+
+# Starter Kit Support and Questions
+> Contact us anytime for anything about this repo
+
+* [Gitter: angular-class/NG6-starter](https://gitter.im/angular-class/NG6-starter)
+* [Twitter: @AngularClass](https://twitter.com/AngularClass)
 
 ___
 
