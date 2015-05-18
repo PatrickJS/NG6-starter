@@ -3,7 +3,7 @@
 </p>
 
 # NG6
-> Starter repo for [Angular](http://angular.io) + ES6 + [Webpack](http://webpack.github.io/)
+> Starter repo for [Angular](https://angularjs.org) + ES6 + [Webpack](http://webpack.github.io/)
 
 This repo serves as an extremely minmal starter for anyone looking to get up and running with Angular and ES6. Using a combo of [Gulp](http://gulpjs.com/) and [Webpack](http://webpack.github.io/) for building our files and assiting with boilerplate.
 **This seed is not a yeoman generator!** Its just a minmal starter with tasks to build and create boilerplate. **Features include**:
