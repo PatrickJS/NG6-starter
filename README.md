@@ -13,6 +13,8 @@ This repo serves as an extremely minmal starter for anyone looking to get up and
 * Testing system ready to go
 * [Stylus](https://learnboost.github.io/stylus/) support
 
+> If you're looking for Angular 2 please use [angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter)
+
 ___
 
 # TOC
