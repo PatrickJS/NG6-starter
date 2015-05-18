@@ -4,17 +4,17 @@
 
 # NG6 [![Join the chat at https://gitter.im/angular-class/NG6-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-class/NG6-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-> Starter repo for [Angular](https://angularjs.org) + ES6 + [Webpack](http://webpack.github.io/)
+> Starter repo for [Angular](https://angularjs.org) + [ES6](https://git.io/es6features) + [Webpack](http://webpack.github.io/)
 
 This repo serves as an extremely minmal starter for anyone looking to get up and running with Angular and ES6. Using a combo of [Gulp](http://gulpjs.com/) and [Webpack](http://webpack.github.io/) for building our files and assiting with boilerplate.
 **This seed is not a yeoman generator!** Its just a minmal starter with tasks to build and create boilerplate. **Features include**:
 * Best practice in file organization for Angular
-* Ready to go build system for working with ES6
+* Ready to go build system for working with [ES6](https://git.io/es6features)
 * Task for generating component boilerplate with angular, including test
 * Testing system ready to go
 * [Stylus](https://learnboost.github.io/stylus/) support
 
-> If you're looking for Angular 2 please use [angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter)
+> If you're looking for [Angular 2](https://angular.io/) please use [angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter)
 
 ___
 
