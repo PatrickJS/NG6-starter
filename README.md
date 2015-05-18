@@ -3,6 +3,8 @@
 </p>
 
 # NG6
+
+[![Join the chat at https://gitter.im/angular-class/NG6-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-class/NG6-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > Starter repo for [Angular](https://angularjs.org) + ES6 + [Webpack](http://webpack.github.io/)
 
 This repo serves as an extremely minmal starter for anyone looking to get up and running with Angular and ES6. Using a combo of [Gulp](http://gulpjs.com/) and [Webpack](http://webpack.github.io/) for building our files and assiting with boilerplate.
