@@ -1,6 +1,6 @@
+.DS_Store
 .git
 node_modules
+jspm_packages
 .settings
 *.log
-client/bundle.js
-client/bundle.js.map

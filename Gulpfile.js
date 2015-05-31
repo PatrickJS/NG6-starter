@@ -1,71 +1,52 @@
 var gulp	 		= require('gulp'),
-		webpack		= require('gulp-webpack'),
 		path			= require('path'),
-		sync			= require('run-sequence'),
-		serve			= require('browser-sync'),
 		rename		= require('gulp-rename'),
 		template	= require('gulp-template'),
-		fs				= require('fs'),
-		yargs			= require('yargs').argv,
-		lodash 		= require('lodash'),
-		reload		= function () { return serve.reload() };
-
-
-// helper method to resolveToApp paths
-var resolveToApp = function(glob){
-	glob = glob || '';
-	return path.join(root, 'app', glob); // app/{glob}
-};
-
-var resolveToComponents = function(glob){
-	glob = glob || '';
-	return path.join(root, 'app/components', glob); // app/components/{glob}
-};
+		serve			= require('browser-sync'),
+		yargs			= require('yargs').argv
 
 var root = 'client';
 
+// helper method to resolveToApp paths
+var resolveTo = function(resolvePath) {
+	return function(glob) {
+		glob = glob || '';
+		return path.join(root, resolvePath, glob);
+	}
+};
+
+var resolveToApp = resolveTo('app'); // app/{glob}
+var resolveToComponents = resolveTo('app/components'); // app/components/{glob}
+
 // map of all our paths
 var paths = {
-	js: resolveToComponents('**/*!(.spec.js).js'), // don't include spec files
-	styl: resolveToApp('**/*.styl'), // our stylus files
+	js: resolveToApp('**/*.js'),
+	css: resolveToApp('**/*.css'),
 	html: [
 		resolveToApp('**/*.html'),
 		path.join(root, 'index.html')
 	],
-		
-	entry: path.join(root, 'app/app.js'),
-	output: root,
 	blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**')
 };
-
-// use our webpack.config.js to 
-// build our modules
-gulp.task('webpack', function(){
-	return gulp.src(paths.entry)
-		.pipe(webpack(require('./webpack.config')))
-		.pipe(gulp.dest(paths.output));
-});
 
 gulp.task('serve', function(){
 	serve({
 		port: process.env.PORT || 3000,
 		open: false,
+		files: [].concat(
+			[paths.js],
+			[paths.css],
+			paths.html
+		),
 		server: {
-			baseDir: root
-		}
+			baseDir: root,
+			// serve our jspm dependencies with the client folder
+			routes: {
+				'/jspm.config.js': './jspm.config.js',
+				'/jspm_packages': './jspm_packages'
+			}
+		},
 	});
-});
-
-
-gulp.task('watch', function(){
-	var allPaths = [].concat(
-		[paths.js],
-		paths.html,
-		[paths.styl]
-	);
-		
-
-	gulp.watch(allPaths, ['webpack', reload]);
 });
 
 gulp.task('component', function(){
@@ -88,7 +69,4 @@ gulp.task('component', function(){
 		.pipe(gulp.dest(destPath));
 });
 
-
-gulp.task('default', function(done){
-	sync('webpack', 'serve', 'watch', done);
-});
+gulp.task('default', ['serve'])
