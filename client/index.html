@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>angular-webpack-starter</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>angular-jspm-starter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<app></app>
-	<script src="bundle.js"></script>
+  <app></app>
+  <!-- build:js -->
+  <script src="jspm_packages/system.js"></script>
+  <script src="jspm.config.js"></script>
+  <script>
+    System.import('app/app').catch(console.error.bind(console));
+  </script>
+  <!-- endbuild -->
 </body>
 </html>

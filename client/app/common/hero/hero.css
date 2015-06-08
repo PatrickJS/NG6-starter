@@ -1,0 +1,24 @@
+@import '../common.css';
+
+/*
+  JSPM doesn't have a Stylus plugin yet and it's LESS plugin
+  doesn't support @imports yet, so we're going to use straight css.
+  Here's our color palate:
+
+  primaryColor = #0277BD
+  accentColor = #1DE9B6
+  bgColor = #efefef
+  darkBgColor = #263238
+  lightBgColor = #37474F
+  lightTextColor = #F5F5F5
+  darkTextColor = #212121
+*/
+
+.hero {
+  background-color: #263238; /* darkBgColor */
+  height: 500px;
+  padding: 30px;
+}
+.hero * {
+  color: #F5F5F5; /* lightTextColor */
+}

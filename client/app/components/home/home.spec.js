@@ -1,18 +1,20 @@
+// Have to import angular first before angular-mocks
+// https://github.com/Workiva/karma-jspm/issues/23
+import angular from 'angular';
+import 'angular-mocks';
 import HomeModule from './home'
 import HomeController from './home.controller';
 import HomeComponent from './home.component';
-import HomeTemplate from './home.html';
+import HomeTemplate from './home.html!text';
 
 describe('Home', ()=>{
 	let $rootScope,
 	makeController;
 	
-	beforeEach(window.module(HomeModule.name));
-	beforeEach(inject((_$rootScope_)=>{
+	beforeEach(angular.mock.module(HomeModule.name));
+	beforeEach(angular.mock.inject((_$rootScope_)=>{
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new HomeController();
-		};
+		makeController = ()=> new HomeController();
 	}));
 	
 	describe('Module', ()=>{

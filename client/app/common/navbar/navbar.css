@@ -1,0 +1,33 @@
+@import '../common.css';
+
+/*
+  JSPM doesn't have a Stylus plugin yet and it's LESS plugin
+  doesn't support @imports yet, so we're going to use straight css.
+  Here's our color palate:
+
+  primaryColor = #0277BD
+  accentColor = #1DE9B6
+  bgColor = #efefef
+  darkBgColor = #263238
+  lightBgColor = #37474F
+  lightTextColor = #F5F5F5
+  darkTextColor = #212121
+*/
+
+.navbar {
+  height: 65px;
+  background-color: #0277BD; /* primaryColor */
+  padding: 10px;
+}
+.navbar .nav-links,
+.navbar .logo {
+  display: inline-block;
+}
+.navbar .logo {
+  color: #F5F5F5; /* lightTextColor */
+  margin-right: 50%;
+}
+.navbar .nav-links span {
+  color: #F5F5F5; /* lightTextColor */
+  font-size: 1.6rem;
+}
