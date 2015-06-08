@@ -14,6 +14,8 @@ This repo serves as an extremely minimal starter for anyone looking to get up an
 * Testing system ready to go
 * [Stylus](https://learnboost.github.io/stylus/) support
 
+**Check out the [JSPM version](https://github.com/angular-class/NG6-starter/tree/jspm) for an alternative ES6 build system**
+
 > If you're looking for [Angular 2](https://angular.io/) please use [angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter)
 
 ___
@@ -50,6 +52,8 @@ NG6 uses Gulp and Webpack together for its build system. Yes, you don't need Gul
 * Refreshing the browser and rebuilding on file changes
 * Generate boilerplate for our angular app
 
+**Check out the [JSPM version](https://github.com/angular-class/NG6-starter/tree/jspm) for an alternative ES6 build system**
+
 ## File Structure
 We use the component approach in NG6. This will be a standard if using the new router in angular and a great way to ensure easy transition to Angular 2. Everything or mostly everything is a component. A component is a self contained app basically. It has its own style, template, controllers, routing, specs, etc. All capsulated in its own folder. Here's how it looks:
 ```
@@ -70,13 +74,13 @@ client
 ```
 
 ## Testing Setup
-All test are written in ES6 too because why not! So we use Webpack to take care of all the logistics of getting those files run in browsers just like our client files. `Karma` combined with webpack will run all files that match `.spec.js` inside the `app` folder. This is awesome because we can write tests for our components in the same folder with the rest of the component. `spec.bundle.js` is the bundle file for all our spec files that karma will run. Our testing setup is:
+All test are written in ES6 too because why not! We use Webpack to take care of all the logistics of getting those files run in browsers just like our client files. Our testing setup is:
 * Karma
 * Webpack + Babel
 * Mocha
 * Chai
 
-To run test just `npm test` or `karma start`.
+To run test just `npm test` or `karma start`. Read more about testing [below](#testing)
 
 
 # Getting Started
@@ -114,6 +118,9 @@ Here's a list of possible Gulp task to run:
   
 ### Testing
 To run test, just run `npm test` or `karma start`.
+
+`Karma` combined with webpack will run all files that match `.spec.js` inside the `app` folder. This is awesome because we can write tests for our components in the same folder with the rest of the component. `spec.bundle.js` is the bundle file for all our spec files that karma will run.
+
 Be sure to include your `spec` files in the appropriate component directory. You must name the spec file like so, `[name].spec.js`. If you don't want to use the `.spec.js` extentsion, you must change the `regex` in `spec.bundle.js` to look for whatever file(s) you want.
 `Mocha` is the testing suite being used and `chai` is the assertion library. If you would like to change this, change it in `karma.conf.js`.
 
