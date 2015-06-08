@@ -18,8 +18,8 @@ System.config({
     "angular": "github:angular/bower-angular@1.4.0",
     "angular-mocks": "npm:angular-mocks@1.4.0",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
-    "babel": "npm:babel-core@5.5.4",
-    "babel-runtime": "npm:babel-runtime@5.5.4",
+    "babel": "npm:babel-core@5.5.5",
+    "babel-runtime": "npm:babel-runtime@5.5.5",
     "core-js": "npm:core-js@0.9.14",
     "css": "github:systemjs/plugin-css@0.1.12",
     "normalize.css": "github:necolas/normalize.css@3.0.3",
@@ -82,7 +82,7 @@ System.config({
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
-    "npm:babel-runtime@5.5.4": {
+    "npm:babel-runtime@5.5.5": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:buffer@3.2.2": {

@@ -19,7 +19,9 @@ let appModule = angular.module('app', [
  */
 
 angular.element(document).ready(()=> {
-  angular.bootstrap(document, [appModule.name])
+  angular.bootstrap(document, [appModule.name]), {
+    strictDi: true
+  }
 });
 
 export default appModule;

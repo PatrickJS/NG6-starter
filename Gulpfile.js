@@ -1,9 +1,13 @@
-var gulp	 		= require('gulp'),
-		path			= require('path'),
-		rename		= require('gulp-rename'),
-		template	= require('gulp-template'),
-		serve			= require('browser-sync'),
-		yargs			= require('yargs').argv
+var gulp	 		  = require('gulp'),
+		path			  = require('path'),
+		jspm 				= require('jspm'),
+		rename		  = require('gulp-rename'),
+		template	  = require('gulp-template'),
+		uglify	 		= require('gulp-uglify'),
+		htmlreplace = require('gulp-html-replace'),
+		ngAnnotate  = require('gulp-ng-annotate'),
+		serve			  = require('browser-sync'),
+		yargs			  = require('yargs').argv
 
 var root = 'client';
 
@@ -26,7 +30,8 @@ var paths = {
 		resolveToApp('**/*.html'),
 		path.join(root, 'index.html')
 	],
-	blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**')
+	blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
+	dist: path.join(__dirname, 'dist/')
 };
 
 gulp.task('serve', function(){
@@ -47,6 +52,28 @@ gulp.task('serve', function(){
 			}
 		},
 	});
+});
+
+gulp.task('build', function() {
+	var dist = path.join(paths.dist + 'app.js');
+	// Use JSPM to bundle our app
+	return jspm.bundleSFX(resolveToApp('app'), dist, {})
+		.then(function() {
+			// Also create a fully annotated minified copy
+			return gulp.src(dist)
+				.pipe(ngAnnotate())
+				.pipe(uglify())
+				.pipe(rename('app.min.js'))
+				.pipe(gulp.dest(paths.dist))
+		})
+		.then(function() {
+			// Inject minified script into index
+		  return gulp.src('client/index.html')
+				.pipe(htmlreplace({
+					'js': 'app.min.js'
+				}))
+				.pipe(gulp.dest(paths.dist));
+		});
 });
 
 gulp.task('component', function(){
