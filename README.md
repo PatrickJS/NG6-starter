@@ -155,6 +155,7 @@ Because `--name` is used to create folder name too, use camel or snakeCase and s
 
 ### Todo
 - [ ] server
+- [ ] heroku button
 
 # Starter Kit Support and Questions
 > Contact us anytime for anything about this repo
