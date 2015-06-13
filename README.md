@@ -153,6 +153,9 @@ Running `gulp component --name footer --parent ../common` will create a `footer`
 
 Because `--name` is used to create folder name too, use camel or snakeCase and stay consistent.
 
+### Todo
+- [ ] server
+
 # Starter Kit Support and Questions
 > Contact us anytime for anything about this repo
 
