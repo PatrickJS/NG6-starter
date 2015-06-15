@@ -96,7 +96,7 @@ Once you have those, you should install these globals with `npm i -g`:
 ## Installing
 * `fork` me
 * `clone` your fork
-* `npm i` to install all dependencies
+* `npm install` to install all dependencies
 
 
 ## Running the app
