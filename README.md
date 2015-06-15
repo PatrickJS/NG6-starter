@@ -87,7 +87,7 @@ To run test just `npm test` or `karma start`. Read more about testing [below](#t
 ## Dependencies
 What you need to run this app:
 * `node` and `npm`
-Once you have those, you should install these globals with `npm i -g`:
+Once you have those, you should install these globals with `npm install --global`:
 * `karma-cli`
 * `gulp`
 * `karma`
