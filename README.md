@@ -107,6 +107,10 @@ Once you have those, you should install these globals with `npm i -g`:
 * `npm i` to install all dependencies
 * (with JSPM there's usually a `jspm install` step too, but that is added to npm's `postinstall` for convenience)
 
+#### Failing `npm install`
+If this is your first time running JSPM, you'll probably run into a `warn Error - GitHub rate limit reached`
+
+Fix this by adding your GitHub credentials to JSPM with: `jspm registry config github`.
 
 ## Running the app
 NG6 uses Gulp to build and start the dev environment. After you have installed all dependencies you can now run the app.
