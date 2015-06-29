@@ -1,9 +1,9 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import homeComponent from './home.component'; 
+import 'angular-ui-router';
+import homeComponent from './home.component';
 
 let homeModule = angular.module('home', [
-	uiRouter
+	'ui.router'
 ])
 .config(($stateProvider, $urlRouterProvider)=>{
 	$urlRouterProvider.otherwise('/');

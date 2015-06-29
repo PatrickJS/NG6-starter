@@ -1,18 +1,20 @@
-import NavbarModule from './navbar'
+// Have to import angular first before angular-mocks
+// https://github.com/Workiva/karma-jspm/issues/23
+import angular from 'angular';
+import 'angular-mocks';
+import NavbarModule from './navbar';
 import NavbarController from './navbar.controller';
 import NavbarComponent from './navbar.component';
-import NavbarTemplate from './navbar.html';
+import NavbarTemplate from './navbar.html!text';
 
 describe('Navbar', ()=>{
 	let $rootScope,
 	makeController;
 	
-	beforeEach(window.module(NavbarModule.name));
-	beforeEach(inject((_$rootScope_)=>{
+	beforeEach(angular.mock.module(NavbarModule.name));
+	beforeEach(angular.mock.inject((_$rootScope_)=>{
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new NavbarController();
-		};
+		makeController = ()=> new NavbarController();
 	}));
 	
 	describe('Module', ()=>{

@@ -1,18 +1,20 @@
-import HeroModule from './hero'
+// Have to import angular first before angular-mocks
+// https://github.com/Workiva/karma-jspm/issues/23
+import angular from 'angular';
+import 'angular-mocks';
+import HeroModule from './hero';
 import HeroController from './hero.controller';
 import HeroComponent from './hero.component';
-import HeroTemplate from './hero.html';
+import HeroTemplate from './hero.html!text';
 
 describe('Hero', ()=>{
 	let $rootScope,
 	makeController;
 	
-	beforeEach(window.module(HeroModule.name));
-	beforeEach(inject((_$rootScope_)=>{
+	beforeEach(angular.mock.module(HeroModule.name));
+	beforeEach(angular.mock.inject((_$rootScope_)=>{
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new HeroController();
-		};
+		makeController = ()=> new HeroController();
 	}));
 	
 	describe('Module', ()=>{

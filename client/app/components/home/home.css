@@ -1,0 +1,17 @@
+/*
+  JSPM doesn't have a Stylus plugin yet and it's LESS plugin
+  doesn't support @imports yet, so we're going to use straight css.
+  Here's our color palate:
+
+  primaryColor = #0277BD
+  accentColor = #1DE9B6
+  bgColor = #EFEFEF
+  darkBgColor = #263238
+  lightBgColor = #37474F
+  lightTextColor = #F5F5F5
+  darkTextColor = #212121
+*/
+
+.home {
+	color: red;
+}

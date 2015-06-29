@@ -1,9 +1,9 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import <%= name %>Component from './<%= name %>.component'; 
+import 'angular-ui-router';
+import <%= name %>Component from './<%= name %>.component.js';
 
 let <%= name %>Module = angular.module('<%= name %>', [
-	uiRouter
+	'ui.router'
 ])
 .directive('<%= name %>', <%= name %>Component);
 

@@ -4,17 +4,17 @@
 
 # NG6 [![Join the chat at https://gitter.im/angular-class/NG6-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-class/NG6-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-> Starter repo for [Angular](https://angularjs.org) + [ES6](https://git.io/es6features) + [Webpack](http://webpack.github.io/) (or [JSPM](https://github.com/angular-class/NG6-starter/tree/jspm))
+> Starter repo for [Angular](https://angularjs.org) + [ES6](https://git.io/es6features) + [JSPM](http://jspm.io/) (or [Webpack](https://github.com/angular-class/NG6-starter/tree/master))
 
-This repo serves as an extremely minimal starter for anyone looking to get up and running with Angular and ES6. Using a combo of [Gulp](http://gulpjs.com/) and [Webpack](http://webpack.github.io/) for building our files and assisting with boilerplate.
+This repo serves as an extremely minimal starter for anyone looking to get up and running with Angular and ES6. Using a combo of [JSPM](http://jspm.io/) and [Gulp](http://gulpjs.com/) for building our files and assisting with boilerplate.
 **This seed is not a yeoman generator!** Its just a minimal starter with tasks to build and create boilerplate. **Features include**:
 * Best practice in file organization for Angular
+* Frictionless package management and module loader with [JSPM](http://jspm.io)
 * Ready to go build system for working with [ES6](https://git.io/es6features)
 * Task for generating component boilerplate with angular, including test
 * Testing system ready to go
-* [Stylus](https://learnboost.github.io/stylus/) support
 
-**Check out the [JSPM version](https://github.com/angular-class/NG6-starter/tree/jspm) for an alternative ES6 build system**
+**Check out the [webpack version](https://github.com/angular-class/NG6-starter/tree/master) for an alternative ES6 build system**
 
 > If you're looking for [Angular 2](https://angular.io/) please use [angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter)
 
@@ -22,6 +22,7 @@ ___
 
 # TOC
 * [Walkthrough](#walkthrough)
+    * [What about Webpack?](#how-is-this-different-than-webpack)
     * [Build system](#build-system)
     * [File structure](#file-structure)
     * [Testing setup](#testing-setup)
@@ -31,28 +32,33 @@ ___
     * [Running the app](#running-the-app)
         * [Gulp tasks](#gulp-tasks)
         * [Testing](#testing)
-		* [Generating Components](#generating-components)		
+    * [Generating Components](#generating-components)   
 * [Starter Kit Support and Questions](#starter-kit-support-and-questions)
 
 # Walkthrough
-## Build System
-NG6 uses Gulp and Webpack together for its build system. Yes, you don't need Gulp if you're using Webpack. This is true if your build system is only responsible for file manipulation, which ours is not.
+## How is this different than Webpack?
+Webpack builds your application into a single package before you serve it to the client. JSPM is different for two major reasons: 
+ 1. JSPM is built ontop of [SystemJS](https://github.com/systemjs/systemjs) which uses a polyfill for the new ES6 module loader that will eventually be supportedly natively. This means that there is no intermediate build process before your files are served. Instead, the module loader will load (and transpile) only the files it needs at runtime. When you're ready for deployment, JSPM can also bundle your app for production (very much like webpack here).
+ 2. JSPM abstracts dependency management. You can `jspm install` any package that lives on bower, npm, or github and use the ES6 `import` syntax all the same on them.
 
-`Webpack` handles all the file related things. This inlcudes:
-* Transpiling from ES6 to ES5 with `Babel`
+## Build System
+This branch of NG6 uses the power of JSPM and Gulp together for its build system. Yes, you don't need Gulp if you're using JSPM. This is true if your build system is only responsible for file manipulation, which ours is not.
+
+`JSPM` does most of the heavy lifting here, it handles:
+* Dependency management. Download external modules from npm, bower, or straight from github
+* Dynamic transpiling from ES6 to ES5 with `Babel`
 * Loading HTML files as modules
-* Loading CSS and Stylus files and appending the styles to the DOM
-* Bundling our app
+* Loading CSS files and appending the styles to the DOM
 * Loading any and all modules
 * Doing the same for testing as well
 
 `Gulp` is like the orchestrator, it handles:
-* Starting and calling webpack
-* Starting a dev server (yes webpack can do this too)
-* Refreshing the browser and rebuilding on file changes
+* Starting a dev server
+* Refreshing the browser on file changes
 * Generate boilerplate for our angular app
+* Building a production version of our app ready for deployment
 
-**Check out the [JSPM version](https://github.com/angular-class/NG6-starter/tree/jspm) for an alternative ES6 build system**
+**Check out the [webpack version](https://github.com/angular-class/NG6-starter/tree/master) for an alternative ES6 build system**
 
 ## File Structure
 We use the component approach in NG6. This will be a standard if using the new router in angular and a great way to ensure easy transition to Angular 2. Everything or mostly everything is a component. A component is a self contained app basically. It has its own style, template, controllers, routing, specs, etc. All capsulated in its own folder. Here's how it looks:
@@ -74,9 +80,10 @@ client
 ```
 
 ## Testing Setup
-All test are written in ES6 too because why not! We use Webpack to take care of all the logistics of getting those files run in browsers just like our client files. Our testing setup is:
+All test are written in ES6 too because why not! We use JSPM to take care of all the logistics of getting those files run in browsers just like our client files. Our setup is:
+
 * Karma
-* Webpack + Babel
+* JSPM + Babel
 * Mocha
 * Chai
 
@@ -87,42 +94,45 @@ To run test just `npm test` or `karma start`. Read more about testing [below](#t
 ## Dependencies
 What you need to run this app:
 * `node` and `npm`
-Once you have those, you should install these globals with `npm install --global`:
-* `karma-cli`
+Once you have those, you should install these globals with `npm i -g`:
+* `jspm`
 * `gulp`
 * `karma`
-* `webpack`
+* `karma-cli`
 
 ## Installing
 * `fork` me
 * `clone` your fork
-* `npm install` to install all dependencies
+* `git checkout jspm`
+* `npm i` to install all dependencies
+* (with JSPM there's usually a `jspm install` step too, but that is added to npm's `postinstall` for convenience)
 
+#### Failing `npm install`
+If this is your first time running JSPM, you'll probably run into a `warn Error - GitHub rate limit reached`
+
+Fix this by adding your GitHub credentials to JSPM with: `jspm registry config github`.
 
 ## Running the app
 NG6 uses Gulp to build and start the dev environment. After you have installed all dependencies you can now run the app.
-Run `gulp` to start bundle with `webpack`, start a dev server and watch all files. The port will displayed to you.
+Run `gulp` to start a dev server and watch all files. The port will displayed to you.
  
 ### Gulp tasks
+Without Webpack's required build step, serving is easy and you choose when you are ready to build now 
+
 Here's a list of possible Gulp task to run:
-* `webpack`
-  * runs webpack which will transpile, compile, and bundle all assets and modules into `client/bundle.js`
-* `serve`
-  * starts a dev server with `browser-sync` serving the client folder
-* `watch`
-  * listens for file changes and rebuilds with webpack then refreshes the browser
-* `default`
-	* runs `webpack`, `serve`, and `watch` in that order.
+* `serve` (also default `gulp`)
+  * starts a dev server with `browser-sync` serving the client folder and listens for changes
+* `build`
+  * bundles our app into a single file with all included dependencies into `dist/`. both minified and unminified included
 * `component`
   * builds out boilerplate for a new angular component, [read below](#generating-components) to see how to use this in more detail
   
 ### Testing
 To run test, just run `npm test` or `karma start`.
 
-`Karma` combined with webpack will run all files that match `.spec.js` inside the `app` folder. This is awesome because we can write tests for our components in the same folder with the rest of the component. `spec.bundle.js` is the bundle file for all our spec files that karma will run.
+The only difference from a regular `Karma` setup is the use of [`karma-jspm`](https://github.com/Workiva/karma-jspm) plugin to let JSPM handle spec files as modules. `Karma` will run all files that match `.spec.js` inside the `app` folder. This is awesome because we can write tests for our components in the same folder with the rest of the component. Be sure to include your `spec` files in the appropriate component directory. You must name the spec file like so, `[name].spec.js`. If you don't want to use the `.spec.js` extension, you must change the `jspm.loadFiles` glob in `karma.conf.js` to look for whatever file(s) you want.
 
-Be sure to include your `spec` files in the appropriate component directory. You must name the spec file like so, `[name].spec.js`. If you don't want to use the `.spec.js` extentsion, you must change the `regex` in `spec.bundle.js` to look for whatever file(s) you want.
-`Mocha` is the testing suite being used and `chai` is the assertion library. If you would like to change this, change it in `karma.conf.js`.
+`Mocha` is the testing suite being used and `chai` is the assertion library. If you would like to change this, do so in `karma.conf.js`.
 
 
 ## Generating components
@@ -132,7 +142,7 @@ Following a good practice allows us to guarantee certain things. We can take adv
 * Component component file, or directive file will will also `import` its dependencies
 * Component template
 * Component controller
-* Component styl, a stylus file for the component. can replace with css, less, or sass
+* Component css
 * Component spec with passing tests already written
 
 You can create all this by hand, but it gets old fast!
@@ -152,10 +162,6 @@ So running `gulp component --name signup --parent auth` will create a `signup` c
 Running `gulp component --name footer --parent ../common` will create a `footer` component at `client/app/common/footer`. 
 
 Because `--name` is used to create folder name too, use camel or snakeCase and stay consistent.
-
-### Todo
-- [ ] server
-- [ ] heroku button
 
 # Starter Kit Support and Questions
 > Contact us anytime for anything about this repo
