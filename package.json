@@ -1,5 +1,5 @@
 {
-  "name": "angular-webpack-starter",
+  "name": "angular-jspm-starter",
   "version": "0.0.1",
   "description": "starter",
   "dependencies": {},
@@ -9,7 +9,7 @@
   },
   "keywords": [
     "angular",
-    "webpack",
+    "jspm",
     "es6"
   ],
   "author": "AngularClass",
