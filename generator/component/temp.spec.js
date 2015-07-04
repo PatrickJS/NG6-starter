@@ -2,9 +2,9 @@
 // https://github.com/Workiva/karma-jspm/issues/23
 import angular from 'angular';
 import 'angular-mocks';
-import <%= upCaseName %>Module from './<%= name %>.js'
-import <%= upCaseName %>Controller from './<%= name %>.controller.js';
-import <%= upCaseName %>Component from './<%= name %>.component.js';
+import <%= upCaseName %>Module from './<%= name %>'
+import <%= upCaseName %>Controller from './<%= name %>.controller';
+import <%= upCaseName %>Component from './<%= name %>.component';
 import <%= upCaseName %>Template from './<%= name %>.html';
 
 describe('<%= upCaseName %>', ()=>{
