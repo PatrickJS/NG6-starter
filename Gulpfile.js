@@ -1,5 +1,5 @@
 var gulp	 		= require('gulp'),
-		webpack		= require('gulp-webpack'),
+		webpack		= require('webpack-stream'),
 		path			= require('path'),
 		sync			= require('run-sequence'),
 		serve			= require('browser-sync'),
