@@ -19,7 +19,6 @@
     "gulp": "^3.8.11",
     "gulp-rename": "^1.2.2",
     "gulp-template": "^3.0.0",
-    "gulp-webpack": "^1.4.0",
     "karma": "^0.12.31",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.12",
@@ -34,6 +33,7 @@
     "style-loader": "^0.12.2",
     "stylus-loader": "^1.1.1",
     "webpack": "^1.9.5",
+    "webpack-stream": "^2.0.0",
     "yargs": "^3.9.0"
   },
   "scripts": {
