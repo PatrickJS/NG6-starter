@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="http://bit.ly/1LyXXtV" alt="ng6" width="320px;" />
+  <img src="http://bit.ly/1LyXXtV" alt="ng6" width="480px;" />
   <!-- old img url: http://res.cloudinary.com/angularclass/image/upload/v1431802814/ng6_vrmd60.png -->
 </p>
 
