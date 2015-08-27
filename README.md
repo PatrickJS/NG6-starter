@@ -92,37 +92,36 @@ Once you have these, install the following as globals:
 `npm install -g gulp karma karma-cli webpack`
 
 ## Installing
-* `fork` me
+* `fork` this repo
 * `clone` your fork
 * `npm install` to install dependencies
 
 ## Running the App
-NG6 uses Gulp to build and launch the development environment. After you have installed all dependencies, you may run the app. Running `gulp` will bundle the app with `webpack`, launch a development server, and to watch all files. The port will be displayed in the terminal.
+NG6 uses Gulp to build and launch the development environment. After you have installed all dependencies, you may run the app. Running `gulp` will bundle the app with `webpack`, launch a development server, and watch all files. The port will be displayed in the terminal.
  
 ### Gulp Tasks
 Here's a list of available tasks:
 * `webpack`
   * runs Webpack, which will transpile, concatenate, and compress (collectively, "bundle") all assets and modules into `client/bundle.js`.
 * `serve`
-  * starts a dev server with `browser-sync`, serving the client folder.
+  * starts a dev server via `browser-sync`, serving the client folder.
 * `watch`
   * listens for file changes, rebuilds with Webpack, then refreshes the browser.
-* `default` (which is the default task that runs when typing `gulp` without a parameter)
+* `default` (which is the default task that runs when typing `gulp` without providing an argument)
 	* runs `webpack`, `serve`, and `watch`--in that order.
 * `component`
-  * builds the boilerplate for a new Angular component. [Read below](#generating-components) for usage details.
+  * scaffolds a new Angular component. [Read below](#generating-components) for usage details.
   
 ### Testing
 To run the tests, run `npm test` or `karma start`.
 
-`Karma` combined with Webpack runs all files that match `*.spec.js` inside the `app` folder. This allows us to keep test files local to the component--which keeps us in good faith with continuing to build our app modularly. The file `spec.bundle.js` is the bundle file for **all** our spec files that Karma will run.
+`Karma` combined with Webpack runs all files matching `*.spec.js` inside the `app` folder. This allows us to keep test files local to the component--which keeps us in good faith with continuing to build our app modularly. The file `spec.bundle.js` is the bundle file for **all** our spec files that Karma will run.
 
-Be sure to include your `*.spec.js` files in the appropriate component directory. You must name the spec file like so, `[name].spec.js`. If you don't want to use the `.spec.js` extentsion, you must change the `regex` in `spec.bundle.js` to look for whatever file(s) you want.
-`Mocha` is the testing suite and `chai` is the assertion library. If you would like to change this, see `karma.conf.js`.
+Be sure to define your `*.spec.js` files within their corresponding component directory. You must name the spec file like so, `[name].spec.js`. If you don't want to use the `.spec.js` suffix, you must change the `regex` in `spec.bundle.js` to look for whatever file(s) you want.
+`Mocha` is the testing suite and `Chai` is the assertion library. If you would like to change this, see `karma.conf.js`.
 
-## Generating Components
-
-Following a good practice allows us to guarantee certain things. We can take advantage of these guarantees and use a task to automate things. Because the components we make will almost always have the same structure, we can generate this boilerplate for you. The component boilerplate generates this:
+### Generating Components
+Following a consistent directury structure between components offers us the certainty of predictability. We can take advantage of this certainty by creating a gulp task to automate the "instantiation" of our components. The component boilerplate task generates this:
 ```
 ⋅⋅⋅⋅⋅⋅componentName/
 ⋅⋅⋅⋅⋅⋅⋅⋅componentName.js // entry file where all its dependencies load
@@ -133,10 +132,10 @@ Following a good practice allows us to guarantee certain things. We can take adv
 ⋅⋅⋅⋅⋅⋅⋅⋅componentName.spec.js // contains passing demonstration tests
 ```
 
-You may, of course, create these files manually, every time a new module is needed, but that gets quickly tedius!
-To generate a component, we run `gulp component --name componentName`.
+You may, of course, create these files manually, every time a new module is needed, but that gets quickly tedius.
+To generate a component, run `gulp component --name componentName`.
 
-The parameter following the `--name` flag is the name of the component you want to create. Ensure that it is unique or it'll overwrite an existing component.
+The parameter following the `--name` flag is the name of the component to be created. Ensure that it is unique or it will overwrite the preexisting identically-named component.
 
 The component will be created, by default, inside `client/app/components`. To change this, apply the `--parent` flag, followed by a path relative to `client/app/components/`.
 
@@ -145,10 +144,6 @@ For example, running `gulp component --name signup --parent auth` will create a 
 Running `gulp component --name footer --parent ../common` creates a `footer` component at `client/app/common/footer`.  
 
 Because the argument to `--name` applies to the folder name **and** the actual component name, make sure to camelcase the component names.
-
-### Todo
-- [ ] server
-- [ ] Heroku button
 
 # Starter Kit Support and Questions
 > Contact us, anytime, regarding anything about this project.
