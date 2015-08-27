@@ -1,29 +1,26 @@
 /*
- * When testing with webpack and ES6, we have to do some extra
- * things get testing to work right. Because we are gonna write test
- * in ES6 to, we have to compile those as well. That's handled in
- * karma.conf.js with the karma-webpack plugin. This is the entry
- * file for webpack test. Just like webpack will create a bundle.js
- * file for our client, when we run test, it well compile and bundle them
- * all here! Crazy huh. So we need to do some setup
+ * When testing with Webpack and ES6, we have to do some
+ * preliminary setup. Because we are writing our tests also in ES6,
+ * we must transpile those as well, which is handled inside
+ * `karma.conf.js` via the `karma-webpack` plugin. This is the entry
+ * file for the Webpack tests. Similarly to how Webpack creates a
+ * `bundle.js` file for the compressed app source files, when we
+ * run our tests, Webpack, likewise, compiles and bundles those tests here.
 */
 
-// import angular duh
 import angular from 'angular';
-// angular-mocks is a angular plugin built by the angular team
-// for mocking out dependencies, we need this
+// Built by the core Angular team for mocking dependencies
 import mocks from 'angular-mocks';
 
-// Ok, this is kinda cray cray. We can use the the context method on
-// require that webpack created in order to tell webpack
-// what files we actually want to require or import.
-// Below, context will be an function/object with file names as keys.
-// using that regex we are saying look in client/app and find
-// any file that ends with spec.js and get its path. By passing in true
-// we say do this recursively
+// We use the context method on `require` which Webpack created
+// in order to signify which files we actually want to require or import.
+// Below, `context` will be a/an function/object with file names as keys.
+// Using that regex, we scan within `client/app` and target
+// all files ending with `.spec.js` and trace its path.
+// By passing in true, we permit this process to occur recursively.
 let context = require.context('./client/app', true, /\.spec\.js/);
 
-// get all the files, for each file, call the context function
-// that will require the file and load it up here. Context will
-// loop and require those spec files here
+// Get all files, for each file, call the context function
+// that will require the file and load it here. Context will
+// loop and require those spec files here.
 context.keys().forEach(context);
