@@ -46,7 +46,7 @@ NG6 uses Gulp and Webpack together for its build system. Yes, you don't need Gul
 * Transpiling stylesheets and appending them to the DOM
 * Bundling the app
 * Loading all modules
-* Doing all of the above for *.spec.js files as well
+* Doing all of the above for `*.spec.js` files as well
 
 `Gulp` is the orchestrator:
 * Starting and calling Webpack
