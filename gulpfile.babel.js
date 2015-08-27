@@ -14,8 +14,9 @@ import lodash   = from 'lodash';
 yargs = yargs.argv;
 
 let reload = () => serve.reload();
+let root = 'client';
 
-// helper method to resolveToApp paths
+// helper method for resolving paths
 let resolveToApp = (glob) => {
   glob = glob || '';
   return path.join(root, 'app', glob); // app/{glob}
@@ -25,8 +26,6 @@ let resolveToComponents = (glob) => {
   glob = glob || '';
   return path.join(root, 'app/components', glob); // app/components/{glob}
 };
-
-let root = 'client';
 
 // map of all paths
 let paths = {
