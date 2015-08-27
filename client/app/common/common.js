@@ -4,9 +4,9 @@ import Hero from './hero/hero';
 import User from './user/user';
 
 let commonModule = angular.module('app.common', [
-	Navbar.name,
-	Hero.name,
-	User.name
+  Navbar.name,
+  Hero.name,
+  User.name
 ]);
 
 export default commonModule;
