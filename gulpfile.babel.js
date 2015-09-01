@@ -1,17 +1,15 @@
 'use strict';
 
-import gulp     = from 'gulp';
-import webpack  = from 'webpack-stream';
-import path     = from 'path';
-import sync     = from 'run-sequence';
-import serve    = from 'browser-sync';
-import rename   = from 'gulp-rename';
-import template = from 'gulp-template';
-import fs       = from 'fs';
-import yargs    = from 'yargs';
-import lodash   = from 'lodash';
-
-yargs = yargs.argv;
+import gulp     from 'gulp';
+import webpack  from 'webpack-stream';
+import path     from 'path';
+import sync     from 'run-sequence';
+import serve    from 'browser-sync';
+import rename   from 'gulp-rename';
+import template from 'gulp-template';
+import fs       from 'fs';
+import yargs    from 'yargs';
+import lodash   from 'lodash';
 
 let reload = () => serve.reload();
 let root = 'client';
@@ -64,8 +62,8 @@ gulp.task('component', () => {
   let cap = (val) => {
     return val.charAt(0).toUpperCase() + val.slice(1);
   };
-  let name = yargs.name;
-  let parentPath = yargs.parent || '';
+  let name = yargs.argv.name;
+  let parentPath = yargs.argv.parent || '';
   let destPath = path.join(resolveToComponents(), parentPath, name);
 
   return gulp.src(paths.blankTemplates)
