@@ -1,9 +1,0 @@
-<p>Email confirmation wd</p>
-
-<form ng-submit="vm.goToPickName()">
-	<input ng-if="vm.confirmEmail" type="email" ng-model="vm.user.email" required>
-	<input type="email" ng-model="vm.user.emailconfirmation" ng-class="{invalidEmail:vm.user.email !== vm.user.emailconfirmation}">
-	<p ng-if="vm.confirmEmail">your email don't match</p>
-	<button>Next</button>
-</form>
-

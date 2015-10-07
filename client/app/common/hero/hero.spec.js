@@ -1,16 +1,16 @@
-import DashboardModule from './dashboard'
-import DashboardController from './dashboard.controller';
-import DashboardComponent from './dashboard.component';
-import DashboardTemplate from './dashboard.html';
+import HeroModule from './hero'
+import HeroController from './hero.controller';
+import HeroComponent from './hero.component';
+import HeroTemplate from './hero.html';
 
-describe('Dashboard', () => {
+describe('Hero', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(DashboardModule.name));
+  beforeEach(window.module(HeroModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new DashboardController();
+      return new HeroController();
     };
   }));
 
@@ -30,16 +30,16 @@ describe('Dashboard', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
     it('has name in template [REMOVE]', () => {
-      expect(DashboardTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+      expect(HeroTemplate).to.match(/{{\s?vm\.name\s?}}/g);
     });
   });
 
   describe('Component', () => {
       // component/directive specs
-      let component = DashboardComponent();
+      let component = HeroComponent();
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(DashboardTemplate);
+        expect(component.template).to.equal(HeroTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -47,7 +47,7 @@ describe('Dashboard', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(DashboardController);
+        expect(component.controller).to.equal(HeroController);
       });
   });
 });
