@@ -6,3 +6,5 @@ node_modules
 *.log
 client/bundle.js
 client/bundle.js.map
+client/anotherEntry.js
+client/anotherEntry.js.map

@@ -33,16 +33,18 @@ let paths = {
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
   ],
-  entry: path.join(root, 'app/app.js'),
-  output: root,
+  entry: {
+    bundle: './' + path.join(root, 'app/app.js'),
+    anotherEntry: './' + path.join(root, 'app/anotherEntry.js')
+  },
   blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**')
 };
 
 // use webpack.config.js to build modules
 gulp.task('webpack', () => {
-  return gulp.src(paths.entry)
-    .pipe(webpack(require('./webpack.config')))
-    .pipe(gulp.dest(paths.output));
+    let webpack_config = lodash.merge(require('./webpack.config'), paths);
+    webpack(webpack_config)
+    .pipe(gulp.dest(root));
 });
 
 gulp.task('serve', () => {
