@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>NG6-starter by angular-class</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">NG6-starter</h1>
+      <h2 class="project-tagline">Starter for Angular + ES6 + (Webpack or JSPM) by @Angular-Class</h2>
+      <a href="https://github.com/angular-class/NG6-starter" class="btn">View on GitHub</a>
+      <a href="https://github.com/angular-class/NG6-starter/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/angular-class/NG6-starter/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p align="center">
+  <a href="https://angularclass.com" target="_blank">
+    <img src="https://cloud.githubusercontent.com/assets/1016365/9864650/93a5660a-5b00-11e5-8716-a0d538d12913.png" alt="ng6-starter" width="480px;">
+  </a>
+  
+</p>
+
+<h1>
+<a id="ng6-" class="anchor" href="#ng6-" aria-hidden="true"><span class="octicon octicon-link"></span></a>NG6 <a href="https://gitter.im/angular-class/NG6-starter?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/angular-class/NG6-starter"></a>
+</h1>
+
+<blockquote>
+<p>The de facto starter repo for building scalable apps with <a href="https://angularjs.org">Angular</a>, <a href="https://git.io/es6features">ES6</a>, and <a href="http://webpack.github.io/">Webpack</a></p>
+</blockquote>
+
+<p>This repo serves as a minimal starter for those looking to get up-and-running with Angular and ES6, using <a href="http://gulpjs.com/">Gulp</a> and <a href="http://webpack.github.io/">Webpack</a> for the build process.
+<strong>This seed is not a Yeoman generator.</strong> It's a minimal starter with tasks for building the boilerplate. <strong>These are its features</strong>:</p>
+
+<ul>
+<li>The best practice in directory/file organization for Angular (allowing for infinite horizontal app scaling)</li>
+<li>A ready-to-go build system for working with <a href="https://git.io/es6features">ES6</a>
+</li>
+<li>Tasks for generating additional boilerplate Angular components</li>
+<li>A full testing system in place</li>
+<li>
+<a href="https://learnboost.github.io/stylus/">Stylus</a> support</li>
+</ul>
+
+<h3>
+<a id="coming-soon" class="anchor" href="#coming-soon" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coming Soon</h3>
+
+<ul>
+<li>[ ] Jade support, including partials (i.e., subtemplates)</li>
+</ul>
+
+<p><strong>Check out the <a href="https://github.com/angular-class/NG6-starter/tree/jspm">JSPM version</a>--an alternative to Webpack as an ES6 build system.</strong></p>
+
+<blockquote>
+<p>If you're looking for a preliminary <a href="https://angular.io/">Angular 2</a> build, please use the <a href="https://github.com/angular-class/angular2-webpack-starter">angular2-webpack-starter</a>.</p>
+
+<hr>
+</blockquote>
+
+<h1>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table of Contents</h1>
+
+<ul>
+<li>
+<a href="#walkthrough">Walkthrough</a>
+
+<ul>
+<li><a href="#build-system">Build System</a></li>
+<li><a href="#file-structure">File Structure</a></li>
+<li><a href="#testing-setup">Testing Setup</a></li>
+</ul>
+</li>
+<li>
+<a href="#getting-started">Getting Started</a>
+
+<ul>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#installing">Installing</a></li>
+<li>
+<a href="#running-the-app">Running the App</a>
+
+<ul>
+<li><a href="#gulp-tasks">Gulp Tasks</a></li>
+<li><a href="#testing">Testing</a></li>
+<li>
+<a href="#generating-components">Generating Components</a><br>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#starter-kit-support-and-questions">Starter Kit Support and Questions</a></li>
+</ul>
+
+<h1>
+<a id="walkthrough" class="anchor" href="#walkthrough" aria-hidden="true"><span class="octicon octicon-link"></span></a>Walkthrough</h1>
+
+<h2>
+<a id="build-system" class="anchor" href="#build-system" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build System</h2>
+
+<p>NG6 uses Gulp and Webpack together for its build system. Yes, you don't need Gulp if you're using Webpack. This is true if your build system is only responsible for file manipulation. However, ours is not.</p>
+
+<p><code>Webpack</code> handles all file-related concerns:</p>
+
+<ul>
+<li>Transpiling from ES6 to ES5 with <code>Babel</code>
+</li>
+<li>Loading HTML files as modules</li>
+<li>Transpiling stylesheets and appending them to the DOM</li>
+<li>Bundling the app</li>
+<li>Loading all modules</li>
+<li>Doing all of the above for <code>*.spec.js</code> files as well</li>
+</ul>
+
+<p><code>Gulp</code> is the orchestrator:</p>
+
+<ul>
+<li>Starting and calling Webpack</li>
+<li>Starting a development server (yes, Webpack can do this too)</li>
+<li>Refreshing the browser and rebuilding on file changes</li>
+<li>Generating boilerplate for the Angular app</li>
+</ul>
+
+<p><strong>Check out the <a href="https://github.com/angular-class/NG6-starter/tree/jspm">JSPM version</a>--an alternative to Webpack as an ES6 build system.</strong></p>
+
+<h2>
+<a id="file-structure" class="anchor" href="#file-structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>File Structure</h2>
+
+<p>We use a componentized approach with NG6. This will be the eventual standard (and particularly helpful, if using Angular's new router) as well as a great way to ensure a tasteful transition to Angular 2, when the time is ripe. Everything--or mostly everything, as we'll explore (below)--is a component. A component is a self-contained concern--may it be a feature or strictly-defined, ever-present element of the UI (such as a header, sidebar, or footer). Also characteristic of a component is that it harnesses its own stylesheets, templates, controllers, routes, services, and specs. This encapsulation allows us the comfort of isolation and structural locality. Here's how it looks:</p>
+
+<pre><code>client
+⋅⋅app/
+⋅⋅⋅⋅app.js * app entry file
+⋅⋅⋅⋅app.html * app template
+⋅⋅⋅⋅common/ * functionality pertinent to several components propagate into this directory
+⋅⋅⋅⋅components/ * where components live
+⋅⋅⋅⋅⋅⋅components.js * components entry file
+⋅⋅⋅⋅⋅⋅home/ * home component
+⋅⋅⋅⋅⋅⋅⋅⋅home.js * home entry file (routes, configurations, and declarations occur here)
+⋅⋅⋅⋅⋅⋅⋅⋅home.component.js * home "directive"
+⋅⋅⋅⋅⋅⋅⋅⋅home.controller.js * home controller
+⋅⋅⋅⋅⋅⋅⋅⋅home.styl * home styles
+⋅⋅⋅⋅⋅⋅⋅⋅home.html * home template
+⋅⋅⋅⋅⋅⋅⋅⋅home.spec.js * home specs (for entry, component, and controller)
+</code></pre>
+
+<h2>
+<a id="testing-setup" class="anchor" href="#testing-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing Setup</h2>
+
+<p>All tests are also written in ES6. We use Webpack to take care of the logistics of getting those files to run in the various browsers, just like with our client files. This is our testing stack:</p>
+
+<ul>
+<li>Karma</li>
+<li>Webpack + Babel</li>
+<li>Mocha</li>
+<li>Chai</li>
+</ul>
+
+<p>To run tests, type <code>npm test</code> or <code>karma start</code> in the terminal. Read more about testing <a href="#testing">below</a>.</p>
+
+<h1>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h1>
+
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>Tools needed to run this app:</p>
+
+<ul>
+<li>
+<code>node</code> and <code>npm</code>
+Once you have these, install the following as globals:<br>
+<code>npm install -g gulp karma karma-cli webpack</code>
+</li>
+</ul>
+
+<h2>
+<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing</h2>
+
+<ul>
+<li>
+<code>fork</code> this repo</li>
+<li>
+<code>clone</code> your fork</li>
+<li>
+<code>npm install</code> to install dependencies</li>
+</ul>
+
+<h2>
+<a id="running-the-app" class="anchor" href="#running-the-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running the App</h2>
+
+<p>NG6 uses Gulp to build and launch the development environment. After you have installed all dependencies, you may run the app. Running <code>gulp</code> will bundle the app with <code>webpack</code>, launch a development server, and watch all files. The port will be displayed in the terminal.</p>
+
+<h3>
+<a id="gulp-tasks" class="anchor" href="#gulp-tasks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gulp Tasks</h3>
+
+<p>Here's a list of available tasks:</p>
+
+<ul>
+<li>
+<code>webpack</code>
+
+<ul>
+<li>runs Webpack, which will transpile, concatenate, and compress (collectively, "bundle") all assets and modules into <code>client/bundle.js</code>.</li>
+</ul>
+</li>
+<li>
+<code>serve</code>
+
+<ul>
+<li>starts a dev server via <code>browser-sync</code>, serving the client folder.</li>
+</ul>
+</li>
+<li>
+<code>watch</code>
+
+<ul>
+<li>listens for file changes, rebuilds with Webpack, then refreshes the browser.</li>
+</ul>
+</li>
+<li>
+<code>default</code> (which is the default task that runs when typing <code>gulp</code> without providing an argument)
+
+<ul>
+<li>runs <code>webpack</code>, <code>serve</code>, and <code>watch</code>--in that order.</li>
+</ul>
+</li>
+<li>
+<code>component</code>
+
+<ul>
+<li>scaffolds a new Angular component. <a href="#generating-components">Read below</a> for usage details.</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing</h3>
+
+<p>To run the tests, run <code>npm test</code> or <code>karma start</code>.</p>
+
+<p><code>Karma</code> combined with Webpack runs all files matching <code>*.spec.js</code> inside the <code>app</code> folder. This allows us to keep test files local to the component--which keeps us in good faith with continuing to build our app modularly. The file <code>spec.bundle.js</code> is the bundle file for <strong>all</strong> our spec files that Karma will run.</p>
+
+<p>Be sure to define your <code>*.spec.js</code> files within their corresponding component directory. You must name the spec file like so, <code>[name].spec.js</code>. If you don't want to use the <code>.spec.js</code> suffix, you must change the <code>regex</code> in <code>spec.bundle.js</code> to look for whatever file(s) you want.
+<code>Mocha</code> is the testing suite and <code>Chai</code> is the assertion library. If you would like to change this, see <code>karma.conf.js</code>.</p>
+
+<h3>
+<a id="generating-components" class="anchor" href="#generating-components" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generating Components</h3>
+
+<p>Following a consistent directury structure between components offers us the certainty of predictability. We can take advantage of this certainty by creating a gulp task to automate the "instantiation" of our components. The component boilerplate task generates this:</p>
+
+<pre><code>⋅⋅⋅⋅⋅⋅componentName/
+⋅⋅⋅⋅⋅⋅⋅⋅componentName.js // entry file where all its dependencies load
+⋅⋅⋅⋅⋅⋅⋅⋅componentName.component.js
+⋅⋅⋅⋅⋅⋅⋅⋅componentName.controller.js
+⋅⋅⋅⋅⋅⋅⋅⋅componentName.html
+⋅⋅⋅⋅⋅⋅⋅⋅componentName.styl // scoped to affect only its own template
+⋅⋅⋅⋅⋅⋅⋅⋅componentName.spec.js // contains passing demonstration tests
+</code></pre>
+
+<p>You may, of course, create these files manually, every time a new module is needed, but that gets quickly tedius.
+To generate a component, run <code>gulp component --name componentName</code>.</p>
+
+<p>The parameter following the <code>--name</code> flag is the name of the component to be created. Ensure that it is unique or it will overwrite the preexisting identically-named component.</p>
+
+<p>The component will be created, by default, inside <code>client/app/components</code>. To change this, apply the <code>--parent</code> flag, followed by a path relative to <code>client/app/components/</code>.</p>
+
+<p>For example, running <code>gulp component --name signup --parent auth</code> will create a <code>signup</code> component at <code>client/app/components/auth/signup</code>.  </p>
+
+<p>Running <code>gulp component --name footer --parent ../common</code> creates a <code>footer</code> component at <code>client/app/common/footer</code>.  </p>
+
+<p>Because the argument to <code>--name</code> applies to the folder name <strong>and</strong> the actual component name, make sure to camelcase the component names.</p>
+
+<h1>
+<a id="starter-kit-support-and-questions" class="anchor" href="#starter-kit-support-and-questions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Starter Kit Support and Questions</h1>
+
+<blockquote>
+<p>Contact us, anytime, regarding anything about this project.</p>
+</blockquote>
+
+<ul>
+<li><a href="https://gitter.im/angular-class/NG6-starter">Gitter: angular-class/NG6-starter</a></li>
+<li><a href="https://twitter.com/AngularClass">Twitter: @AngularClass</a></li>
+</ul>
+
+<hr>
+
+<p>enjoy — <strong>AngularClass</strong> </p>
+
+<p><br><br></p>
+
+<p><a href="https://angularclass.com"><img src="https://cloud.githubusercontent.com/assets/1016365/9863770/cb0620fc-5af7-11e5-89df-d4b0b2cdfc43.png" alt="AngularClass" title="Angular Class"></a></p>
+
+<h2>
+<a id="angularclass" class="anchor" href="#angularclass" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://angularclass.com">AngularClass</a>
+</h2>
+
+<blockquote>
+<p>Learn AngularJS, Angular 2, and Modern Web Development form the best.
+Looking for corporate Angular training, want to host us, or Angular consulting? <a href="mailto:scott@angularclass.com">scott@angularclass.com</a></p>
+</blockquote>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/angular-class/NG6-starter">NG6-starter</a> is maintained by <a href="https://github.com/angular-class">angular-class</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
