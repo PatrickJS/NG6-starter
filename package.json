@@ -15,31 +15,35 @@
   "author": "AngularClass",
   "license": "ISC",
   "jspm": {
-    "directories": {},
+    "directories": {
+      "baseURL": "client"
+    },
     "configFile": "jspm.config.js",
     "dependencies": {
       "angular": "github:angular/bower-angular@^1.4.0",
       "angular-mocks": "npm:angular-mocks@^1.4.0",
       "angular-ui-router": "github:angular-ui/ui-router@^0.2.15",
+      "capaj/jspm-hot-reloader": "github:capaj/jspm-hot-reloader@^0.1.2",
       "css": "github:systemjs/plugin-css@^0.1.11",
       "normalize.css": "github:necolas/normalize.css@^3.0.3",
       "text": "github:systemjs/plugin-text@^0.0.2"
     },
     "devDependencies": {
-      "babel": "npm:babel-core@5.5.5",
-      "babel-runtime": "npm:babel-runtime@5.5.5",
-      "core-js": "npm:core-js@^0.9.10"
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
     }
   },
   "devDependencies": {
     "browser-sync": "^2.7.6",
+    "chokidar-socket-emitter": "^0.1.0",
     "gulp": "^3.9.0",
     "gulp-html-replace": "^1.5.0",
     "gulp-ng-annotate": "^1.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-template": "^3.0.0",
     "gulp-uglify": "^1.2.0",
-    "jspm": "^0.15.7",
+    "jspm": "^0.16.12",
     "karma": "^0.12.36",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.12",
