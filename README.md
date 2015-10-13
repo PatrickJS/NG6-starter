@@ -124,7 +124,7 @@ Be sure to define your `*.spec.js` files within their corresponding component di
 `Mocha` is the testing suite and `Chai` is the assertion library. If you would like to change this, see `karma.conf.js`.
 
 ### Generating Components
-Following a consistent directury structure between components offers us the certainty of predictability. We can take advantage of this certainty by creating a gulp task to automate the "instantiation" of our components. The component boilerplate task generates this:
+Following a consistent directory structure between components offers us the certainty of predictability. We can take advantage of this certainty by creating a gulp task to automate the "instantiation" of our components. The component boilerplate task generates this:
 ```
 ⋅⋅⋅⋅⋅⋅componentName/
 ⋅⋅⋅⋅⋅⋅⋅⋅componentName.js // entry file where all its dependencies load
