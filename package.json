@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.7.6",
-    "chokidar-socket-emitter": "^0.1.0",
+    "chokidar-socket-emitter": "^0.1.1",
     "gulp": "^3.9.0",
     "gulp-html-replace": "^1.5.0",
     "gulp-ng-annotate": "^1.0.0",
