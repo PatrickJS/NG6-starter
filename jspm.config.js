@@ -18,7 +18,7 @@ System.config({
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
     "babel": "npm:babel-core@5.8.25",
     "babel-runtime": "npm:babel-runtime@5.8.25",
-    "capaj/jspm-hot-reloader": "github:capaj/jspm-hot-reloader@0.1.2",
+    "capaj/jspm-hot-reloader": "github:capaj/jspm-hot-reloader@0.1.4",
     "core-js": "npm:core-js@1.2.1",
     "css": "github:systemjs/plugin-css@0.1.12",
     "normalize.css": "github:necolas/normalize.css@3.0.3",
@@ -26,7 +26,7 @@ System.config({
     "github:angular-ui/ui-router@0.2.15": {
       "angular": "github:angular/bower-angular@1.4.0"
     },
-    "github:capaj/jspm-hot-reloader@0.1.2": {
+    "github:capaj/jspm-hot-reloader@0.1.4": {
       "socket.io-client": "github:socketio/socket.io-client@1.3.7",
       "weakee": "npm:weakee@0.9.1"
     },
