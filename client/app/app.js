@@ -22,6 +22,7 @@ var noAngularDOM;
 
 angular.element(document).ready(() => {
 	if(location.origin.match(/localhost/)) {
+		System.trace = true;
 		container = document.getElementById('app-container');
 		noAngularDOM = container.cloneNode(true);
 		if ((!System.hotReloader)) {
