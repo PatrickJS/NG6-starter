@@ -24,7 +24,6 @@ var resolveToComponents = resolveTo('app/components'); // app/components/{glob}
 
 // map of all our paths
 var paths = {
-	js: resolveToApp('**/*.js'),
 	css: resolveToApp('**/*.css'),
 	html: [
 		resolveToApp('**/*.html'),
@@ -35,11 +34,12 @@ var paths = {
 };
 
 gulp.task('serve', function(){
+	'use strict'
+	require('chokidar-socket-emitter')({port: 8081, path: 'client', relativeTo: 'client'})
 	serve({
 		port: process.env.PORT || 3000,
 		open: false,
 		files: [].concat(
-			[paths.js],
 			[paths.css],
 			paths.html
 		),
@@ -80,11 +80,11 @@ gulp.task('component', function(){
 	var cap = function(val){
 		return val.charAt(0).toUpperCase() + val.slice(1);
 	};
-	
+
 	var name = yargs.name;
 	var parentPath = yargs.parent || '';
 	var destPath = path.join(resolveToComponents(), parentPath, name);
-	
+
 	return gulp.src(paths.blankTemplates)
 		.pipe(template({
 			name: name,

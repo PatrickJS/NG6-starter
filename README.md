@@ -37,9 +37,10 @@ ___
 
 # Walkthrough
 ## How is this different than Webpack?
-Webpack builds your application into a single package before you serve it to the client. JSPM is different for two major reasons: 
+Webpack builds your application into a single package before you serve it to the client. JSPM is different for two major reasons:
  1. JSPM is built ontop of [SystemJS](https://github.com/systemjs/systemjs) which uses a polyfill for the new ES6 module loader that will eventually be supportedly natively. This means that there is no intermediate build process before your files are served. Instead, the module loader will load (and transpile) only the files it needs at runtime. When you're ready for deployment, JSPM can also bundle your app for production (very much like webpack here).
  2. JSPM abstracts dependency management. You can `jspm install` any package that lives on bower, npm, or github and use the ES6 `import` syntax all the same on them.
+ 3. It features live reload. Yes you read that right-any change in JS file will reload only those modules, which are affected. You can read more about it on project page: [jspm-hot-reloader](https://github.com/capaj/jspm-hot-reloader)
 
 ## Build System
 This branch of NG6 uses the power of JSPM and Gulp together for its build system. Yes, you don't need Gulp if you're using JSPM. This is true if your build system is only responsible for file manipulation, which ours is not.
@@ -115,9 +116,9 @@ Fix this by adding your GitHub credentials to JSPM with: `jspm registry config g
 ## Running the app
 NG6 uses Gulp to build and start the dev environment. After you have installed all dependencies you can now run the app.
 Run `gulp` to start a dev server and watch all files. The port will displayed to you.
- 
+
 ### Gulp tasks
-Without Webpack's required build step, serving is easy and you choose when you are ready to build now 
+Without Webpack's required build step, serving is easy and you choose when you are ready to build now
 
 Here's a list of possible Gulp task to run:
 * `serve` (also default `gulp`)
@@ -126,7 +127,7 @@ Here's a list of possible Gulp task to run:
   * bundles our app into a single file with all included dependencies into `dist/`. both minified and unminified included
 * `component`
   * builds out boilerplate for a new angular component, [read below](#generating-components) to see how to use this in more detail
-  
+
 ### Testing
 To run test, just run `npm test` or `karma start`.
 
@@ -153,13 +154,13 @@ The `--name` flag is the name of the component you want to create. Be sure to be
 
 The component will be created by default on the root of `client/app/components`.
 
-We can change this by passing in the `--parent` flag. 
+We can change this by passing in the `--parent` flag.
 
 You can pass in a path relative to `client/app/components/` and your component will be made there.
 
 So running `gulp component --name signup --parent auth` will create a `signup` component at `client/app/components/auth/signup`.
 
-Running `gulp component --name footer --parent ../common` will create a `footer` component at `client/app/common/footer`. 
+Running `gulp component --name footer --parent ../common` will create a `footer` component at `client/app/common/footer`.
 
 Because `--name` is used to create folder name too, use camel or snakeCase and stay consistent.
 
@@ -171,7 +172,7 @@ Because `--name` is used to create folder name too, use camel or snakeCase and s
 
 ___
 
-enjoy -- **AngularClass** 
+enjoy -- **AngularClass**
 
 
 <br><br>
@@ -179,4 +180,3 @@ enjoy -- **AngularClass**
 [![AngularClass](https://angularclass.com/images/ng-crown.svg  "Angular Class")](https://angularclass.com)
 ##[AngularClass](https://angularclass.com)
 > Learn Angular in 2 days from the best
-
