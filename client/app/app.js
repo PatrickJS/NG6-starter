@@ -21,7 +21,7 @@ var container = document.getElementById('app-container');
 var noAngularDOM;
 
 angular.element(document).ready(() => {
-	if(location.origin.match(/localhost/)) {
+	if(System.trace) {
 		noAngularDOM = container.cloneNode(true);
 		if ((!System.hotReloader)) {
 			System.import('capaj/jspm-hot-reloader').then(HotReloader => {
