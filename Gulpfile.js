@@ -7,7 +7,8 @@ var gulp        = require('gulp'),
     htmlreplace = require('gulp-html-replace'),
     ngAnnotate  = require('gulp-ng-annotate'),
     serve       = require('browser-sync'),
-    yargs       = require('yargs').argv
+    yargs       = require('yargs').argv,
+    rimraf      = require('rimraf')
 
 var root = 'client';
 
@@ -56,6 +57,7 @@ gulp.task('serve', function(){
 
 gulp.task('build', function() {
 	var dist = path.join(paths.dist + 'app.js');
+	rimraf.sync(path.join(paths.dist, '*'));
 	// Use JSPM to bundle our app
 	return jspm.bundleSFX(resolveToApp('app'), dist, {})
 		.then(function() {
