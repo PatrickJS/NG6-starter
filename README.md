@@ -177,6 +177,6 @@ enjoy -- **AngularClass**
 
 <br><br>
 
-[![AngularClass](https://angularclass.com/images/ng-crown.svg  "Angular Class")](https://angularclass.com)
+[![AngularClass](https://cloud.githubusercontent.com/assets/1016365/9863770/cb0620fc-5af7-11e5-89df-d4b0b2cdfc43.png "Angular Class")](https://angularclass.com)
 ##[AngularClass](https://angularclass.com)
 > Learn Angular in 2 days from the best
