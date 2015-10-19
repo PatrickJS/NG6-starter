@@ -1,13 +1,13 @@
-var gulp	 		  = require('gulp'),
-		path			  = require('path'),
-		jspm 				= require('jspm'),
-		rename		  = require('gulp-rename'),
-		template	  = require('gulp-template'),
-		uglify	 		= require('gulp-uglify'),
-		htmlreplace = require('gulp-html-replace'),
-		ngAnnotate  = require('gulp-ng-annotate'),
-		serve			  = require('browser-sync'),
-		yargs			  = require('yargs').argv
+var gulp        = require('gulp'),
+    path        = require('path'),
+    jspm        = require('jspm'),
+    rename      = require('gulp-rename'),
+    template    = require('gulp-template'),
+    uglify      = require('gulp-uglify'),
+    htmlreplace = require('gulp-html-replace'),
+    ngAnnotate  = require('gulp-ng-annotate'),
+    serve       = require('browser-sync'),
+    yargs       = require('yargs').argv
 
 var root = 'client';
 

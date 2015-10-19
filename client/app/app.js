@@ -33,8 +33,8 @@ angular.element(document).ready(() => {
 		}
 	}
 	angular.bootstrap(container, [appModule.name]), {
-    strictDi: true
-  }
+		strictDi: true
+	}
 });
 
 export default appModule;
