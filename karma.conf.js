@@ -13,6 +13,15 @@ module.exports = function (config) {
     // files to exclude
     exclude: [],
 
+    plugins: [
+      require("karma-chai"),
+      require("karma-chrome-launcher"),
+      require("karma-mocha"),
+      require("karma-mocha-reporter"),
+      require("karma-sourcemap-loader"),
+      require("karma-webpack")
+    ],
+
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: { 'spec.bundle.js': ['webpack', 'sourcemap'] },
