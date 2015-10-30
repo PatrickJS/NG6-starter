@@ -5,7 +5,7 @@
   <!-- old img url: http://res.cloudinary.com/angularclass/image/upload/v1431802814/ng6_vrmd60.png -->
 </p>
 
-# NG6 [![Join Slack](https://img.shields.io/badge/slack-join-brightgreen.svg)](https://angularclass.com/slack-join) [![Join the chat at https://gitter.im/angular-class/NG6-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-class/NG6-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# NG6 [![Join Slack](https://img.shields.io/badge/slack-join-brightgreen.svg)](https://angularclass.com/slack-join) [![Join the chat at https://gitter.im/angularclass/NG6-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angularclass/NG6-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > The de facto starter repo for building scalable apps with [Angular](https://angularjs.org), [ES6](https://git.io/es6features), and [Webpack](http://webpack.github.io/)
 
@@ -20,9 +20,9 @@ This repo serves as a minimal starter for those looking to get up-and-running wi
 ### Coming Soon
 - [ ] Jade support, including partials (i.e., subtemplates)
 
-**Check out the [JSPM version](https://github.com/angular-class/NG6-starter/tree/jspm)--an alternative to Webpack as an ES6 build system.**
+**Check out the [JSPM version](https://github.com/angularclass/NG6-starter/tree/jspm)--an alternative to Webpack as an ES6 build system.**
 
-> If you're looking for a preliminary [Angular 2](https://angular.io/) build, please use the [angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter).
+> If you're looking for a preliminary [Angular 2](https://angular.io/) build, please use the [angular2-webpack-starter](https://github.com/angularclass/angular2-webpack-starter).
 ___
 
 # Table of Contents
@@ -57,7 +57,7 @@ NG6 uses Gulp and Webpack together for its build system. Yes, you don't need Gul
 * Refreshing the browser and rebuilding on file changes
 * Generating boilerplate for the Angular app
 
-**Check out the [JSPM version](https://github.com/angular-class/NG6-starter/tree/jspm)--an alternative to Webpack as an ES6 build system.**
+**Check out the [JSPM version](https://github.com/angularclass/NG6-starter/tree/jspm)--an alternative to Webpack as an ES6 build system.**
 
 ## File Structure
 We use a componentized approach with NG6. This will be the eventual standard (and particularly helpful, if using Angular's new router) as well as a great way to ensure a tasteful transition to Angular 2, when the time is ripe. Everything--or mostly everything, as we'll explore (below)--is a component. A component is a self-contained concern--may it be a feature or strictly-defined, ever-present element of the UI (such as a header, sidebar, or footer). Also characteristic of a component is that it harnesses its own stylesheets, templates, controllers, routes, services, and specs. This encapsulation allows us the comfort of isolation and structural locality. Here's how it looks:
@@ -151,7 +151,7 @@ Because the argument to `--name` applies to the folder name **and** the actual c
 # Starter Kit Support and Questions
 > Contact us, anytime, regarding anything about this project.
 
-* [Gitter: angular-class/NG6-starter](https://gitter.im/angular-class/NG6-starter)
+* [Gitter: angularclass/NG6-starter](https://gitter.im/angularclass/NG6-starter)
 * [Twitter: @AngularClass](https://twitter.com/AngularClass)
 
 ___
