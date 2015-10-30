@@ -44,6 +44,10 @@
     "webpack",
     "es6"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angularclass/NG6-starter.git"
+  },
   "author": "AngularClass",
   "license": "Apache-2.0"
 }
