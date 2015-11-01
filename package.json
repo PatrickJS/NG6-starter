@@ -6,6 +6,7 @@
   "dependencies": {
     "angular": "^1.4.4",
     "angular-ui-router": "^0.2.15",
+    "chai": "^3.4.0",
     "lodash": "^3.8.0",
     "normalize.css": "^3.0.3"
   },
