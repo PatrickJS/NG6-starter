@@ -2,9 +2,9 @@
     <img src="http://res.cloudinary.com/angularclass/image/upload/v1431802814/ng6_vrmd60.png" alt="NG6" width="320px;"/>
 </p>
 
-# NG6 [![Join the chat at https://gitter.im/angular-class/NG6-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-class/NG6-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# NG6 [![Join the chat at https://gitter.im/angularclass/NG6-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angularclass/NG6-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-> Starter repo for [Angular](https://angularjs.org) + [ES6](https://git.io/es6features) + [JSPM](http://jspm.io/) (or [Webpack](https://github.com/angular-class/NG6-starter/tree/master))
+> Starter repo for [Angular](https://angularjs.org) + [ES6](https://git.io/es6features) + [JSPM](http://jspm.io/) (or [Webpack](https://github.com/angularclass/NG6-starter/tree/master))
 
 This repo serves as an extremely minimal starter for anyone looking to get up and running with Angular and ES6. Using a combo of [JSPM](http://jspm.io/) and [Gulp](http://gulpjs.com/) for building our files and assisting with boilerplate.
 **This seed is not a yeoman generator!** Its just a minimal starter with tasks to build and create boilerplate. **Features include**:
@@ -14,9 +14,9 @@ This repo serves as an extremely minimal starter for anyone looking to get up an
 * Task for generating component boilerplate with angular, including test
 * Testing system ready to go
 
-**Check out the [webpack version](https://github.com/angular-class/NG6-starter/tree/master) for an alternative ES6 build system**
+**Check out the [webpack version](https://github.com/angularclass/NG6-starter/tree/master) for an alternative ES6 build system**
 
-> If you're looking for [Angular 2](https://angular.io/) please use [angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter)
+> If you're looking for [Angular 2](https://angular.io/) please use [angular2-webpack-starter](https://github.com/angularclass/angular2-webpack-starter)
 
 ___
 
@@ -59,7 +59,7 @@ This branch of NG6 uses the power of JSPM and Gulp together for its build system
 * Generate boilerplate for our angular app
 * Building a production version of our app ready for deployment
 
-**Check out the [webpack version](https://github.com/angular-class/NG6-starter/tree/master) for an alternative ES6 build system**
+**Check out the [webpack version](https://github.com/angularclass/NG6-starter/tree/master) for an alternative ES6 build system**
 
 ## File Structure
 We use the component approach in NG6. This will be a standard if using the new router in angular and a great way to ensure easy transition to Angular 2. Everything or mostly everything is a component. A component is a self contained app basically. It has its own style, template, controllers, routing, specs, etc. All capsulated in its own folder. Here's how it looks:
@@ -167,7 +167,7 @@ Because `--name` is used to create folder name too, use camel or snakeCase and s
 # Starter Kit Support and Questions
 > Contact us anytime for anything about this repo
 
-* [Gitter: angular-class/NG6-starter](https://gitter.im/angular-class/NG6-starter)
+* [Gitter: angularclass/NG6-starter](https://gitter.im/angularclass/NG6-starter)
 * [Twitter: @AngularClass](https://twitter.com/AngularClass)
 
 ___
