@@ -94,6 +94,7 @@ Once you have these, install the following as globals:
 ## Installing
 * `fork` this repo
 * `clone` your fork
+* `npm install -g gulp karma karma-cli webpack` install global cli dependencies
 * `npm install` to install dependencies
 
 ## Running the App
