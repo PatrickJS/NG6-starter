@@ -47,7 +47,7 @@
     "karma": "^0.12.36",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.12",
-    "karma-jspm": "^1.1.5",
+    "karma-jspm": "^2.0.2",
     "karma-mocha": "^0.1.10",
     "karma-mocha-reporter": "^1.0.2",
     "rimraf": "^2.4.3",
