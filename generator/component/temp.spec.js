@@ -36,7 +36,7 @@ describe('<%= upCaseName %>', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = <%= upCaseName %>Component();
+      let component = <%= upCaseName %>Component;
 
       it('includes the intended template',() => {
         expect(component.template).to.equal(<%= upCaseName %>Template);
