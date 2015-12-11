@@ -11,4 +11,4 @@ angular.module('app', [
   Components.name
 ])
 
-.directive('app', AppComponent);
+.component('app', AppComponent);

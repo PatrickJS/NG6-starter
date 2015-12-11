@@ -36,7 +36,7 @@ describe('Hero', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = HeroComponent();
+      let component = HeroComponent;
 
       it('includes the intended template',() => {
         expect(component.template).to.equal(HeroTemplate);

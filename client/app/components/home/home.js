@@ -18,6 +18,6 @@ let homeModule = angular.module('home', [
     });
 })
 
-.directive('home', homeComponent);
+.component('home', homeComponent);
 
 export default homeModule;
