@@ -1,13 +1,14 @@
-var gulp	 		  = require('gulp'),
-		path			  = require('path'),
-		jspm 				= require('jspm'),
-		rename		  = require('gulp-rename'),
-		template	  = require('gulp-template'),
-		uglify	 		= require('gulp-uglify'),
-		htmlreplace = require('gulp-html-replace'),
-		ngAnnotate  = require('gulp-ng-annotate'),
-		serve			  = require('browser-sync'),
-		yargs			  = require('yargs').argv
+var gulp        = require('gulp'),
+    path        = require('path'),
+    jspm        = require('jspm'),
+    rename      = require('gulp-rename'),
+    template    = require('gulp-template'),
+    uglify      = require('gulp-uglify'),
+    htmlreplace = require('gulp-html-replace'),
+    ngAnnotate  = require('gulp-ng-annotate'),
+    serve       = require('browser-sync'),
+    yargs       = require('yargs').argv,
+    rimraf      = require('rimraf')
 
 var root = 'client';
 
@@ -15,7 +16,7 @@ var root = 'client';
 var resolveTo = function(resolvePath) {
 	return function(glob) {
 		glob = glob || '';
-		return path.join(root, resolvePath, glob);
+		return path.resolve(path.join(root, resolvePath, glob));
 	}
 };
 
@@ -56,6 +57,7 @@ gulp.task('serve', function(){
 
 gulp.task('build', function() {
 	var dist = path.join(paths.dist + 'app.js');
+	rimraf.sync(path.join(paths.dist, '*'));
 	// Use JSPM to bundle our app
 	return jspm.bundleSFX(resolveToApp('app'), dist, {})
 		.then(function() {

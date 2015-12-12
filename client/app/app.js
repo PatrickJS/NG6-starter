@@ -17,12 +17,11 @@ let appModule = angular.module('app', [
  * to bootstrap the application as modules are loaded asynchronously.
  * Instead, we need to bootstrap the application manually
  */
-var container;
+var container = document.getElementById('app-container');
 var noAngularDOM;
 
 angular.element(document).ready(() => {
-	if(location.origin.match(/localhost/)) {
-		container = document.getElementById('app-container');
+	if(System.trace) {
 		noAngularDOM = container.cloneNode(true);
 		if ((!System.hotReloader)) {
 			System.import('capaj/jspm-hot-reloader').then(HotReloader => {
@@ -34,8 +33,8 @@ angular.element(document).ready(() => {
 		}
 	}
 	angular.bootstrap(container, [appModule.name]), {
-    strictDi: true
-  }
+		strictDi: true
+	}
 });
 
 export default appModule;
