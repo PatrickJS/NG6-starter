@@ -41,7 +41,8 @@ module.exports = function(config) {
     },
 
     proxies: {
-      // '/jspm_packages': '/base/jspm_packages',
+      '/client': '/base/client',
+      '/jspm_packages': '/base/client/jspm_packages',
       // '/jspm.config.js': '/base/jspm.config.js'
     },
 
