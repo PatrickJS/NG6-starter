@@ -6,6 +6,6 @@ let <%= name %>Module = angular.module('<%= name %>', [
   uiRouter
 ])
 
-.directive('<%= name %>', <%= name %>Component);
+.component('<%= name %>', <%= name %>Component);
 
 export default <%= name %>Module;

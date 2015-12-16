@@ -36,7 +36,7 @@ describe('Home', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = HomeComponent();
+      let component = HomeComponent;
 
       it('includes the intended template',() => {
         expect(component.template).to.equal(HomeTemplate);
