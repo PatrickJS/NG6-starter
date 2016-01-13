@@ -15,13 +15,11 @@ let reload = () => serve.reload();
 let root = 'client';
 
 // helper method for resolving paths
-let resolveToApp = (glob) => {
-  glob = glob || '';
+let resolveToApp = (glob = '') => {
   return path.join(root, 'app', glob); // app/{glob}
 };
 
-let resolveToComponents = (glob) => {
-  glob = glob || '';
+let resolveToComponents = (glob = '') => {
   return path.join(root, 'app/components', glob); // app/components/{glob}
 };
 
@@ -54,17 +52,17 @@ gulp.task('serve', () => {
 });
 
 gulp.task('watch', () => {
-  let allPaths = [].concat([paths.js], paths.html, [paths.styl]);
+  let allPaths = [paths.js, ...paths.html, paths.styl];
   gulp.watch(allPaths, ['webpack', reload]);
 });
 
 gulp.task('component', () => {
-  let cap = (val) => {
+  const cap = (val) => {
     return val.charAt(0).toUpperCase() + val.slice(1);
   };
-  let name = yargs.argv.name;
-  let parentPath = yargs.argv.parent || '';
-  let destPath = path.join(resolveToComponents(), parentPath, name);
+  const name = yargs.argv.name;
+  const parentPath = yargs.argv.parent || '';
+  const destPath = path.join(resolveToComponents(), parentPath, name);
 
   return gulp.src(paths.blankTemplates)
     .pipe(template({
