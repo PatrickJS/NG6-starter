@@ -1,7 +1,7 @@
 'use strict';
 
 import gulp     from 'gulp';
-import webpack  from 'webpack-stream';
+import webpack  from 'webpack';
 import path     from 'path';
 import sync     from 'run-sequence';
 import serve    from 'browser-sync';
@@ -10,6 +10,9 @@ import template from 'gulp-template';
 import fs       from 'fs';
 import yargs    from 'yargs';
 import lodash   from 'lodash';
+import gutil    from 'gulp-util';
+
+import colorsSupported from 'supports-color';
 
 let reload = () => serve.reload();
 let root = 'client';
@@ -31,16 +34,29 @@ let paths = {
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
   ],
-  entry: path.join(root, 'app/app.js'),
+  entry: './' + path.join(root, 'app/app.js'),
   output: root,
   blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**')
 };
 
 // use webpack.config.js to build modules
-gulp.task('webpack', () => {
-  return gulp.src(paths.entry)
-    .pipe(webpack(require('./webpack.config')))
-    .pipe(gulp.dest(paths.output));
+gulp.task('webpack', (cb) => {
+  const config = require('./webpack.config');
+  config.entry.app = paths.entry;
+
+  webpack(config, (err, stats) => {
+    if(err)  {
+      throw new gutil.PluginError("webpack", err);
+    }
+
+    gutil.log("[webpack]", stats.toString({
+      colors: colorsSupported,
+      chunks: false,
+      errorDetails: true
+    }));
+
+    cb();
+  });
 });
 
 gulp.task('serve', () => {
