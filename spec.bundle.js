@@ -9,6 +9,9 @@
 */
 
 import angular from 'angular';
+// Import `.component` helper backport
+import 'angular-component';
+
 // Built by the core Angular team for mocking dependencies
 import mocks from 'angular-mocks';
 
