@@ -2,6 +2,7 @@
 
 import gulp     from 'gulp';
 import webpack  from 'webpack';
+import WebpacDevServer from 'webpack-dev-server';
 import path     from 'path';
 import sync     from 'run-sequence';
 import serve    from 'browser-sync';
@@ -60,11 +61,30 @@ gulp.task('webpack', (cb) => {
 });
 
 gulp.task('serve', () => {
-  serve({
-    port: process.env.PORT || 3000,
-    open: false,
-    server: { baseDir: root }
+  const config = require('./webpack.config');
+  config.entry.app = ['webpack/hot/dev-server', paths.entry];
+
+  var server = new WebpacDevServer(webpack(config), {
+    stats: {
+      colors: true,
+      chunks: false,
+      modules: false
+    },
+    hot: true,
+    lazy: false,
+    contentBase: paths.output
   });
+  server.listen(
+    process.env.PORT || 3000,
+    process.env.HOST || 'localhost',
+    function(err) {
+      if(err) {
+        throw new gutil.PluginError("webpack-dev-server", err);
+      }
+
+      gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+    }
+  );
 });
 
 gulp.task('watch', () => {
