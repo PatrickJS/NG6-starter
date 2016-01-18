@@ -5,7 +5,6 @@ import webpack  from 'webpack';
 import WebpacDevServer from 'webpack-dev-server';
 import path     from 'path';
 import sync     from 'run-sequence';
-import serve    from 'browser-sync';
 import rename   from 'gulp-rename';
 import template from 'gulp-template';
 import fs       from 'fs';
@@ -15,7 +14,6 @@ import gutil    from 'gulp-util';
 
 import colorsSupported from 'supports-color';
 
-let reload = () => serve.reload();
 let root = 'client';
 
 // helper method for resolving paths
@@ -87,10 +85,7 @@ gulp.task('serve', () => {
   );
 });
 
-gulp.task('watch', () => {
-  let allPaths = [paths.js, ...paths.html, paths.styl];
-  gulp.watch(allPaths, ['webpack', reload]);
-});
+gulp.task('watch', ['serve']);
 
 gulp.task('component', () => {
   const cap = (val) => {
