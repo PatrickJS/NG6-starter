@@ -1,15 +1,10 @@
 var path    = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'sourcemap',
-  entry: {
-  },
-  output: {
-    filename: 'bundle.js',
-    publicPath: '/',
-    path: path.resolve(__dirname, 'client')
-  },
+  entry: {},
   module: {
     loaders: [
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
@@ -19,6 +14,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new HtmlWebpackPlugin({
+      template: 'client/index.html',
+      inject: 'body',
+      hash: true
+    })
   ]
 };

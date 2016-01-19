@@ -40,7 +40,7 @@ let paths = {
 
 // use webpack.config.js to build modules
 gulp.task('webpack', (cb) => {
-  const config = require('./webpack.config');
+  const config = require('./webpack.dist.config');
   config.entry.app = paths.entry;
 
   webpack(config, (err, stats) => {
@@ -59,8 +59,15 @@ gulp.task('webpack', (cb) => {
 });
 
 gulp.task('serve', () => {
-  const config = require('./webpack.config');
-  config.entry.app = ['webpack/hot/dev-server', paths.entry];
+  const PORT = process.env.PORT || 3000;
+  const HOST = process.env.HOST || 'localhost';
+
+  const config = require('./webpack.dev.config');
+  config.entry.app = [
+    `webpack-dev-server/client?http://${HOST}:${PORT}`,
+    'webpack/hot/dev-server',
+    paths.entry
+  ];
 
   var server = new WebpacDevServer(webpack(config), {
     stats: {
@@ -73,14 +80,14 @@ gulp.task('serve', () => {
     contentBase: paths.output
   });
   server.listen(
-    process.env.PORT || 3000,
-    process.env.HOST || 'localhost',
+    PORT,
+    HOST,
     function(err) {
       if(err) {
         throw new gutil.PluginError("webpack-dev-server", err);
       }
 
-      gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+      gutil.log("[webpack-dev-server]", "http://localhost:3000/webpack-dev-server/index.html");
     }
   );
 });
@@ -106,6 +113,4 @@ gulp.task('component', () => {
     .pipe(gulp.dest(destPath));
 });
 
-gulp.task('default', (done) => {
-  sync('webpack', 'serve', 'watch', done);
-});
+gulp.task('default', ['serve']);

@@ -4,5 +4,4 @@
 node_modules
 .settings
 *.log
-client/bundle.js
-client/bundle.js.map
+dist/
