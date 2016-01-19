@@ -33,7 +33,7 @@ let paths = {
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
   ],
-  entry: './' + path.join(root, 'app/app.js'),
+  entry: path.join(__dirname, root, 'app/app.js'),
   output: root,
   blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**')
 };
@@ -64,8 +64,11 @@ gulp.task('serve', () => {
 
   const config = require('./webpack.dev.config');
   config.entry.app = [
+    // this modules required to make HRM working
+    // it responsible for all this webpack magic
     `webpack-dev-server/client?http://${HOST}:${PORT}`,
     'webpack/hot/dev-server',
+    // application entry point
     paths.entry
   ];
 
