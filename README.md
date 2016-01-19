@@ -44,6 +44,8 @@ NG6 uses Gulp and Webpack together for its build system. Yes, you don't need Gul
 * Transpiling from ES6 to ES5 with `Babel`
 * Loading HTML files as modules
 * Transpiling stylesheets and appending them to the DOM
+* Refreshing the browser and rebuilding on file changes
+* Hot module replacement for transpiled stylesheets
 * Bundling the app
 * Loading all modules
 * Doing all of the above for `*.spec.js` files as well
@@ -51,7 +53,6 @@ NG6 uses Gulp and Webpack together for its build system. Yes, you don't need Gul
 `Gulp` is the orchestrator:
 * Starting and calling Webpack
 * Starting a development server (yes, Webpack can do this too)
-* Refreshing the browser and rebuilding on file changes
 * Generating boilerplate for the Angular app
 
 **Check out the [JSPM version](https://github.com/angularclass/NG6-starter/tree/jspm)--an alternative to Webpack as an ES6 build system.**
@@ -103,13 +104,13 @@ NG6 uses Gulp to build and launch the development environment. After you have in
 ### Gulp Tasks
 Here's a list of available tasks:
 * `webpack`
-  * runs Webpack, which will transpile, concatenate, and compress (collectively, "bundle") all assets and modules into `client/bundle.js`.
+  * runs Webpack, which will transpile, concatenate, and compress (collectively, "bundle") all assets and modules into `dist/bundle.js`. It also prepares `index.html` to be used as application entry point, links assets and created dist version of our application.
 * `serve`
-  * starts a dev server via `browser-sync`, serving the client folder.
+  * starts a dev server via `webpac-dev-server`, serving the client folder.
 * `watch`
-  * listens for file changes, rebuilds with Webpack, then refreshes the browser.
+  * alias of `serve`
 * `default` (which is the default task that runs when typing `gulp` without providing an argument)
-	* runs `webpack`, `serve`, and `watch`--in that order.
+	* runs `serve`.
 * `component`
   * scaffolds a new Angular component. [Read below](#generating-components) for usage details.
   
