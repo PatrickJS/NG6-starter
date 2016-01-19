@@ -8,7 +8,7 @@ config.plugins = config.plugins.concat([
 ]);
 
 config.output = {
-  filename: 'bundle.js',
+  filename: '[name].bundle.js',
     publicPath: '/',
     path: path.resolve(__dirname, 'client')
 };

@@ -3,7 +3,7 @@ var path = require('path');
 var config = require('./webpack.config');
 
 config.output = {
-  filename: 'bundle.js',
+  filename: '[name].bundle.js',
   publicPath: '',
   path: path.resolve(__dirname, 'dist')
 };
