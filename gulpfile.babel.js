@@ -2,7 +2,6 @@
 
 import gulp     from 'gulp';
 import webpack  from 'webpack';
-import WebpacDevServer from 'webpack-dev-server';
 import path     from 'path';
 import sync     from 'run-sequence';
 import rename   from 'gulp-rename';
@@ -11,8 +10,10 @@ import fs       from 'fs';
 import yargs    from 'yargs';
 import lodash   from 'lodash';
 import gutil    from 'gulp-util';
-
-import colorsSupported from 'supports-color';
+import serve    from 'browser-sync';
+import webpackDevMiddelware from 'webpack-dev-middleware';
+import webpachHotMiddelware from 'webpack-hot-middleware';
+import colorsSupported      from 'supports-color';
 
 let root = 'client';
 
@@ -59,40 +60,33 @@ gulp.task('webpack', (cb) => {
 });
 
 gulp.task('serve', () => {
-  const PORT = process.env.PORT || 3000;
-  const HOST = process.env.HOST || 'localhost';
-
   const config = require('./webpack.dev.config');
   config.entry.app = [
     // this modules required to make HRM working
     // it responsible for all this webpack magic
-    `webpack-dev-server/client?http://${HOST}:${PORT}`,
-    'webpack/hot/dev-server',
+    'webpack-hot-middleware/client?reload=true',
     // application entry point
     paths.entry
   ];
 
-  var server = new WebpacDevServer(webpack(config), {
-    stats: {
-      colors: true,
-      chunks: false,
-      modules: false
-    },
-    hot: true,
-    lazy: false,
-    contentBase: paths.output
-  });
-  server.listen(
-    PORT,
-    HOST,
-    function(err) {
-      if(err) {
-        throw new gutil.PluginError("webpack-dev-server", err);
-      }
+  var compiler = webpack(config);
 
-      gutil.log("[webpack-dev-server]", "http://localhost:3000/webpack-dev-server/index.html");
-    }
-  );
+  serve({
+    port: process.env.PORT || 3000,
+    open: false,
+    server: {baseDir: root},
+    middleware: [
+      webpackDevMiddelware(compiler, {
+        stats: {
+          colors: colorsSupported,
+          chunks: false,
+          modules: false
+        },
+        publicPath: config.output.publicPath
+      }),
+      webpachHotMiddelware(compiler)
+    ]
+  });
 });
 
 gulp.task('watch', ['serve']);
