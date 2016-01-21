@@ -5,12 +5,16 @@ import AboutTemplate from './about.html';
 
 describe('About', () => {
   let $rootScope, makeController;
+  let aboutService;
 
   beforeEach(window.module(AboutModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
+    aboutService = {
+      getName() {}
+    };
     makeController = () => {
-      return new AboutController();
+      return new AboutController(aboutService);
     };
   }));
 
