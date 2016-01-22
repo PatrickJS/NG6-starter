@@ -1,13 +1,10 @@
-class AboutService {
-  constructor(User) {
+export default class aboutService {
+  constructor(userService) {
     'ngInject';
-    this.user = User;
-    this.name = this.user.getUserName();
+    this.userService = userService;
   }
 
   getName() {
-    return `About: ${this.name}`;
+    return `About: ${this.userService.getName()}`;
   }
 }
-
-export default AboutService;

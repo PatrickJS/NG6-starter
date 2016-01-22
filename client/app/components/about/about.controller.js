@@ -1,7 +1,7 @@
 class AboutController {
-  constructor(AboutService) {
+  constructor(aboutService) {
     'ngInject';
-    this.aboutService = AboutService;
+    this.aboutService = aboutService;
     this.name = this.aboutService.getName();
   }
 }
