@@ -121,6 +121,12 @@ To run the tests, run `npm test` or `karma start`.
 Be sure to define your `*.spec.js` files within their corresponding component directory. You must name the spec file like so, `[name].spec.js`. If you don't want to use the `.spec.js` suffix, you must change the `regex` in `spec.bundle.js` to look for whatever file(s) you want.
 `Mocha` is the testing suite and `Chai` is the assertion library. If you would like to change this, see `karma.conf.js`.
 
+### Examples
+
+It's always easier to learn something if you have an examples. Here is a list of repos which based on this starter:
+
+ - [TodoMVC Example App](https://github.com/AngularClass/NG6-todomvc-starter)
+
 ### Generating Components
 Following a consistent directory structure between components offers us the certainty of predictability. We can take advantage of this certainty by creating a gulp task to automate the "instantiation" of our components. The component boilerplate task generates this:
 ```
