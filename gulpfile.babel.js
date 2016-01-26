@@ -1,27 +1,28 @@
 'use strict';
 
 import gulp     from 'gulp';
-import webpack  from 'webpack-stream';
+import webpack  from 'webpack';
 import path     from 'path';
 import sync     from 'run-sequence';
-import serve    from 'browser-sync';
 import rename   from 'gulp-rename';
 import template from 'gulp-template';
 import fs       from 'fs';
 import yargs    from 'yargs';
 import lodash   from 'lodash';
+import gutil    from 'gulp-util';
+import serve    from 'browser-sync';
+import webpackDevMiddelware from 'webpack-dev-middleware';
+import webpachHotMiddelware from 'webpack-hot-middleware';
+import colorsSupported      from 'supports-color';
 
-let reload = () => serve.reload();
 let root = 'client';
 
 // helper method for resolving paths
-let resolveToApp = (glob) => {
-  glob = glob || '';
+let resolveToApp = (glob = '') => {
   return path.join(root, 'app', glob); // app/{glob}
 };
 
-let resolveToComponents = (glob) => {
-  glob = glob || '';
+let resolveToComponents = (glob = '') => {
   return path.join(root, 'app/components', glob); // app/components/{glob}
 };
 
@@ -33,38 +34,70 @@ let paths = {
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
   ],
-  entry: path.join(root, 'app/app.js'),
+  entry: path.join(__dirname, root, 'app/app.js'),
   output: root,
   blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**')
 };
 
 // use webpack.config.js to build modules
-gulp.task('webpack', () => {
-  return gulp.src(paths.entry)
-    .pipe(webpack(require('./webpack.config')))
-    .pipe(gulp.dest(paths.output));
-});
+gulp.task('webpack', (cb) => {
+  const config = require('./webpack.dist.config');
+  config.entry.app = paths.entry;
 
-gulp.task('serve', () => {
-  serve({
-    port: process.env.PORT || 3000,
-    open: false,
-    server: { baseDir: root }
+  webpack(config, (err, stats) => {
+    if(err)  {
+      throw new gutil.PluginError("webpack", err);
+    }
+
+    gutil.log("[webpack]", stats.toString({
+      colors: colorsSupported,
+      chunks: false,
+      errorDetails: true
+    }));
+
+    cb();
   });
 });
 
-gulp.task('watch', () => {
-  let allPaths = [].concat([paths.js], paths.html, [paths.styl]);
-  gulp.watch(allPaths, ['webpack', reload]);
+gulp.task('serve', () => {
+  const config = require('./webpack.dev.config');
+  config.entry.app = [
+    // this modules required to make HRM working
+    // it responsible for all this webpack magic
+    'webpack-hot-middleware/client?reload=true',
+    // application entry point
+    paths.entry
+  ];
+
+  var compiler = webpack(config);
+
+  serve({
+    port: process.env.PORT || 3000,
+    open: false,
+    server: {baseDir: root},
+    middleware: [
+      webpackDevMiddelware(compiler, {
+        stats: {
+          colors: colorsSupported,
+          chunks: false,
+          modules: false
+        },
+        publicPath: config.output.publicPath
+      }),
+      webpachHotMiddelware(compiler)
+    ]
+  });
 });
 
+gulp.task('watch', ['serve']);
+
 gulp.task('component', () => {
-  let cap = (val) => {
+  const cap = (val) => {
     return val.charAt(0).toUpperCase() + val.slice(1);
   };
-  let name = yargs.argv.name;
-  let parentPath = yargs.argv.parent || '';
-  let destPath = path.join(resolveToComponents(), parentPath, name);
+  const name = yargs.argv.name;
+  const parentPath = yargs.argv.parent || '';
+  const destPath = path.join(resolveToComponents(), parentPath, name);
 
   return gulp.src(paths.blankTemplates)
     .pipe(template({
@@ -77,6 +110,4 @@ gulp.task('component', () => {
     .pipe(gulp.dest(destPath));
 });
 
-gulp.task('default', (done) => {
-  sync('webpack', 'serve', 'watch', done);
-});
+gulp.task('default', ['serve']);
