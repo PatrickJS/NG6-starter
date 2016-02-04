@@ -1,4 +1,16 @@
 <!-- Place all UI elements intended to be present across all routes in this file -->
-<div class="app">
-  <div ui-view></div>
+<div class="app" layout="row" layout-fill flex>
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+              md-component-id="left"
+              md-is-locked-open="$mdMedia('gt-md')">
+    <md-content>
+      <my-navbar></my-navbar>
+    </md-content>
+  </md-sidenav>
+  <md-content flex>
+    <md-toolbar>
+      <h1 class="md-toolbar-tools">This is NG6-Starter</h1>
+    </md-toolbar>
+    <div layout="column" layout-padding layout-fill layout-align="top left" ui-view></div>
+  </md-content>
 </div>
