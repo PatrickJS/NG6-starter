@@ -14,6 +14,7 @@ import serve    from 'browser-sync';
 import webpackDevMiddelware from 'webpack-dev-middleware';
 import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
+import historyApiFallback   from 'connect-history-api-fallback';
 
 let root = 'client';
 
@@ -76,6 +77,7 @@ gulp.task('serve', () => {
     open: false,
     server: {baseDir: root},
     middleware: [
+      historyApiFallback(),
       webpackDevMiddelware(compiler, {
         stats: {
           colors: colorsSupported,
