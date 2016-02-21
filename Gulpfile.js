@@ -60,6 +60,16 @@ gulp.task('serve', function(){
 	});
 });
 
+gulp.task('serve-dist', function(){
+	serve({
+		port: process.env.PORT || 3000,
+		open: false,
+		server: {
+			baseDir: 'dist'
+		},
+	});
+});
+
 gulp.task('build', function() {
 	var dist = path.join(paths.dist + 'app.js');
 	rimraf.sync(path.join(paths.dist, '*'));
