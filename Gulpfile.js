@@ -36,7 +36,12 @@ var paths = {
 
 gulp.task('serve', function(){
 	'use strict'
-	require('chokidar-socket-emitter')({port: 8081, path: 'client', relativeTo: 'client'})
+	require('chokidar-socket-emitter')({
+    	port: 8081, 
+    	path: root, 
+    	relativeTo: root, 
+    	dir: __dirname
+    });
 	serve({
 		port: process.env.PORT || 3000,
 		open: false,
