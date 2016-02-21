@@ -21,11 +21,13 @@ var container = document.getElementById('app-container');
 var noAngularDOM;
 
 angular.element(document).ready(() => {
-	if(location.origin.match(/localhost/)) {
+    
+    //Start of hot-reloader code. Remove in production
+	if(window.System && location.origin.match(/localhost/)) {
 		System.trace = true;
 		noAngularDOM = container.cloneNode(true);
 		if ((!System.hotReloader)) {
-			System.import('capaj/systemjs-hot-reloader').then(HotReloader => {
+			System.import('systemjs-hot-reloader').then(HotReloader => {
 				System.hotReloader = new HotReloader.default('http://localhost:8081/');
 				System.hotReloader.on('change', function (name) {
 					console.log(name, 'changed')
@@ -33,6 +35,7 @@ angular.element(document).ready(() => {
 			})
 		}
 	}
+    // End of hot reloader code
 	angular.bootstrap(container, [appModule.name]), {
 		strictDi: true
 	}

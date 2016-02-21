@@ -36,7 +36,12 @@ var paths = {
 
 gulp.task('serve', function(){
 	'use strict'
-	require('chokidar-socket-emitter')({port: 8081, path: 'client', relativeTo: 'client'})
+	require('chokidar-socket-emitter')({
+    	port: 8081, 
+    	path: root, 
+    	relativeTo: root, 
+    	dir: __dirname
+    });
 	serve({
 		port: process.env.PORT || 3000,
 		open: false,
@@ -51,6 +56,16 @@ gulp.task('serve', function(){
 				'/jspm.config.js': './jspm.config.js',
 				'/jspm_packages': './jspm_packages'
 			}
+		},
+	});
+});
+
+gulp.task('serve-dist', function(){
+	serve({
+		port: process.env.PORT || 3000,
+		open: false,
+		server: {
+			baseDir: 'dist'
 		},
 	});
 });
