@@ -4,7 +4,7 @@ describe('About Route', () => {
 	beforeEach(() => {
 
 		// Navigate to about component
-    browser.get('http://localhost:3000/about');
+    browser.get('/about');
   });
 
 	// About component should be visible

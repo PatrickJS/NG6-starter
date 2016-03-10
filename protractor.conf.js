@@ -1,8 +1,6 @@
-const webpackConfig = require('./webpack.config');
-
 exports.config = {
 	framework: "jasmine",
-	baseUrl: `http://localhost:3000`,
+	baseUrl: `http://localhost:${process.env.PORT || 3000}`,
 	seleniumAddress: 'http://localhost:4444/wd/hub',
 	specs: [
 		'client/**/**.e2e.js',
@@ -25,6 +23,5 @@ exports.config = {
 	allScriptsTimeout: 30000,
 	onPrepare: function () {
     require("babel-core/register")({ retainLines: true });
-    browser.ignoreSynchronization = true;
   }
 }

@@ -4,7 +4,7 @@ describe('Home Route', () => {
 	beforeEach(() => {
 
 		// Navigate to home component
-    browser.get('http://localhost:3000');
+    browser.get('/');
   });
 
 

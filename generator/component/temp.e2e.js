@@ -4,7 +4,7 @@ describe('<%= upCaseName %> Route', () => {
 	beforeEach(() => {
 
 		// Navigate to <%= name %> component
-    browser.get('http://localhost:3000/<%= name %>');
+    browser.get('/<%= name %>');
   });
 
   // <%= upCaseName %> component should be visible
