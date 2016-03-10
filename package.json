@@ -33,6 +33,7 @@
     "mocha": "^2.3.0",
     "ng-annotate-loader": "0.0.10",
     "node-libs-browser": "^0.5.0",
+    "protractor": "3.1.1",
     "raw-loader": "^0.5.1",
     "run-sequence": "^1.1.0",
     "style-loader": "^0.12.2",
@@ -44,6 +45,10 @@
     "yargs": "^3.9.0"
   },
   "scripts": {
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+    "pree2e": "npm run update-webdriver",
+    "e2e": "protractor protractor.conf.js",
     "test": "karma start"
   },
   "keywords": [
