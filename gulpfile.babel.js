@@ -80,7 +80,7 @@ gulp.task('protractor', ['serve'], function(callback) {
 
 
 gulp.task('e2e', ['protractor'], function() {
-  serve.exit();
+  process.exit();
 });
 
 
