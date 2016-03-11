@@ -1,7 +1,6 @@
 exports.config = {
 	framework: "jasmine",
 	baseUrl: `http://localhost:${process.env.PORT || 3000}`,
-	seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.51.0.jar',
   specs: [
 		'client/**/**.e2e.js',
     'client/**/*.e2e.js'

@@ -46,11 +46,8 @@
     "yargs": "^3.9.0"
   },
   "scripts": {
-    "preupdate-webdriver": "npm install",
-    "update-webdriver": "webdriver-manager update",
-    "pree2e": "npm run update-webdriver",
-    "e2e": "protractor protractor.conf.js",
-    "test": "karma start"
+    "test": "karma start",
+    "e2e": "gulp e2e"
   },
   "keywords": [
     "angular",
