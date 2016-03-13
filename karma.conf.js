@@ -37,10 +37,14 @@ module.exports = function(config) {
         'client/app/**/*.js',
         'client/app/**/*.html',
         'client/app/**/*.css'
-      ]
+      ],
+      paths: {
+        '*': 'base/*.js'
+      }
     },
 
     proxies: {
+      '/jspm_packages': '/base/client/jspm_packages'
       // '/jspm_packages': '/base/jspm_packages',
       // '/jspm.config.js': '/base/jspm.config.js'
     },
