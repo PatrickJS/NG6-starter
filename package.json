@@ -39,7 +39,7 @@
     "stylus-loader": "^1.1.1",
     "supports-color": "^3.1.2",
     "webpack": "^1.9.5",
-    "webpack-dev-middleware": "^1.4.0",
+    "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.6.0",
     "yargs": "^3.9.0"
   },
