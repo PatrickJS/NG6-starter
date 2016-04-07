@@ -1,16 +1,16 @@
-import NavbarModule from './navbar'
-import NavbarController from './navbar.controller';
-import NavbarComponent from './navbar.component';
-import NavbarTemplate from './navbar.html';
+import WeatherModule from './weather'
+import WeatherController from './weather.controller';
+import WeatherComponent from './weather.component';
+import WeatherTemplate from './weather.html';
 
-describe('Navbar', () => {
+describe('Weather', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(NavbarModule.name));
+  beforeEach(window.module(WeatherModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new NavbarController();
+      return new WeatherController({getForeCast: function() {return {then: function() {}}}});
     };
   }));
 
@@ -26,12 +26,20 @@ describe('Navbar', () => {
     });
   });
 
+  describe('Template', () => {
+    // template specs
+    // tip: use regex to ensure correct bindings are used e.g., {{  }}
+    it('has name in template [REMOVE]', () => {
+      expect(WeatherTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+    });
+  });
+
   describe('Component', () => {
       // component/directive specs
-      let component = NavbarComponent;
+      let component = WeatherComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(NavbarTemplate);
+        expect(component.template).to.equal(WeatherTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -39,7 +47,7 @@ describe('Navbar', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(NavbarController);
+        expect(component.controller).to.equal(WeatherController);
       });
   });
 });
