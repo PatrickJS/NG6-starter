@@ -1,0 +1,8 @@
+<table class='table'>
+  <tr data-ng-repeat='row in fc.forecast.list'>
+    <td>
+      <img data-ng-src='http://openweathermap.org/img/w/{{row.weather[0].icon}}.png'/>
+    </td>
+    <td data-ng-bind='row.weather[0].description'></td>
+  </tr>
+</table>
