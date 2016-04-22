@@ -11,6 +11,7 @@ import yargs    from 'yargs';
 import lodash   from 'lodash';
 import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
+import del      from 'del';
 import webpackDevMiddelware from 'webpack-dev-middleware';
 import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
@@ -37,11 +38,12 @@ let paths = {
   ],
   entry: path.join(__dirname, root, 'app/app.js'),
   output: root,
-  blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**')
+  blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
+  dest: path.join(__dirname, 'dist')
 };
 
 // use webpack.config.js to build modules
-gulp.task('webpack', (cb) => {
+gulp.task('webpack', ['clean'], (cb) => {
   const config = require('./webpack.dist.config');
   config.entry.app = paths.entry;
 
@@ -112,4 +114,11 @@ gulp.task('component', () => {
     .pipe(gulp.dest(destPath));
 });
 
-gulp.task('default', ['serve']);
+gulp.task('clean', (cb) => {
+  del([paths.dest]).then(function (paths) {
+    gutil.log("[clean]", paths);
+    cb();
+  })
+});
+
+gulp.task('default', ['watch']);
