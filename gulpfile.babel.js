@@ -36,7 +36,10 @@ let paths = {
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
   ],
-  entry: path.join(__dirname, root, 'app/app.js'),
+  entry: [
+    'babel-polyfill',
+    path.join(__dirname, root, 'app/app.js')
+  ],
   output: root,
   blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
   dest: path.join(__dirname, 'dist')
@@ -69,8 +72,7 @@ gulp.task('serve', () => {
     // it responsible for all this webpack magic
     'webpack-hot-middleware/client?reload=true',
     // application entry point
-    paths.entry
-  ];
+  ].concat(paths.entry);
 
   var compiler = webpack(config);
 
