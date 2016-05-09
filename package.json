@@ -5,9 +5,13 @@
   "main": "index.js",
   "dependencies": {
     "angular": "^1.5.0",
+    "angular-sanitize": "^1.5.5",
     "angular-ui-router": "^0.2.15",
     "lodash": "^3.8.0",
-    "normalize.css": "^3.0.3"
+    "normalize.css": "^3.0.3",
+    "videogular": "^1.4.1",
+    "videogular-controls": "^1.4.1",
+    "videogular-themes-default": "^1.4.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.0",
