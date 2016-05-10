@@ -2,7 +2,7 @@
   <videogular vg-theme="vm.config.theme.url">
     <vg-media vg-src="vm.config.sources">
     </vg-media>
-    <vg-controls>
+    <vg-controls vg-autohide='vm.config.autohide' vg-autohide-time='vm.config.autohideTime'>
       <vg-play-pause-button></vg-play-pause-button>
       <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
       <vg-scrub-bar>
@@ -16,4 +16,5 @@
       <vg-fullscreen-button></vg-fullscreen-button>
     </vg-controls>
   </videogular>
+  <div><h1>{{vm.config.title}}</h1></div>
 </div>
