@@ -1,5 +1,5 @@
 <div class="video-container">
-  <videogular vg-theme="vm.config.theme.url">
+  <videogular vg-player-ready="vm.onPlayerReady($API)" vg-complete="vm.onCompleteVideo()" vg-theme="vm.config.theme.url">
     <vg-media vg-src="vm.config.sources">
     </vg-media>
     <vg-controls vg-autohide='vm.config.autohide' vg-autohide-time='vm.config.autohideTime'>
@@ -17,4 +17,12 @@
     </vg-controls>
   </videogular>
   <div><h1>{{vm.config.title}}</h1></div>
+
+  <div>
+    <ul>
+      <li><a ng-click="vm.setVideo(0)">Pale Blue Dot</a></li>
+      <li><a ng-click="vm.setVideo(1)">Big Buck Bunny</a></li>
+    </ul>
+  </div>
+
 </div>
