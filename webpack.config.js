@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'sourcemap',
+  devtool: 'source-map',
   entry: {},
   module: {
     loaders: [
