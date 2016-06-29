@@ -16,6 +16,7 @@ import webpackDevMiddelware from 'webpack-dev-middleware';
 import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
 import historyApiFallback   from 'connect-history-api-fallback';
+import gulpProtractorAngular from 'gulp-angular-protractor';
 
 let root = 'client';
 
@@ -65,7 +66,31 @@ gulp.task('webpack', ['clean'], (cb) => {
   });
 });
 
-gulp.task('serve', () => {
+    
+ 
+// Setting up the test task 
+gulp.task('protractor', ['serve'], function(callback) {
+    gulp
+        .src(['example_spec.js'])
+        .pipe(gulpProtractorAngular({
+            'configFile': 'protractor.conf.js',
+            'debug': false,
+            'autoStartStopServer': true
+        }))
+        .on('error', function(e) {
+            console.log(e);
+        })
+        .on('end', callback);
+});
+
+
+gulp.task('e2e', ['protractor'], function() {
+  process.exit();
+});
+
+
+
+gulp.task('serve', function() {
   const config = require('./webpack.dev.config');
   config.entry.app = [
     // this modules required to make HRM working
@@ -76,7 +101,7 @@ gulp.task('serve', () => {
 
   var compiler = webpack(config);
 
-  serve({
+  serve.init({
     port: process.env.PORT || 3000,
     open: false,
     server: {baseDir: root},
@@ -95,7 +120,11 @@ gulp.task('serve', () => {
   });
 });
 
+
+
 gulp.task('watch', ['serve']);
+
+
 
 gulp.task('component', () => {
   const cap = (val) => {
