@@ -6,8 +6,7 @@ let navbarComponent = {
   restrict: 'E',
   bindings: {},
   template,
-  controller,
-  controllerAs: 'vm'
+  controller
 };
 
 export default navbarComponent;
