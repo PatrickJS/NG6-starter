@@ -1,6 +1,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import aboutComponent from './about.component';
+import aboutService from './about.service'
 
 let aboutModule = angular.module('about', [
   uiRouter
@@ -15,6 +16,7 @@ let aboutModule = angular.module('about', [
     });
 })
 
+.service('aboutService', aboutService)
 .component('about', aboutComponent);
 
 export default aboutModule;
