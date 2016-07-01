@@ -6,7 +6,7 @@ import NavbarTemplate from './navbar.html';
 describe('Navbar', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(NavbarModule.name));
+  beforeEach(window.module(NavbarModule));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {

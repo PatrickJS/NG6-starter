@@ -15,6 +15,8 @@ let aboutModule = angular.module('about', [
     });
 })
 
-.component('about', aboutComponent);
+.component('about', aboutComponent)
+  
+.name;
 
 export default aboutModule;
