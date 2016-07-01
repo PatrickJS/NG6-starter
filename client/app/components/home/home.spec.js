@@ -6,7 +6,7 @@ import HomeTemplate from './home.html';
 describe('Home', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(HomeModule.name));
+  beforeEach(window.module(HomeModule));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {

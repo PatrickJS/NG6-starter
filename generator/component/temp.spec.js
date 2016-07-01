@@ -6,7 +6,7 @@ import <%= upCaseName %>Template from './<%= name %>.html';
 describe('<%= upCaseName %>', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(<%= upCaseName %>Module.name));
+  beforeEach(window.module(<%= upCaseName %>Module));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {

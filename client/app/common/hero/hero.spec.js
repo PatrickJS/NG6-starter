@@ -6,7 +6,7 @@ import HeroTemplate from './hero.html';
 describe('Hero', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(HeroModule.name));
+  beforeEach(window.module(HeroModule));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
