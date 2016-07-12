@@ -1,6 +1,6 @@
 import NavbarModule from './navbar'
 
-describe('Home', () => {
+describe('Navbar', () => {
   let $rootScope, $state, $location, $componentController, $compile;
 
   beforeEach(window.module(NavbarModule));
