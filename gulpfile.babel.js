@@ -12,8 +12,8 @@ import lodash   from 'lodash';
 import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
 import del      from 'del';
-import webpackDevMiddelware from 'webpack-dev-middleware';
-import webpackHotMiddelware from 'webpack-hot-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
 import historyApiFallback   from 'connect-history-api-fallback';
 
@@ -82,7 +82,7 @@ gulp.task('serve', () => {
     server: {baseDir: root},
     middleware: [
       historyApiFallback(),
-      webpackDevMiddelware(compiler, {
+      webpackDevMiddleware(compiler, {
         stats: {
           colors: colorsSupported,
           chunks: false,
@@ -90,7 +90,7 @@ gulp.task('serve', () => {
         },
         publicPath: config.output.publicPath
       }),
-      webpackHotMiddelware(compiler)
+      webpackHotMiddleware(compiler)
     ]
   });
 });
