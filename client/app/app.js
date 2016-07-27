@@ -7,8 +7,8 @@ import 'normalize.css';
 
 angular.module('app', [
     uiRouter,
-    Common.name,
-    Components.name
+    Common,
+    Components
   ])
   .config(($locationProvider) => {
     "ngInject";

@@ -6,6 +6,8 @@ let heroModule = angular.module('hero', [
   uiRouter
 ])
 
-.component('hero', heroComponent);
+.component('hero', heroComponent)
+  
+.name;
 
 export default heroModule;
