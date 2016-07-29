@@ -23,7 +23,7 @@ This repo serves as a minimal starter for those looking to get up-and-running wi
 * A ready-to-go build system for working with [ES6](https://git.io/es6features)
 * Tasks for generating additional boilerplate Angular components
 * A full testing system in place
-* [Stylus](https://learnboost.github.io/stylus/) support
+* [Stylus](http://stylus-lang.com/) support
 
 **Check out the [JSPM version](https://github.com/angularclass/NG6-starter/tree/jspm)--an alternative to Webpack as an ES6 build system.**
 
