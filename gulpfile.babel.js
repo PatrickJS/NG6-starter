@@ -12,9 +12,14 @@ import lodash   from 'lodash';
 import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
 import del      from 'del';
+import notify   from 'gulp-notify';
+import plumber  from 'gulp-plumber';
+import sass     from 'gulp-sass';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
+import sourcemaps           from 'gulp-sourcemaps';
+import autoprefixer         from 'gulp-autoprefixer';
 import historyApiFallback   from 'connect-history-api-fallback';
 
 let root = 'client';
@@ -31,7 +36,7 @@ let resolveToComponents = (glob = '') => {
 // map of all paths
 let paths = {
   js: resolveToComponents('**/*!(.spec.js).js'), // exclude spec files
-  styl: resolveToApp('**/*.styl'), // stylesheets
+  //styl: resolveToApp('**/*.styl'), // stylesheets
   html: [
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
@@ -45,8 +50,55 @@ let paths = {
   dest: path.join(__dirname, 'dist')
 };
 
+// Convert Sass to CSS
+let buildSass = (rtl, dist) => {
+  let dest, source, destPath;
+
+  if (rtl) {
+    source = './node_modules/rollcall-pattern-library/assets/sass/utils/rtl/rtl.scss';
+    dest = 'rtl-style.css';
+  } else {
+    source = './node_modules/rollcall-pattern-library/assets/sass/utils/rtl/ltr.scss';
+    dest = 'style.css';
+  }
+
+  if (dist) {
+    destPath = paths.dest;
+  } else {
+    destPath = root;
+  }
+
+  gulp.src([source])
+    .pipe(plumber({
+      errorHandler: errorHandler
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      includePaths : [
+        'node_modules/rollcall-pattern-library/bower_components/bourbon/app/assets/stylesheets',
+        'node_modules/rollcall-pattern-library/bower_components/neat/app/assets/stylesheets'
+      ],
+      sourceComments: 'map'
+    }))
+    .pipe(autoprefixer())
+    .pipe(plumber.stop())
+  // .pipe(minifyCSS({keepBreaks:true}))
+    .pipe(sourcemaps.write())
+    .pipe(rename(dest))
+    .pipe(gulp.dest(destPath))
+    .pipe(notify('CSS compiled'))
+    .pipe(notify({ title: 'CSS', message: 'CSS is compiled' }));
+};
+
+// error handler
+let errorHandler = (err) => {
+  gutil.beep();
+  gutil.log(err.message || err);
+  notify.onError('Error: <%= error.message %>')(err);
+};
+
 // use webpack.config.js to build modules
-gulp.task('webpack', ['clean'], (cb) => {
+gulp.task('webpack', ['clean', 'ltr-dist', 'rtl-dist'], (cb) => {
   const config = require('./webpack.dist.config');
   config.entry.app = paths.entry;
 
@@ -116,6 +168,34 @@ gulp.task('component', () => {
     .pipe(gulp.dest(destPath));
 });
 
+/*
+ * Convert LTR Sass files to CSS
+ */
+gulp.task('ltr', () => {
+  buildSass(false, false);
+});
+
+/**
+ * Convert RTL Sass files to CSS
+ */
+gulp.task('rtl', () => {
+  buildSass(true, false);
+});
+
+/*
+ * Convert LTR Sass files to CSS for distribution
+ */
+gulp.task('ltr-dist', () => {
+  buildSass(false, true);
+});
+
+/**
+ * Convert RTL Sass files to CSS for distribution
+ */
+gulp.task('rtl-dist', () => {
+  buildSass(true, true);
+});
+
 gulp.task('clean', (cb) => {
   del([paths.dest]).then(function (paths) {
     gutil.log("[clean]", paths);
@@ -123,4 +203,4 @@ gulp.task('clean', (cb) => {
   })
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['ltr', 'watch']);

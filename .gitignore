@@ -5,3 +5,5 @@ node_modules
 .settings
 *.log
 dist/
+client/style.css
+client/rtl-style.css
