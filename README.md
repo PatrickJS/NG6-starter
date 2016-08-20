@@ -98,17 +98,17 @@ To run tests, type `npm test` or `karma start` in the terminal. Read more about 
 Tools needed to run this app:
 * `node` and `npm`
 Once you have these, install the following as globals:  
-`npm install -g gulp karma karma-cli webpack`
+`npm install -g gulp gulp-cli karma karma-cli webpack`
 
 ## Installing
 * `fork` this repo
 * `clone` your fork
-* `npm install -g gulp karma karma-cli webpack` install global cli dependencies
+* `npm install -g gulp gulp-cli karma karma-cli webpack` install global cli dependencies
 * `npm install` to install dependencies
 
 ## Running the App
 NG6 uses Gulp to build and launch the development environment. After you have installed all dependencies, you may run the app. Running `gulp` will bundle the app with `webpack`, launch a development server, and watch all files. The port will be displayed in the terminal.
- 
+
 ### Gulp Tasks
 Here's a list of available tasks:
 * `webpack`
@@ -121,7 +121,7 @@ Here's a list of available tasks:
 	* runs `serve`.
 * `component`
   * scaffolds a new Angular component. [Read below](#generating-components) for usage details.
-  
+
 ### Testing
 To run the tests, run `npm test` or `karma start`.
 
@@ -169,7 +169,7 @@ Because the argument to `--name` applies to the folder name **and** the actual c
 
 ___
 
-enjoy — **AngularClass** 
+enjoy — **AngularClass**
 
 <br><br>
 

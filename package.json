@@ -63,6 +63,11 @@
     "type": "git",
     "url": "https://github.com/angularclass/NG6-starter.git"
   },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
   "author": "AngularClass",
   "license": "Apache-2.0"
 }
