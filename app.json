@@ -1,0 +1,6 @@
+{
+  "name": "UI Performance Test",
+  "description": "Angular app perf test",
+  "repository": "https://github.com/ckarande/NG6-starter",
+  "keywords": ["node", "express", "webpack", "angular"]
+}
