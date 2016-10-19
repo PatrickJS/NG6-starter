@@ -3,7 +3,7 @@ var path = require('path');
 
 var app = express();
 
-var static_path = path.join(__dirname, './../dist');
+var static_path = path.join(__dirname, './../build');
 
 app.enable('trust proxy');
 
