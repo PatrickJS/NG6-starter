@@ -7,6 +7,8 @@ class ContactController {
     };
 
     this.$state = $state;
+
+    newrelic.setCustomAttribute ("ControllerName", "HOME");
   }
 
   // use default params here
