@@ -1,6 +1,6 @@
 class ContactController {
   constructor( $state) {
-    this.name = "Contact Us"
+    this.name = "Contact Us";
     this.post = {
       text: '',
       title: ''
@@ -8,7 +8,7 @@ class ContactController {
 
     this.$state = $state;
 
-    newrelic.setCustomAttribute ("ControllerName", "HOME");
+    //newrelic.setCustomAttribute ("ControllerName", "HOME");
   }
 
   // use default params here

@@ -1,7 +1,7 @@
 class HomeController {
   constructor() {
     this.name = 'home';
-    newrelic.setCustomAttribute ("ControllerName", "HOME");
+    //newrelic.setCustomAttribute ("ControllerName", "HOME");
   }
 }
 
