@@ -1,53 +1,54 @@
 import AboutModule from './about'
-import AboutController from './about.controller';
-import AboutComponent from './about.component';
-import AboutTemplate from './about.html';
 
 describe('About', () => {
-  let $rootScope, makeController;
+  let $rootScope, $state, $location, $componentController, $compile;
 
-  beforeEach(window.module(AboutModule.name));
-  beforeEach(inject((_$rootScope_) => {
-    $rootScope = _$rootScope_;
-    makeController = () => {
-      return new AboutController();
-    };
+  beforeEach(window.module(AboutModule));
+
+  beforeEach(inject(($injector) => {
+    $rootScope = $injector.get('$rootScope');
+    $componentController = $injector.get('$componentController');
+    $state = $injector.get('$state');
+    $location = $injector.get('$location');
+    $compile = $injector.get('$compile');
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
+    it('About component should be visible when navigates to /about', () => {
+      $location.url('/about');
+      $rootScope.$digest();
+      expect($state.current.component).to.eq('about');
+    });
   });
 
   describe('Controller', () => {
     // controller specs
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      let controller = makeController();
+    let controller;
+    beforeEach(() => {
+      controller = $componentController('about', {
+        $scope: $rootScope.$new()
+      });
+    });
+
+    it('has a name property', () => { // erase if removing this.name from the controller
       expect(controller).to.have.property('name');
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(AboutTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+  describe('View', () => {
+    // view layer specs.
+    let scope, template;
+
+    beforeEach(() => {
+      scope = $rootScope.$new();
+      template = $compile('<about></about>')(scope);
+      scope.$apply();
     });
-  });
 
-  describe('Component', () => {
-      // component/directive specs
-      let component = AboutComponent;
+    it('has name in template', () => {
+      expect(template.find('h1').html()).to.eq('about');
+    });
 
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(AboutTemplate);
-      });
-
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(AboutController);
-      });
   });
 });

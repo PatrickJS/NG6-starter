@@ -1,17 +1,16 @@
 import NavbarModule from './navbar'
-import NavbarController from './navbar.controller';
-import NavbarComponent from './navbar.component';
-import NavbarTemplate from './navbar.html';
 
 describe('Navbar', () => {
-  let $rootScope, makeController;
+  let $rootScope, $state, $location, $componentController, $compile;
 
-  beforeEach(window.module(NavbarModule.name));
-  beforeEach(inject((_$rootScope_) => {
-    $rootScope = _$rootScope_;
-    makeController = () => {
-      return new NavbarController();
-    };
+  beforeEach(window.module(NavbarModule));
+
+  beforeEach(inject(($injector) => {
+    $rootScope = $injector.get('$rootScope');
+    $componentController = $injector.get('$componentController');
+    $state = $injector.get('$state');
+    $location = $injector.get('$location');
+    $compile = $injector.get('$compile');
   }));
 
   describe('Module', () => {
@@ -20,34 +19,31 @@ describe('Navbar', () => {
 
   describe('Controller', () => {
     // controller specs
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      let controller = makeController();
+    let controller;
+    beforeEach(() => {
+      controller = $componentController('navbar', {
+        $scope: $rootScope.$new()
+      });
+    });
+
+    it('has a name property', () => { // erase if removing this.name from the controller
       expect(controller).to.have.property('name');
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(NavbarTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+  describe('View', () => {
+    // view layer specs.
+    let scope, template;
+
+    beforeEach(() => {
+      scope = $rootScope.$new();
+      template = $compile('<navbar></navbar>')(scope);
+      scope.$apply();
     });
-  });
 
-  describe('Component', () => {
-      // component/directive specs
-      let component = NavbarComponent;
+    it('has name in template', () => {
+      expect(template.find('h1').find('a').html()).to.eq('navbar');
+    });
 
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(NavbarTemplate);
-      });
-
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(NavbarController);
-      });
   });
 });
