@@ -3,7 +3,7 @@ class AboutController {
     this.name = 'about';
 
     var vPageView = new ADRUM.events.VPageView({
-      url: '/#about'
+      url: 'https://ui-perf-appd.herokuapp.com/about1'
     });
 
     vPageView.start();
