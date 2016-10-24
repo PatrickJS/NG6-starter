@@ -11,7 +11,7 @@ class AboutController {
   // SPA view routing and HTML partials fetching
     vPageView.markViewChangeStart();
   // AJAX requests for the HTML partials are automatically correlated with the VPageView
-  setTimeout(3000, function (){
+  setTimeout(function (){
     vPageView.markViewChangeEnd();
 
   // HTML partials inserted into Browser DOM tree
@@ -28,7 +28,7 @@ class AboutController {
     vPageView.end();
 
     ADRUM.report(vPageView);
-  })
+  }, 3000);
 
 
     }
