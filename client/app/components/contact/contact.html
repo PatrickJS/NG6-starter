@@ -1,21 +1,21 @@
 <navbar></navbar>
-<h1>{{ vm.name }}</h1>
+<h1>{{ $ctrl.name }}</h1>
 <section class="admin">
   <div class="admin-title">
-    <h1>Create a post!</h1>
+    <h1>Post a message!</h1>
   </div>
   <div class="admin-create">
-    <form name="postForm" novalidate ng-submit="vm.createPost(vm.post)">
+    <form name="postForm" novalidate ng-submit="$ctrl.createPost($ctrl.post)">
       <textbox
       label="Post title"
-      bind-to="vm.post.title"
+      bind-to="$ctrl.post.title"
       required
       name="title">
       </textbox>
 
       <textarea
       name="post"
-      ng-model="vm.post.text"
+      ng-model="$ctrl.post.text"
       required
       placeholder="...write something">
       </textarea>
