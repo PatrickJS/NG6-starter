@@ -23,7 +23,7 @@ This repo serves as a minimal starter for those looking to get up-and-running wi
 * A ready-to-go build system for working with [ES6](https://git.io/es6features)
 * Tasks for generating additional boilerplate Angular components
 * A full testing system in place
-* [Stylus](https://learnboost.github.io/stylus/) support
+* [SASS](http://sass-lang.com/) support via node-sass
 
 **Check out the [JSPM version](https://github.com/angularclass/NG6-starter/tree/jspm)--an alternative to Webpack as an ES6 build system.**
 
@@ -66,7 +66,13 @@ NG6 uses NPM scripts, Gulp, and Webpack together for its build system. Yes, you 
 **Check out the [JSPM version](https://github.com/angularclass/NG6-starter/tree/jspm)--an alternative to Webpack as an ES6 build system.**
 
 ## File Structure
-We use a componentized approach with NG6. This will be the eventual standard (and particularly helpful, if using Angular's new router) as well as a great way to ensure a tasteful transition to Angular 2, when the time is ripe. Everything--or mostly everything, as we'll explore (below)--is a component. A component is a self-contained concern--may it be a feature or strictly-defined, ever-present element of the UI (such as a header, sidebar, or footer). Also characteristic of a component is that it harnesses its own stylesheets, templates, controllers, routes, services, and specs. This encapsulation allows us the comfort of isolation and structural locality. Here's how it looks:
+We use a componentized approach with NG6. This will be the eventual standard (and particularly helpful, if using 
+Angular's new router) as well as a great way to ensure a tasteful transition to Angular 2, when the time is ripe. 
+Everything--or mostly everything, as we'll explore (below)--is a component. A component is a self-contained 
+concern--may it be a feature or strictly-defined, ever-present element of the UI (such as a header, sidebar, or 
+footer). Also characteristic of a component is that it harnesses its own stylesheets, templates, controllers, routes, 
+services, and specs. This encapsulation allows us the comfort of isolation and structural locality. Here's how it 
+looks:
 ```
 client
 ⋅⋅app/
@@ -79,7 +85,7 @@ client
 ⋅⋅⋅⋅⋅⋅⋅⋅home.js * home entry file (routes, configurations, and declarations occur here)
 ⋅⋅⋅⋅⋅⋅⋅⋅home.component.js * home "directive"
 ⋅⋅⋅⋅⋅⋅⋅⋅home.controller.js * home controller
-⋅⋅⋅⋅⋅⋅⋅⋅home.styl * home styles
+⋅⋅⋅⋅⋅⋅⋅⋅home.scss * home styles
 ⋅⋅⋅⋅⋅⋅⋅⋅home.html * home template
 ⋅⋅⋅⋅⋅⋅⋅⋅home.spec.js * home specs (for entry, component, and controller)
 ```
@@ -141,7 +147,7 @@ Following a consistent directory structure between components offers us the cert
 ⋅⋅⋅⋅⋅⋅⋅⋅componentName.component.js
 ⋅⋅⋅⋅⋅⋅⋅⋅componentName.controller.js
 ⋅⋅⋅⋅⋅⋅⋅⋅componentName.html
-⋅⋅⋅⋅⋅⋅⋅⋅componentName.styl // scoped to affect only its own template
+⋅⋅⋅⋅⋅⋅⋅⋅componentName.scss // scoped to affect only its own template
 ⋅⋅⋅⋅⋅⋅⋅⋅componentName.spec.js // contains passing demonstration tests
 ```
 
