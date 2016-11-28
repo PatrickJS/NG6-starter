@@ -1,16 +1,16 @@
-import <%= upCaseName %>Module from './<%= name %>'
-import <%= upCaseName %>Controller from './<%= name %>.controller';
-import <%= upCaseName %>Component from './<%= name %>.component';
-import <%= upCaseName %>Template from './<%= name %>.html';
+import {{ camelCase name }} from './{{ dashCase name }}'
+import {{ properCase name }}Controller from './{{ dashCase name }}.controller';
+import {{ camelCase name }}Component from './{{ dashCase name }}.component';
+import {{ camelCase name }}Template from './{{ dashCase name }}.html';
 
-describe('<%= upCaseName %>', () => {
+describe('Component: {{ camelCase name }}', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(<%= upCaseName %>Module));
+  beforeEach(window.module({{ camelCase name }}));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new <%= upCaseName %>Controller();
+      return new {{ properCase name }}Controller();
     };
   }));
 
@@ -28,22 +28,22 @@ describe('<%= upCaseName %>', () => {
 
   describe('Template', () => {
     // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
+    // tip: use regex to ensure correct bindings are used e.g., \{{  }}
     it('has name in template [REMOVE]', () => {
-      expect(<%= upCaseName %>Template).to.match(/{{\s?\$ctrl\.name\s?}}/g);
+      expect({{ camelCase name }}Template).to.match(/\{{\s?\$ctrl\.name\s?}}/g);
     });
   });
 
   describe('Component', () => {
       // component/directive specs
-      let component = <%= upCaseName %>Component;
+      let component = {{ camelCase name }}Component;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(<%= upCaseName %>Template);
+        expect(component.template).to.equal({{ camelCase name }}Template);
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(<%= upCaseName %>Controller);
+        expect(component.controller).to.equal({{ properCase name }}Controller);
       });
   });
 });
