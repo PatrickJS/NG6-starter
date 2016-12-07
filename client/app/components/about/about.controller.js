@@ -1,7 +1,7 @@
 class AboutController {
   constructor() {
     this.name = 'about';
-
+/*
     var vPageView = new ADRUM.events.VPageView({
       url: 'https://ui-perf-appd.herokuapp.com/customView'
     });
@@ -30,7 +30,7 @@ class AboutController {
     ADRUM.report(vPageView);
   }, 2000);
 
-
+*/
     }
 }
 
