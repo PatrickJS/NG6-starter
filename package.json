@@ -43,7 +43,7 @@
   "scripts": {
     "build": "webpack --progress --config ./webpack.dist.config.js",
     "serve": "webpack-dev-server --progress --config ./webpack.dev.config.js",
-    "start": "webpack-dev-server --progress",
+    "start": "webpack-dev-server --progress --config ./webpack.dev.config.js",
     "test": "karma start"
   },
   "keywords": [
