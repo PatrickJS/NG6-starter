@@ -41,9 +41,10 @@
     "yargs": "^6.6.0"
   },
   "scripts": {
-    "build": "webpack -p",
-    "test": "karma start",
-    "webpack": "webpack --progress --config ./webpack.dist.config.js"
+    "build": "webpack --progress --config ./webpack.dist.config.js",
+    "serve": "webpack-dev-server --progress --config ./webpack.dev.config.js",
+    "start": "webpack-dev-server --progress",
+    "test": "karma start"
   },
   "keywords": [
     "angular",

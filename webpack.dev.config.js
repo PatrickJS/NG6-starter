@@ -4,8 +4,16 @@ var config  = require('./webpack.config');
 
 config.output = {
   filename: '[name].bundle.js',
-  publicPath: '/',
   path: path.resolve(__dirname, 'client')
+};
+
+config.devServer = {
+  port: 3000,
+  contentBase: './client',
+  hot: true,
+  stats: { colors: true },
+  inline: true,
+  historyApiFallback: true
 };
 
 config.plugins = config.plugins.concat([
