@@ -4,13 +4,16 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
-  entry: {},
+  entry: [
+    'babel-polyfill',
+    path.join(__dirname, 'client', 'app/app.js')
+  ],
   module: {
     loaders: [
-       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
-       { test: /\.html$/, loader: 'raw' },
-       { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
-       { test: /\.css$/, loader: 'style!css' }
+       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate-loader!babel-loader' },
+       { test: /\.html$/, loader: 'raw-loader' },
+       { test: /\.(scss|sass)$/, loader: 'style-loader!css-loader!sass-loader' },
+       { test: /\.css$/, loader: 'style-loader!css-loader' }
     ]
   },
   plugins: [
