@@ -154,7 +154,7 @@ Following a consistent directory structure between components offers us the cert
 You may, of course, create these files manually, every time a new module is needed, but that gets quickly tedious.
 To generate a component, run `npm run component -- --name componentName`.
 
-The parameter following the `--name` flag is the name of the component to be created. Ensure that it is unique or it will overwrite the preexisting identically-named component.
+The parameter following the `--name` flag is the name of the component to be created. Ensure that it is unique or it will overwrite the preexisting identically-named component. This name can use the format `my-name` or `my_name` and will generate the Class MyName.
 
 The component will be created, by default, inside `client/app/components`. To change this, apply the `--parent` flag, followed by a path relative to `client/app/components/`.
 
