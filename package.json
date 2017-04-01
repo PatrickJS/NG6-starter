@@ -24,6 +24,7 @@
     "css-loader": "^0.19.0",
     "del": "^2.2.0",
     "fs-walk": "0.0.1",
+    "guardian-js": "^1.0.7",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-template": "^3.0.0",
