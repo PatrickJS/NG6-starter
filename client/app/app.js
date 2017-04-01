@@ -1,15 +1,10 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
-import Common from './common/common';
-import Components from './components/components';
-import AppComponent from './app.component';
 import 'normalize.css';
+import './app.scss'
 
-angular.module('app', [
-    uiRouter,
-    Common,
-    Components
-  ])
+
+angular.module('app', [uiRouter])
   .config(($locationProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
@@ -17,4 +12,13 @@ angular.module('app', [
     $locationProvider.html5Mode(true).hashPrefix('!');
   })
 
-  .component('app', AppComponent);
+  .component('app', {
+    template: `<div class="app">
+      <div ui-view></div>
+      <article-list />
+    </div>`,
+    restrict: 'E'
+  })
+  .component('articleList', {
+    template: `<h3>...articles here !</h3>`
+  });
