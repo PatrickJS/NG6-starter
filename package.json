@@ -4,12 +4,12 @@
   "description": "Starter for Angular + ES6 + (Webpack or JSPM)",
   "main": "index.js",
   "dependencies": {
-    "angular": "^1.5.0",
-    "angular-ui-router": "^1.0.0-beta.1",
+    "angular": "^1.6.4",
+    "angular-ui-router": "^1.0.0-rc.1",
     "normalize.css": "^3.0.3"
   },
   "devDependencies": {
-    "angular-mocks": "^1.5.0",
+    "angular-mocks": "^1.6.4",
     "babel-core": "^6.7.7",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-runtime": "^6.7.5",
