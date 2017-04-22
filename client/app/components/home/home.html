@@ -5,5 +5,10 @@
 <main>
   <div>
     <h1>Found in {{ $ctrl.name }}.html</h1>
+    <p>{{$ctrl.serviceName}}</p>
+    <div>Items: </div>
+    <ul>
+      <li ng-repeat="item in $ctrl.items"></li>
+    </ul>
   </div>
 </main>

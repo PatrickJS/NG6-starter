@@ -1,0 +1,8 @@
+<navbar></navbar>
+<div>
+   <p>Service Used: {{$ctrl.serviceName}}</p>
+    <div>Items: </div> <span ng-show="$ctrl.errorMsg">{{$ctrl.errorMsg}}</span>
+    <ul>
+      <li ng-repeat="item in $ctrl.items"></li>
+    </ul>
+</div>
