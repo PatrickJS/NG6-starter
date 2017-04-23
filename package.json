@@ -53,6 +53,7 @@
   "scripts": {
     "build": "gulp webpack",
     "component": "plop component",
+    "filter": "plop filter",
     "service": "plop service",
     "serve": "gulp serve",
     "start": "gulp serve",
