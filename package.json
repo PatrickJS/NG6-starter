@@ -53,6 +53,7 @@
   "scripts": {
     "build": "gulp webpack",
     "component": "plop component",
+    "directive": "plop directive",
     "factory": "plop factory",
     "filter": "plop filter",
     "service": "plop service",

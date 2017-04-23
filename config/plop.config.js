@@ -1,16 +1,20 @@
 const inquirer = require('inquirer-directory'),
+  basePath = './generators/';
   generators = [{
     "name": "component",
-    "generator": require("./generators/component.config")
+    "generator": require(basePath + "component.config")
+  }, {
+    "name": "directive",
+    "generator": require(basePath + "directive.config")
   }, {
     "name": "filter",
-    "generator": require("./generators/filter.config")
+    "generator": require(basePath + "filter.config")
   }, {
     "name": "factory",
-    "generator": require("./generators/factory.config")
+    "generator": require(basePath + "factory.config")
   }, {
     "name": "service",
-    "generator": require("./generators/service.config")
+    "generator": require(basePath + "service.config")
   }];
 
 module.exports = (plop) => {
