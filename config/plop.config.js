@@ -1,13 +1,24 @@
 const inquirer = require('inquirer-directory'),
-  componentGenerator = require('./generators/component.config'),
-  filterGenerator = require('./generators/filter.config'),
-  serviceGenerator = require('./generators/service.config');
+  generators = [{
+    "name": "component",
+    "generator": require("./generators/component.config")
+  }, {
+    "name": "filter",
+    "generator": require("./generators/filter.config")
+  }, {
+    "name": "factory",
+    "generator": require("./generators/factory.config")
+  }, {
+    "name": "service",
+    "generator": require("./generators/service.config")
+  }];
 
 module.exports = (plop) => {
 
   plop.addPrompt('directory', inquirer);
 
-  plop.setGenerator('component', componentGenerator(plop));
-  plop.setGenerator('filter', filterGenerator(plop));
-  plop.setGenerator('service', serviceGenerator(plop));
+  // Set Generators from json file
+  generators.forEach((gen) => {
+    plop.setGenerator(gen.name, gen.generator(plop));
+  });
 };
