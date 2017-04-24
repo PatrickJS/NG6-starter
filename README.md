@@ -197,7 +197,9 @@ Default path: `client/app/[default-path-for-angular-element]`
 #### Generating Components
 
 **Command:** `npm run service`
+
 **Default path:** `client/app/services`
+
 **File structure:**
 ```
 ⋅⋅⋅⋅⋅⋅component-name/
@@ -212,7 +214,9 @@ Default path: `client/app/[default-path-for-angular-element]`
 #### Generating Services
 
 **Command:** `npm run service`
+
 **Default path:** `client/app/services`
+
 **File structure:**
 ```
 ⋅⋅⋅⋅⋅⋅service-name/
@@ -224,7 +228,9 @@ Default path: `client/app/[default-path-for-angular-element]`
 #### Generating Factories
 
 **Command:** `npm run factory`
+
 **Default path:** `client/app/factories`
+
 **File structure:**
 ```
 ⋅⋅⋅⋅⋅⋅factory-name/
@@ -236,8 +242,11 @@ Default path: `client/app/[default-path-for-angular-element]`
 #### Generating Directives
 
 **Command:** `npm run directive`
+
 **Default path:** `client/app/common/directives`
+
 The `[name].directive.js` file will contain only the link function and the directive's attribute `restrict` is set as  `A` (Attribute) and without template by default because we should only use directives for DOM manipulations and use `component` for creating 'web elements' from now on.
+
 **File structure:**
 ```
 ⋅⋅⋅⋅⋅⋅directive-name/
@@ -249,8 +258,11 @@ The `[name].directive.js` file will contain only the link function and the direc
 #### Generating Filters
 
 **Command:** `npm run service`
+
 **Default path:** `client/app/services`
+
 Filters entry file is `client/app/common/filters/filter.js`, all filters are declared here, and we only add the file for the link function.
+
 **File structure:**
 ```
 ⋅⋅⋅⋅filters/
