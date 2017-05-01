@@ -99,7 +99,14 @@ gulp.task('watch', ['serve']);
 
 gulp.task('component', () => {
   const cap = (val) => {
-    return val.charAt(0).toUpperCase() + val.slice(1);
+    let partials = val.split(/[-,\/_]/);
+    return partials.map(function(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1)
+    }).join('');
+  };
+  const camel = (val) => {
+    var str = cap(val);
+    return str.charAt(0).toLowerCase() + str.slice(1);
   };
   const name = yargs.argv.name;
   const parentPath = yargs.argv.parent || '';
@@ -108,7 +115,8 @@ gulp.task('component', () => {
   return gulp.src(paths.blankTemplates)
     .pipe(template({
       name: name,
-      upCaseName: cap(name)
+      upCaseName: cap(name),
+      camelCaseName: camel(name)
     }))
     .pipe(rename((path) => {
       path.basename = path.basename.replace('temp', name);
@@ -117,7 +125,7 @@ gulp.task('component', () => {
 });
 
 gulp.task('clean', (cb) => {
-  del([paths.dest]).then(function (paths) {
+  del([paths.dest]).then(function(paths) {
     gutil.log("[clean]", paths);
     cb();
   })
