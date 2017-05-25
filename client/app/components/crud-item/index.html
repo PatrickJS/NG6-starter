@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="amazonCRUD">
+<head>
+	<meta charset="UTF-8">
+	<title>CRUD</title>		
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
+	<script src="app.js"></script>
+</head>
+<body>
+	<div ng-controller="CrudCtrl">
+		<div class="create-sect">
+			<div class="logo-top">
+				<a href="#" tabindex="-1" class="link-nav-icon">
+					<i class="a-icon a-icon-logo" aria-label="Amazon">
+						<span class="a-icon-alt">Amazon</span>
+					</i>
+				</a>
+			</div>
+			<div class="add-item">
+				<div class="add-item-padding">
+					<form name="crFrm"" novalidate>
+						<h1 class="a-spacing-small" ng-show="!isEditing">Add a new product</h1>
+						<h1 class="a-spacing-small" ng-show="isEditing">Update product</h1>
+
+						<!-- PRODUCT NAME -->
+						<div class="input-row">
+							<label for="item-name">Product name</label>
+							<input type="text" name="itemName" ng-model="newItem.name" id="item-name" class="input-text" ng-class="{ 'has-error' : crFrm.itemName.$invalid && !crFrm.itemName.$pristine }" required>
+							<div class="a-alert-content" ng-show="crFrm.itemName.$invalid && !crFrm.itemName.$pristine">
+							 	<i class="a-icon a-icon-alert"></i>
+							 	<span>Enter product name</span>
+							</div>
+						</div>
+
+						<!-- PRODUCT CATEGORY -->
+						<div class="input-row">
+							<label for="item-category">Product category</label>
+							<input type="text" name="itemCategory" ng-model="newItem.category" id="item-category" class="input-text" ng-class="{ 'has-error' : crFrm.itemCategory.$invalid && !crFrm.itemCategory.$pristine }" required>
+							<div class="a-alert-content" ng-show="crFrm.itemCategory.$invalid && !crFrm.itemCategory.$pristine">
+								<i class="a-icon a-icon-alert"></i>
+							 	<span>Enter category</span>
+							</div>
+						</div>
+
+						<!-- PRODUCT PRICE -->
+						<div class="input-row">
+							<label for="item-price">Product price</label>
+							<input type="number" min="0" name="itemPrice" ng-model="newItem.price" id="item-price" class="input-text" ng-class="{ 'has-error' : crFrm.itemPrice.$invalid && !crFrm.itemPrice.$pristine }" required>
+							<div class="a-alert-content" ng-show="crFrm.itemPrice.$invalid && !crFrm.itemPrice.$pristine">
+								<i class="a-icon a-icon-alert"></i>
+							 	<span>Enter price</span>
+							</div>
+						</div>
+
+						<!-- PRODUCT OWNER -->
+						<div class="input-row">						
+							<label for="item-owner">Product owner (company)</label>
+							<input type="text" name="itemOwner" ng-model="newItem.owner" id="item-owner" class="input-text" ng-class="{ 'has-error' : crFrm.itemOwner.$invalid && !crFrm.itemOwner.$pristine }" required>
+							<div class="a-alert-content" ng-show="crFrm.itemOwner.$invalid && !crFrm.itemOwner.$pristine">
+								<i class="a-icon a-icon-alert"></i>
+							 	<span>Enter owner of product</span>
+							</div>					
+						</div>
+						<div class="a-divider a-divider-break" ng-show="!isEditing">
+							<h5>Create new product</h5>
+						</div>
+						<div class="a-divider a-divider-break" ng-show="isEditing">
+							<h5>Confirm your changes</h5>
+						</div>
+						<button type="submit"  ng-click="addItem(crFrm.$valid)" class="a-button-input" value="Add" ng-show="!isEditing">Add Product</button>
+						<button type="submit"  ng-click="updateItem(crFrm.$valid, newItem)" class="a-button-input" value="Add" ng-show="isEditing">Update Item</button>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+		<table style="width: 80%; margin: 0 auto;" border="1">
+			<tbody>
+				<tr>
+					<td>Name</td>
+					<td>Category</td>
+					<td>Price</td>
+					<td>Owner</td>
+					<td>Settings</td>
+				</tr>
+				<tr ng-repeat="item in items" class="item-style">
+					<td>{{item.name}}</td>
+					<td>{{item.category}}</td>
+					<td>{{item.price | currency}}</td>
+					<td>{{item.owner}}</td>
+					<td><button ng-click="deleteItem(item)">Del</button>
+						<button ng-click="editItem(item)">Edit</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
