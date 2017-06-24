@@ -8,6 +8,7 @@ class ItemCardController {
       'test text for <li> element2',
       'test text for <li> element3'
     ];
+    this.price = 248.97;
   }
 }
 
