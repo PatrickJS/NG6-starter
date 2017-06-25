@@ -13,7 +13,7 @@ let itemCardModule = angular.module('itemCard', [
 
     $stateProvider
       .state('item', {
-        url: '/items/item?:id',
+        url: '/item/:id',
         component: 'itemCard'
       });
   })
