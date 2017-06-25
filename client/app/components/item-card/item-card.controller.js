@@ -1,7 +1,7 @@
 
 class ItemCardController {
   constructor() {
-    this.name = 'ItemCardController';
+    this.name = 'PS 4 Slim 500GB Console - Uncharted 4 Bundle';
     this.poster = 'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg';
     this.strings = [
       'test text for <li> element1',
