@@ -41,17 +41,46 @@
     <ul class="radio-input">
       <li>
         <input type="radio" id="f-option" name="selector">
-        <label for="f-option">Buy new : {{ $ctrl.price }}</label>
+        <label for="f-option">Buy new : <span class="currency-symbol">$</span>{{ $ctrl.price }}</label>
       </li>
       <li>
         <input type="radio" id="s-option" name="selector">
-        <label for="s-option">Buy used : {{ $ctrl.price }}</label>
+        <label for="s-option">Buy used : <span class="currency-symbol">$</span>{{ $ctrl.price }}</label>
       </li>
     </ul>
   </div>
   <div class="item-shop-top-divider">
   </div>
   <div class="add-card-block">
+    <div class="a-checkbox">
+      <div class="checkbox-1">
+        <input type="checkbox">
+        <span>Include 4-Year Protection for $58.83</span>
+      </div>
+      <div class="checkbox-2">
+        <input type="checkbox">
+        <span>Include 3-Year Protection for $28.77</span>
+      </div>
+    </div>
+    <div class="platform-info">
+      <span>Platform: PlayStation 4</span>
+    </div>
+    <div class="new-offer">
+      <h2>In Stock</h2>
+    </div>
+    <div class="merchant-info">
+      <span>Sold by Above All Games and Fulfilled by Amazon. Gift-wrap available.</span>
+    </div>
+    <div class="fast-track">
+      <span>Want it tomorrow, July 1? Order within 1 hr 31 mins and choose Saturday Delivery at checkout. Details</span>
+    </div>
+    <div class="select-qty">
+      <label for="qty">Qty: </label>
+      <select name="quantity" id="qty">
+        <option value="1">1</option>
+      </select>
+      <span><a href="#">Turn on 1-click ordering</a></span>
+    </div>
     <a href="#">Turn on 1-Click ordering for this browser</a><br>
     <button>Add to Cart</button>
   </div>
