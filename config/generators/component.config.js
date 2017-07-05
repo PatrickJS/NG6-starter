@@ -13,7 +13,7 @@ module.exports = (plop) => {
       {
         type: 'confirm',
         name: 'needPath',
-        message: 'Should I place new component in components directory, or it should be placed somewhere else?',
+        message: 'Do you want to specify the path manually (otherwise component will be placed in \\components)',
         default: false,
     },
       {

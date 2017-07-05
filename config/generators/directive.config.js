@@ -13,7 +13,7 @@ module.exports = (plop) => {
       {
         type: 'confirm',
         name: 'needPath',
-        message: 'Should I place new directive in directives directory, or it should be placed somewhere else?',
+        message: 'Do you want to specify the path manually (otherwise component will be placed in \\common\\directive)',
         default: false,
     },
       {
@@ -39,7 +39,7 @@ module.exports = (plop) => {
         {
           type: 'add',
           path: '{{> fullPath}}/{{dashCase name}}.directive.js',
-          templateFile: './templates/directive/directive.js',
+          templateFile: './templates/directive/directive.directive.js',
           abortOnFail: true,
       },
         {
