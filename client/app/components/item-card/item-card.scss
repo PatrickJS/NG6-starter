@@ -117,7 +117,7 @@
 
           .a-text-learn-more {
             margin-right: 5px;
-            
+
             a {
               text-decoration: none;
               color: #0277bd;
@@ -237,18 +237,32 @@
       }
     }
 
-    .secondary-images {
+    .images-length {
+      top: 3px;
+    }
+
+    .secondary-images, .images-length {
       display: inline-block;
       height: 70px;
       width: 140px;
       cursor: pointer;
       border: 1px solid #A2A6AC;
       margin-bottom: 2px;
+      margin-right: 4px;
+      position: relative;
 
       img {
         height: 70px;
         width: 70px;
         margin-left: 25%;
+      }
+
+      span {
+        position: absolute;
+        top: 25%;
+        font-size: 30px;
+        left: 33%;
+        color: #adadad;
       }
     }
   }
