@@ -52,31 +52,9 @@
   <div class="a-section-table">
     <table class="item-details-table">
       <tbody>
-      <tr>
-        <th class="item-sect-entry">ASIN</th>
-        <td class="a-size-base">BP1AADLL</td>
-      </tr>
-      <tr>
-        <th class="item-sect-entry">Release date</th>
-        <td class="a-size-base">September 15, 2016</td>
-      </tr>
-      <tr>
-        <th class="item-sect-entry">Best Sellers Rank</th>
-        <td class="a-size-base">BP1AADLL</td>
-      </tr>
-      <tr>
-        <th class="item-sect-entry">Pricing</th>
-        <td class="a-size-base">The strikethrough price is the List Price. Savings represents a discount off the List
-          Price.
-        </td>
-      </tr>
-      <tr>
-        <th class="item-sect-entry">Product Dimensions</th>
-        <td class="a-size-base">16.8 x 14 x 4 inches; 8.5 pounds</td>
-      </tr>
-      <tr>
-        <th class="item-sect-entry">Media</th>
-        <td class="a-size-base">Video Game</td>
+      <tr ng-repeat="data in $ctrl.testData">
+        <th class="item-sect-entry">{{ data.name }}</th>
+        <td class="a-size-base">{{ data.info }}</td>
       </tr>
       </tbody>
     </table>
