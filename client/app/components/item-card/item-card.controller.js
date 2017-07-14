@@ -26,13 +26,16 @@ class ItemCardController {
         'Another info': 'Another info'
       }
     };
-    this.images = [];
-    for (let i = 0; i < this.product.images.length && this.images.length < 3; i++) {
-      this.images.push(this.product.images[i]);
-    }
+    this.images = this.getImagesToShow(this.product.images);
   }
 
-
+  getImagesToShow(array) {
+    let data = [];
+    for (let i = 0; i < array.length && data.length < 3; i++) {
+      data.push(array[i]);
+    }
+    return data;
+  }
 }
 
 export default ItemCardController;
