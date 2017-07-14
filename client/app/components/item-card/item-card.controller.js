@@ -11,41 +11,28 @@ class ItemCardController {
       price: 248.97,
       poster: 'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg',
       images: [
-        {img_1: 'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg'},
-        {img_2: 'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg'},
-        {img_3: 'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg'},
-        {img_4: 'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg'},
-        {img_5: 'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg'}
+        'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg',
+        'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg',
+        'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg',
+        'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg',
+        'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg'
       ],
-      information: [
-        {
-          col_name: 'ASIN',
-          col_info: 'BP1AADLL'
-        },
-        {
-          col_name: 'Release date',
-          col_info: 'September 15, 2016'
-        },
-        {
-          col_name: 'Best Sellers Rank',
-          col_info: 'BP1AADLL'
-        },
-        {
-          col_name: 'Pricing',
-          col_info: 'The strikethrough price is the List Price. Savings represents a discount off the List Price.'
-        },
-        {
-          col_name: 'Product Dimensions',
-          col_info: '16.8 x 14 x 4 inches; 8.5 pounds'
-        },
-        {
-          col_name: 'Another info',
-          col_info: 'Another info'
-        }
-      ]
+      information: {
+        'ASIN': 'BP1AADLL',
+        'Release date': 'September 15, 2016',
+        'Best Sellers Rank': 'BP1AADLL',
+        'Pricing': 'The strikethrough price is the List Price. Savings represents a discount off the List Price.',
+        'Product Dimensions': '16.8 x 14 x 4 inches; 8.5 pounds',
+        'Another info': 'Another info'
+      }
     };
-    this.images = [this.product.images[0],this.product.images[1],this.product.images[2]];
+    this.images = [];
+    for (let i = 0; i < this.product.images.length && this.images.length < 3; i++) {
+      this.images.push(this.product.images[i]);
+    }
   }
+
+
 }
 
 export default ItemCardController;

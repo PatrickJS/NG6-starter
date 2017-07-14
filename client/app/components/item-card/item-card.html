@@ -39,9 +39,8 @@
       <img ng-src="{{$ctrl.product.poster}}" alt="poster">
     </div>
     <div class="secondary-images"
-         ng-repeat="image in $ctrl.images">
-      <img ng-repeat="(key, value) in image"
-           ng-src="{{ value }}" alt="{{ key }}">
+         ng-repeat="img in $ctrl.images track by $index">
+      <img ng-src="{{ img }}" alt="img_{{ $index + 1 }}">
     </div>
     <div class="images-length"
          ng-show="$ctrl.product.images.length > 3">
@@ -63,9 +62,9 @@
   <div class="a-section-table">
     <table class="item-details-table">
       <tbody>
-      <tr ng-repeat="info in $ctrl.product.information">
-        <th class="item-sect-entry">{{ info.col_name }}</th>
-        <td class="a-size-base">{{ info.col_info }}</td>
+      <tr ng-repeat="(key, value) in $ctrl.product.information">
+        <th class="item-sect-entry">{{ key }}</th>
+        <td class="a-size-base">{{ value }}</td>
       </tr>
       </tbody>
     </table>
