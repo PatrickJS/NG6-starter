@@ -6,10 +6,10 @@ import AppComponent from './app.component';
 import 'normalize.css';
 
 angular.module('app', [
-    uiRouter,
-    Common,
-    Components
-  ])
+  uiRouter,
+  Common,
+  Components
+])
   .config(($locationProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
