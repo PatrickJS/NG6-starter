@@ -12,7 +12,7 @@ class ItemCardController {
       poster: 'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg',
       images: [
         'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg',
-        'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg',
+        'http://rabidgadfly.com/assets/angular/gallery1/altair7.jpg',
         'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg',
         'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg',
         'https://images-na.ssl-images-amazon.com/images/I/419QIHJRYYL.jpg'
@@ -27,6 +27,8 @@ class ItemCardController {
       }
     };
     this.images = this.getImagesToShow(this.product.images);
+    this.modalVisible = false;
+    this.current = this.images[0];
   }
 
   getImagesToShow(array) {
@@ -35,6 +37,14 @@ class ItemCardController {
       data.push(array[i]);
     }
     return data;
+  }
+
+  toggleModal() {
+    this.modalVisible = !this.modalVisible;
+  }
+
+  setCurrent(image) {
+    this.current = image;
   }
 }
 

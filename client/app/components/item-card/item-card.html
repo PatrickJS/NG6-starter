@@ -35,15 +35,18 @@
     <cart-form price="$ctrl.product.price"></cart-form>
   </div>
   <div class="image-list-block">
-    <div class="main-image">
+    <div class="main-image"
+         ng-click="$ctrl.toggleModal(); $ctrl.setCurrent($ctrl.product.poster)">
       <img ng-src="{{$ctrl.product.poster}}" alt="poster">
     </div>
     <div class="secondary-images"
-         ng-repeat="img in $ctrl.images track by $index">
+         ng-repeat="img in $ctrl.images track by $index"
+         ng-click="$ctrl.toggleModal(); $ctrl.setCurrent(img)">
       <img ng-src="{{ img }}" alt="img_{{ $index + 1 }}">
     </div>
     <div class="images-length"
-         ng-show="$ctrl.product.images.length > 3">
+         ng-show="$ctrl.product.images.length > 3"
+         ng-click="$ctrl.toggleModal()">
       <span>+{{ $ctrl.product.images.length - 3}}</span>
     </div>
   </div>
@@ -71,3 +74,4 @@
   </div>
   <hr class="divider">
 </section>
+<modal-gallery visible="$ctrl.modalVisible" name="$ctrl.product.name" current-image="$ctrl.current" images="$ctrl.product.images"></modal-gallery>

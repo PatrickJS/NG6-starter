@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "angular": "^1.5.0",
+    "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^1.0.0-beta.1",
     "normalize.css": "^3.0.3"
   },
