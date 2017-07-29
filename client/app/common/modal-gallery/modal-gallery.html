@@ -1,0 +1,27 @@
+<div class="modal-dialog" ng-show="$ctrl.visible">
+  <div class="modal-body">
+    <div class="modal-header">
+      <span class="header-title">PlayStation 4</span>
+      <span class="header-info">Platform For Display: {{ $ctrl.name }} | Edition: Console Bundle</span>
+      <a class="modal-close" ng-click="$ctrl.closeModal()">x</a>
+    </div>
+    <div class="modal-content">
+      <div class="main-image">
+        <img ng-src="{{$ctrl.currentImage}}" alt="img_{{ $index + 1 }}">
+      </div>
+      <div class="bottom-images">
+        <ul class="image-list">
+          <li ng-repeat="image in $ctrl.images track by $index"
+              ng-style="{
+                'background-image': 'url( {{image}} )',
+                'background-size': 'cover'
+              }"
+              ng-click="$ctrl.setCurrentImage(image, $index)"
+              ng-class="{ active: $index === $ctrl.selectedIndex }">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+

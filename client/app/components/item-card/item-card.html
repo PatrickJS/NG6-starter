@@ -1,0 +1,77 @@
+<navbar></navbar>
+<section class="top-block">
+  <div class="container">
+    <ul class="top-arrow-block">
+      <li class="arrow-left"><span class="a-list-item"> ‹ </span></li>
+      <li><a href="#">Back to search results for "{ search request here }"</a></li>
+    </ul>
+    <div class="title-layer">
+      <h1>{{ $ctrl.product.name }}</h1>
+      <div class="brand-feature">
+        <a href="#" class="link-feature">{{ $ctrl.product.owner }}</a>
+      </div>
+    </div>
+    <div class="title-right">
+      <div class="a-column a-span8">
+        <div class="text-to-right">
+          <span class="a-text-bold">Earn an Amazon Gift Card for this item</span>
+          <br>
+          <span class="a-text-trade">Trade in yours for</span>
+          <span class="a-text-price a-text-bold">$127.49</span>
+          <span class="a-text-learn-more"><a href="#">Learn more</a></span>
+        </div>
+      </div>
+      <div class="trade-button">
+        <a href="#">Trade in now</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="photo-gallery">
+  <div class="item-poster">
+    <img ng-src="{{$ctrl.product.poster}}" alt="{{ $ctrl.product.name }}" style="float: right">
+  </div>
+  <div class="item-shop">
+    <cart-form price="$ctrl.product.price"></cart-form>
+  </div>
+  <div class="image-list-block">
+    <div class="main-image"
+         ng-click="$ctrl.toggleModal(); $ctrl.setCurrent($ctrl.product.poster)">
+      <img ng-src="{{$ctrl.product.poster}}" alt="poster">
+    </div>
+    <div class="secondary-images"
+         ng-repeat="img in $ctrl.images track by $index"
+         ng-click="$ctrl.toggleModal(); $ctrl.setCurrent(img)">
+      <img ng-src="{{ img }}" alt="img_{{ $index + 1 }}">
+    </div>
+    <div class="images-length"
+         ng-show="$ctrl.product.images.length > 3"
+         ng-click="$ctrl.toggleModal()">
+      <span>+{{ $ctrl.product.images.length - 3}}</span>
+    </div>
+  </div>
+</section>
+<section class="about-item">
+  <h2 class="info-h2">About the product</h2>
+  <ul class="item-info">
+    <li ng-repeat="string in $ctrl.strings">{{ string }}</li>
+  </ul>
+  <div class="product-info">
+    <hr class="divider">
+    <h2 class="info-h2">Product description</h2>
+    <span
+      class="info-desc">Platform For Display: <strong>{{ $ctrl.product.name }}</strong>  &nbsp;|&nbsp;  Edition: <strong>{ category here }</strong></span>
+  </div>
+  <div class="a-section-table">
+    <table class="item-details-table">
+      <tbody>
+      <tr ng-repeat="(key, value) in $ctrl.product.information">
+        <th class="item-sect-entry">{{ key }}</th>
+        <td class="a-size-base">{{ value }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr class="divider">
+</section>
+<modal-gallery visible="$ctrl.modalVisible" name="$ctrl.product.name" current-image="$ctrl.current" images="$ctrl.product.images"></modal-gallery>
