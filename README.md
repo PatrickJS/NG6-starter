@@ -39,7 +39,7 @@ ___
     * [Dependencies](#dependencies)
     * [Installing](#installing)
     * [Running the App](#running-the-app)
-        * [Gulp Tasks](#gulp-tasks)
+        * [Gulp Tasks](#tasks)
         * [Testing](#testing)
 		* [Generating Components](#generating-components)		
 * [Starter Kit Support and Questions](#starter-kit-support-and-questions)
