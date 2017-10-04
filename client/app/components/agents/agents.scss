@@ -1,0 +1,84 @@
+@import '../../common/common';
+
+.search-area {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/images/background.png") no-repeat center;
+  background-size: 100% auto;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+
+  .search {
+    padding: 15px;
+    width: 50%;
+    font-size: medium;
+  }
+
+  .btn {
+    padding: 15px;
+    font-size: medium;
+    text-transform: uppercase;
+  }
+}
+
+.agents {
+  background-color: $bgColor;
+
+  .agent {
+    width: 33%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
+    
+    .agent-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+    }
+
+    .agent-info {
+      padding: 0 0 0 20px;
+
+      .agent-name {
+        font-size: x-large;
+        font-weight: bolder;
+      }
+
+      .agent-agency {
+        font-size: small;
+        font-weight: bold;
+        color: $lightBgColor;
+      }
+    }
+  }
+}
+
+/* Medium screens */
+@media all and (max-width: 760px) {
+  .agents {
+    .agent {
+      width: 50%;
+    }
+  }
+}
+
+/* Small screens */
+@media all and (max-width: 480px) {
+  .search-area {
+    padding: 40px 0 40px 0;
+
+    .search {
+      width: 50%;
+    }
+
+    .btn {
+      width: 50%;
+    }
+  }
+
+  .agents {
+    .agent {
+      width: 100%;
+    }
+  }
+}

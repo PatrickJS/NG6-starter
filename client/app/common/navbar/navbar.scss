@@ -1,9 +1,7 @@
 @import '../common';
 
 .navbar {
-  height: 6.5rem;
-  background-color: $primaryColor;
-  padding: 1rem;
+  background-color: $bgColor;
 
   .nav-links,
   .logo {
@@ -15,8 +13,23 @@
     margin-right: 50%;
   }
 
-  .nav-links span {
-    color: $lightTextColor;
-    font-size: 1.6rem;
+  .nav-links {
+    width: 150px;
+    padding: 0.6rem 0 0.6rem 0;
+    text-align: center;
+    border-right: 1px solid $lightBgColor;
+
+    span {
+      font-size: medium;
+
+      a {
+        color: $lightBgColor;
+        text-transform: uppercase;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+      }
+    }
   }
+  
 }

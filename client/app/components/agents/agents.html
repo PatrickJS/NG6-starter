@@ -1,0 +1,17 @@
+<navbar></navbar>
+<section>
+  <div class="search-area flex">
+    <input type="text" id="searchBox" class="search" ng-model="$ctrl.searchName">
+    <button type="submit" class="btn" ng-click="$ctrl.search();">Search</button>
+  </div>
+  <div class="agents flex">
+    <p ng-if="$ctrl.message != ''">{{$ctrl.message}}</p>
+    <div ng-repeat="agent in $ctrl.agents" class="agent">
+      <img ng-src="{{agent.ImageUrl}}"/ class="agent-image">
+      <div class="agent-info">
+        <div class="agent-name">{{agent.Name}}</div>
+        <div class="agent-agency">{{agent.SecondaryName}}</div>
+      </div>
+    </div>
+  </div>
+</section>

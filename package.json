@@ -1,6 +1,6 @@
 {
   "name": "ng6-starter",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Starter for Angular + ES6 + (Webpack or JSPM)",
   "main": "index.js",
   "dependencies": {
@@ -23,6 +23,7 @@
     "connect-history-api-fallback": "^1.1.0",
     "css-loader": "^0.19.0",
     "del": "^2.2.0",
+    "file-loader": "^1.1.4",
     "fs-walk": "0.0.1",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
