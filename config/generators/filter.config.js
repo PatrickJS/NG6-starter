@@ -26,8 +26,8 @@ module.exports = (plop) => {
     }
   ],
     actions: () => {
-      plop.addPartial('path', '{{#if path}}{{ path }}/{{else}}filters/{{/if}}{{ dashCase name }}');
-      plop.addPartial('fullPath', './client/app/common/filters');
+      plop.addPartial('path', '{{#if path}}{{ path }}/{{else}}common/filters/{{/if}}{{ dashCase name }}');
+      plop.addPartial('fullPath', './client/app/');
 
       return [
         {

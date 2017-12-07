@@ -26,8 +26,8 @@ module.exports = (plop) => {
     }
   ],
     actions: () => {
-      plop.addPartial('path', '{{#if path}}{{ path }}/{{else}}directives/{{/if}}{{ dashCase name }}');
-      plop.addPartial('fullPath', './client/app/common/{{> path}}');
+      plop.addPartial('path', '{{#if path}}{{ path }}/{{else}}common/directives/{{/if}}{{ dashCase name }}');
+      plop.addPartial('fullPath', './client/app/{{> path}}');
 
       return [
         {
