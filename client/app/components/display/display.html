@@ -1,0 +1,14 @@
+<div class="display">
+    <span ng-show="($ctrl.calculator.currentState == 0)">
+        {{$ctrl.calculator.lastResultValue}}
+    </span>
+    <span ng-show="($ctrl.calculator.currentState > 0)">
+        {{$ctrl.calculator.oprand1Value}}
+    </span>
+    <span ng-show="($ctrl.calculator.currentState > 1)">
+        {{" " + $ctrl.calculator.operator.sign}}
+    </span>
+    <span ng-show="($ctrl.calculator.currentState == 3)">
+        {{" " + $ctrl.calculator.oprand2Value}}
+    </span>
+</div>

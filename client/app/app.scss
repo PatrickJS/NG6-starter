@@ -1,7 +1,12 @@
-@import "common/common";
-
-.app {
-  height: 100%;
-  background-color: $lightBgColor;
+body {
+  margin: 0 auto;
 }
-
+.calculator {
+  background-color: #d2d2d4;
+  width: 342px;
+  height: 235px;
+  padding: 15px;
+  position: fixed;
+  left: calc(50% - 186px);
+  top: calc(50% - 132.5px);
+}
