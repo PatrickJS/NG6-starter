@@ -1,0 +1,16 @@
+@import '../../utilities/variables';
+
+.display {
+  height: 50px;
+  background-color: white;
+  color: #444;
+  font-family: $primary-font-family;
+  font-size: 30px;
+  line-height: 50px;
+  padding-right: 10px;
+  text-overflow: clip;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: right;
+  @include user-select;
+}

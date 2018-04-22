@@ -1,0 +1,54 @@
+@import '../../utilities/variables';
+
+%key {
+  width:60px;
+  height: 35px;
+  margin-top: 8px;
+  font-family: $primary-font-family;
+  font-size: 20px;
+  text-align: center;
+  line-height: 35px;
+  @include user-select;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.keyBoard {
+  height: 180px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.operandKey {
+  @extend %key;
+  background-color: white;
+  color: #444;
+  border: 1px solid #a8a9ad;
+}
+
+.operatorKey {
+  @extend %key;
+  background-color: #3f75a3;
+  color: white;
+  border: 1px solid #245576;
+}
+
+.clearKey {
+  @extend %key;
+  background-color: #ce6b28;
+  color: white;
+  border: 1px solid #a64b25;
+}
+
+.calculationKey {
+  @extend %key;
+  height: 125px;
+  line-height: 125px;
+  background-color: #1f4864;
+  color: white;
+  border: 1px solid #1f4864;
+}

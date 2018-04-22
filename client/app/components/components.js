@@ -1,12 +1,11 @@
 import angular from 'angular';
-import Home from './home/home';
-import About from './about/about';
+import Display from './display/display';
+import CalculatorKeys from './calculatorKeys/calculatorKeys';
 
 let componentModule = angular.module('app.components', [
-  Home,
-  About
+  Display,
+  CalculatorKeys
 ])
-
 .name;
 
 export default componentModule;
