@@ -4,10 +4,12 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
-  entry: [
-    'babel-polyfill',
-    path.join(__dirname, 'client', 'app/app.js')
-  ],
+  entry: {
+    app: [
+      'babel-polyfill',
+      path.join(__dirname, 'client', 'app/app.js')
+    ]
+  },
   module: {
     loaders: [
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate-loader!babel-loader' },
@@ -23,16 +25,15 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'client/index.html',
       inject: 'body',
-      hash: true
+      hash: true,
+      chunks: ['vendor', 'app']
     }),
 
     // Automatically move all modules defined outside of application directory to vendor bundle.
     // If you are using more complicated project structure, consider to specify common chunks manually.
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: function (module, count) {
-        return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
-      }
+      name: "vendor",
+      minChunks: module => /node_modules/.test(module.resource)
     })
   ]
 };
