@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   entry: {
     app: [
       'babel-polyfill',
@@ -14,7 +14,10 @@ module.exports = {
     loaders: [
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate-loader!babel-loader' },
        { test: /\.html$/, loader: 'raw-loader' },
-       { test: /\.(scss|sass)$/, loader: 'style-loader!css-loader!sass-loader' },
+       {
+         test: /\.(scss|sass)$/,
+         loader: 'style-loader!css-loader!sass-loader'
+       },
        { test: /\.css$/, loader: 'style-loader!css-loader' }
     ]
   },
