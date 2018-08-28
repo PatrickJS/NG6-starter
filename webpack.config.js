@@ -20,7 +20,7 @@ module.exports = {
        {
          test: /\.js$/,
          exclude: [/app\/lib/, /node_modules/],
-         loader: 'ng-annotate-loader!babel-loader'
+         loader: 'babel-loader'
        },
        {
          test: /\.html$/,
