@@ -196,9 +196,9 @@ Default path: `client/app/[default-path-for-angular-element]`
 
 #### Generating Components
 
-**Command:** `npm run service`
+**Command:** `npm run component`
 
-**Default path:** `client/app/services`
+**Default path:** `client/app/components`
 
 **File structure:**
 ```
@@ -249,17 +249,16 @@ The `[name].directive.js` file will contain only the link function and the direc
 
 **File structure:**
 ```
-⋅⋅⋅⋅⋅⋅directive-name/
-⋅⋅⋅⋅⋅⋅⋅⋅directive-name.js // entry file where all its dependencies load
-⋅⋅⋅⋅⋅⋅⋅⋅directive-name.directive.js // file with link function
+⋅⋅⋅⋅⋅⋅common/directives/
+⋅⋅⋅⋅⋅⋅⋅⋅directive-name.directive.js // file with the filter's link function
 ⋅⋅⋅⋅⋅⋅⋅⋅directive-name.spec.js // contains passing demonstration tests
 ```
 
 #### Generating Filters
 
-**Command:** `npm run service`
+**Command:** `npm run filter`
 
-**Default path:** `client/app/services`
+**Default path:** `client/app/filters`
 
 Filters entry file is `client/app/common/filters/filter.js`, all filters are declared here, and we only add the file for the link function.
 
