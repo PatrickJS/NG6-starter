@@ -5,11 +5,14 @@ import Components from './components/components';
 import AppComponent from './app.component';
 import 'normalize.css';
 
+//if(window.qlik)
+//console.log("qlik:", window.qlik);
+
 angular.module('app', [
-    uiRouter,
-    Common,
-    Components
-  ])
+  uiRouter,
+  Common,
+  Components
+])
   .config(($locationProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
@@ -18,3 +21,5 @@ angular.module('app', [
   })
 
   .component('app', AppComponent);
+
+
