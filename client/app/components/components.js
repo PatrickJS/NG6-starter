@@ -1,9 +1,10 @@
 import angular from 'angular';
-import Home from './home/home';
+// import Home from './home/home';
 import About from './about/about';
+import Etlonnage from './etlonnage/etlonnage';
 
 let componentModule = angular.module('app.components', [
-  Home,
+  Etlonnage,
   About
 ])
 
