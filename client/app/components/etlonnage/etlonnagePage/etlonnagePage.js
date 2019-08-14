@@ -1,8 +1,8 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
-import etlonnageComponent from './etlonnage.component';
+import etlonnagePageComponent from './etlonnagePage.component';
 
-let etlonnageModule = angular.module('etlonnage', [
+let etlonnagePageModule = angular.module('etlonnage', [
   uiRouter
 ])
 
@@ -14,12 +14,12 @@ let etlonnageModule = angular.module('etlonnage', [
   $stateProvider
     .state('etlonnage', {
       url: '/',
-      component: 'etlonnage'
+      component: 'etlonnagePage'
     });
 })
 
-.component('etlonnage', etlonnageComponent)
+.component('etlonnagePage', etlonnagePageComponent)
 
 .name;
 
-export default etlonnageModule;
+export default etlonnagePageModule;

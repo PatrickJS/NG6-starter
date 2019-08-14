@@ -1,6 +1,8 @@
 class EtlonnageController {
   constructor() {
-    this.name = 'etlonnage';
+    let _this = this;
+
+    _this.stream = "";
   }
 }
 

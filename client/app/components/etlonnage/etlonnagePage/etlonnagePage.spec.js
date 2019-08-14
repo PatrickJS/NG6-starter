@@ -1,16 +1,16 @@
-import NavbarModule from './navbar';
-import NavbarController from './navbar.controller';
-import NavbarComponent from './navbar.component';
-import NavbarTemplate from './navbar.html';
+import EtlonnageModule from './etlonnagePage';
+import EtlonnageController from './etlonnagePage.controller';
+import EtlonnageComponent from './etlonnage.component';
+import EtlonnageTemplate from './etlonnage.html';
 
-describe('Navbar', () => {
+describe('Etlonnage', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(NavbarModule));
+  beforeEach(window.module(EtlonnageModule));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new NavbarController();
+      return new EtlonnageController();
     };
   }));
 
@@ -30,20 +30,20 @@ describe('Navbar', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
     it('has name in template [REMOVE]', () => {
-      expect(NavbarTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
+      expect(EtlonnageTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
     });
   });
 
   describe('Component', () => {
     // component/directive specs
-    let component = NavbarComponent;
+    let component = EtlonnageComponent;
 
     it('includes the intended template', () => {
-      expect(component.template).to.equal(NavbarTemplate);
+      expect(component.template).to.equal(EtlonnageTemplate);
     });
 
     it('invokes the right controller', () => {
-      expect(component.controller).to.equal(NavbarController);
+      expect(component.controller).to.equal(EtlonnageController);
     });
   });
 });

@@ -1,16 +1,16 @@
-import EtlonnageModule from './etlonnage';
-import EtlonnageController from './etlonnage.controller';
-import EtlonnageComponent from './etlonnage.component';
-import EtlonnageTemplate from './etlonnage.html';
+import EtlonnageMainChartModule from './etlonnageMainChart';
+import EtlonnageMainChartController from './etlonnageMainChart.controller';
+import EtlonnageMainChartComponent from './etlonnageMainChart.component';
+import EtlonnageMainChartTemplate from './etlonnageMainChart.html';
 
-describe('Etlonnage', () => {
+describe('EtlonnageMainChart', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(EtlonnageModule));
+  beforeEach(window.module(EtlonnageMainChartModule));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new EtlonnageController();
+      return new EtlonnageMainChartController();
     };
   }));
 
@@ -30,20 +30,20 @@ describe('Etlonnage', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
     it('has name in template [REMOVE]', () => {
-      expect(EtlonnageTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
+      expect(EtlonnageMainChartTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
     });
   });
 
   describe('Component', () => {
     // component/directive specs
-    let component = EtlonnageComponent;
+    let component = EtlonnageMainChartComponent;
 
     it('includes the intended template', () => {
-      expect(component.template).to.equal(EtlonnageTemplate);
+      expect(component.template).to.equal(EtlonnageMainChartTemplate);
     });
 
     it('invokes the right controller', () => {
-      expect(component.controller).to.equal(EtlonnageController);
+      expect(component.controller).to.equal(EtlonnageMainChartController);
     });
   });
 });

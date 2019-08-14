@@ -1,11 +1,12 @@
 import angular from 'angular';
-// import Home from './home/home';
-import About from './about/about';
-import Etlonnage from './etlonnage/etlonnage';
+import EtlonnagePage from './etlonnage/etlonnagePage/etlonnagePage';
+import etlonnageMainChart from './etlonnage/etlonnageMainChart/etlonnageMainChart';
+import etlonnageSubChart from './etlonnage/etlonnageSubChart/etlonnageSubChart';
 
 let componentModule = angular.module('app.components', [
-  Etlonnage,
-  About
+  EtlonnagePage,
+  etlonnageMainChart,
+  etlonnageSubChart
 ])
 
 .name;

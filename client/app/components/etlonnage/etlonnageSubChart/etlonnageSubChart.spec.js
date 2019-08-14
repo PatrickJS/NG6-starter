@@ -1,16 +1,16 @@
-import NavbarModule from './navbar';
-import NavbarController from './navbar.controller';
-import NavbarComponent from './navbar.component';
-import NavbarTemplate from './navbar.html';
+import EtlonnageSubChartModule from './etlonnageSubChart';
+import EtlonnageSubChartController from './etlonnageSubChart.controller';
+import EtlonnageSubChartComponent from './etlonnageSubChart.component';
+import EtlonnageSubChartTemplate from './etlonnageSubChart.html';
 
-describe('Navbar', () => {
+describe('EtlonnageSubChart', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(NavbarModule));
+  beforeEach(window.module(EtlonnageSubChartModule));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new NavbarController();
+      return new EtlonnageSubChartController();
     };
   }));
 
@@ -30,20 +30,20 @@ describe('Navbar', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
     it('has name in template [REMOVE]', () => {
-      expect(NavbarTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
+      expect(EtlonnageSubChartTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
     });
   });
 
   describe('Component', () => {
     // component/directive specs
-    let component = NavbarComponent;
+    let component = EtlonnageSubChartComponent;
 
     it('includes the intended template', () => {
-      expect(component.template).to.equal(NavbarTemplate);
+      expect(component.template).to.equal(EtlonnageSubChartTemplate);
     });
 
     it('invokes the right controller', () => {
-      expect(component.controller).to.equal(NavbarController);
+      expect(component.controller).to.equal(EtlonnageSubChartController);
     });
   });
 });

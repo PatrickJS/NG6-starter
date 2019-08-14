@@ -7,7 +7,7 @@ let navbarModule = angular.module('navbar', [
 ])
 
 .component('navbar', navbarComponent)
-  
+
 .name;
 
 export default navbarModule;
