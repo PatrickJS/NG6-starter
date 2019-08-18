@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs stream-bar">
-  <li class="nav-item" ng-repeat="stream in $ctrl.streams" ng-click="$ctrl.selectStream(stream)">
-    <a class="nav-link check-icon" ng-class="{active: stream==$ctrl.selectedStream}">{{stream}}</a>
+  <li class="nav-item" ng-repeat="stream in $ctrl.streams | orderBy:'id'" ng-click="$ctrl.selectStream(stream)">
+    <a class="nav-link check-icon" ng-class="{active: stream==$ctrl.selectedStream}">{{stream.title}}</a>
   </li>
   <li class="logo align-right"><a href="#"><img src="assets/images/ps-logo.png"></a></li>
 </ul>

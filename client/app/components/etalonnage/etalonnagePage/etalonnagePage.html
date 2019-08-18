@@ -1,0 +1,24 @@
+<navbar></navbar>
+
+<section class="main-tab">
+  <div class="container-fluid">
+    <stream-bar streams="$ctrl.config.streams" selected-stream="$ctrl.stream"></stream-bar>
+
+    <div class="row">
+      <div class="col-xl-8 col-sm-12 col-quebec-left">
+        <div id="leftTabContent">
+          <etlonnage-main-chart></etlonnage-main-chart>
+          <etlonnage-sub-chart></etlonnage-sub-chart>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-sm-12 col-padding-left col-quebec-right">
+        <menu-tab-right tile-list="$ctrl.config.tiles" filter-list="$ctrl.config.filters" stream="$ctrl.stream"
+          measure="$ctrl.measure" dimension="$ctrl.dimension" group="$ctrl.group" ref-type="$ctrl.refType"
+          cost-type="$ctrl.costType">
+        </menu-tab-right>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

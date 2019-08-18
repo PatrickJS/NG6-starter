@@ -4,6 +4,7 @@ import './streamBar.scss';
 
 let streamBarComponent = {
   bindings: {
+    streams: "<",
     selectedStream: '='
   },
   template,

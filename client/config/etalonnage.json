@@ -1,0 +1,134 @@
+{
+    "streams": [
+        {
+            "id": 1,
+            "title": "Courte durée",
+            "tiles": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ]
+        },
+        {
+            "id": 2,
+            "title": "CDJ",
+            "tiles": [
+                1,
+                2,
+                3
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Urgence",
+            "tiles": [
+                1,
+                2,
+                3,
+                7,
+                8,
+                9
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Amb. autres",
+            "tiles": [
+                1,
+                2,
+                3
+            ]
+        }
+    ],
+    "tiles": [
+        {
+            "id": 1,
+            "title": "Coût total",
+            "subtitle": "MOY 200 000 $",
+            "icon": "far fa-money-bill-alt",
+            "color": "blue"
+        },
+        {
+            "id": 2,
+            "title": "Coût moyen",
+            "subtitle": "MOY 200 000 $",
+            "icon": "far fa-balance-scale",
+            "color": "green"
+        },
+        {
+            "id": 3,
+            "title": "Nombre d'épisodes",
+            "subtitle": "MOY 29615 $",
+            "icon": "fas fa-medkit",
+            "color": "purple"
+        },
+        {
+            "id": 4,
+            "title": "DMS (jours)",
+            "subtitle": "MOY 29615 $",
+            "icon": "fas fa-calendar-alt",
+            "color": "orange"
+        },
+        {
+            "id": 5,
+            "title": "Équivalents-lits (Jours / 365)",
+            "subtitle": "11,06",
+            "icon": "fas fa-bed",
+            "color": "maroon"
+        },
+        {
+            "id": 6,
+            "title": "Nombre de patients",
+            "subtitle": "MOY 29615 $",
+            "icon": "fas fa-users",
+            "color": "darkgreen"
+        },
+        {
+            "id": 7,
+            "title": "% sur civière",
+            "subtitle": "MOY 29615 $",
+            "icon": "fa fa-pie-chart",
+            "color": "orange"
+        },
+        {
+            "id": 8,
+            "title": "DMS ambulant (heures)",
+            "subtitle": "MOY 29615 $",
+            "icon": "fa fa-stethoscope",
+            "color": "maroon"
+        },
+        {
+            "id": 9,
+            "title": "DMS civière (heures)",
+            "subtitle": "MOY 29615 $",
+            "icon": "fas fa-hourglass-start",
+            "color": "darkgreen"
+        }
+    ],
+    "filters": [
+        {
+            "id": 1,
+            "title": "Groupes d'âge"
+        },
+        {
+            "id": 2,
+            "title": "Gravité"
+        },
+        {
+            "id": 3,
+            "title": "Typ/Atyp"
+        },
+        {
+            "id": 4,
+            "title": "Type de soins"
+        },
+        {
+            "id": 5,
+            "title": "Type de coûts",
+            "long": true
+        }
+    ]
+}

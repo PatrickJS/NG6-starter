@@ -1,16 +1,16 @@
-import EtlonnageModule from './etlonnagePage';
-import EtlonnageController from './etlonnagePage.controller';
-import EtlonnageComponent from './etlonnage.component';
-import EtlonnageTemplate from './etlonnage.html';
+import NiceSelectModule from './niceSelect';
+import NiceSelectController from './niceSelect.controller';
+import NiceSelectComponent from './niceSelect.component';
+import NiceSelectTemplate from './niceSelect.html';
 
-describe('Etlonnage', () => {
+describe('NiceSelect', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(EtlonnageModule));
+  beforeEach(window.module(NiceSelectModule));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new EtlonnageController();
+      return new NiceSelectController();
     };
   }));
 
@@ -30,20 +30,20 @@ describe('Etlonnage', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
     it('has name in template [REMOVE]', () => {
-      expect(EtlonnageTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
+      expect(NiceSelectTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
     });
   });
 
   describe('Component', () => {
     // component/directive specs
-    let component = EtlonnageComponent;
+    let component = NiceSelectComponent;
 
     it('includes the intended template', () => {
-      expect(component.template).to.equal(EtlonnageTemplate);
+      expect(component.template).to.equal(NiceSelectTemplate);
     });
 
     it('invokes the right controller', () => {
-      expect(component.controller).to.equal(EtlonnageController);
+      expect(component.controller).to.equal(NiceSelectController);
     });
   });
 });
