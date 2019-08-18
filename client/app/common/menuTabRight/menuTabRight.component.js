@@ -4,12 +4,13 @@ import './menuTabRight.scss';
 
 let menuTabRightComponent = {
   bindings: {
-    tileList: '<',
-    filterList: '<',
+    measureList: '<',
+    stackList: '<',
+    dimensionList: '<',
     stream: '<',
-    dimension: '=',
-    measure: '=',
-    group: '=',
+    onDimensionChanged: '&',
+    onMeasureChanged: '&',
+    onStackChanged: '&',
     refType: '=',
     costType: '='
   },

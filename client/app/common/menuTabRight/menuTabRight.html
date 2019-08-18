@@ -1,10 +1,8 @@
-<div class="tab-right">
+<div class="tab-right menu-tab-right">
   <ul class="nav nav-tabs" id="myTabTwo">
-    <li class="nav-item">
-      <a class="nav-link">Étab</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link">Inst</a>
+    <li class="nav-item" ng-repeat="dimension in $ctrl.dimensionList | orderBy:'id'"
+      ng-click="$ctrl.selectDimension(dimension)">
+      <a class="nav-link" ng-class="{active: dimension.id == $ctrl.dimension.id}">{{dimension.title}}</a>
     </li>
   </ul>
   <div class="custom-content-wrapper tab-border">
@@ -41,16 +39,16 @@
         <div class="tabs right-tab-items tab-moy" data-tab-parent="ico-home" data-type-name="moy"
           style="display: block;">
           <div class="row">
-            <div ng-repeat="tile in $ctrl.tiles" ng-click="$ctrl.selectTile(tile)"
-              class="col-xl-6 col-sm-6 half-padding quebec-{{tile.color}}">
-              <select-card data="tile" active="tile.id==$ctrl.currentTile.id"></select-card>
+            <div ng-repeat="measure in $ctrl.measures" ng-click="$ctrl.selectMeasure(measure)"
+              class="col-xl-6 col-sm-6 half-padding quebec-{{measure.color}}">
+              <select-card data="measure" active="measure.id==$ctrl.measure.id"></select-card>
             </div>
             <div class="col-xl-12 button-wrap">
               <div class="buttons button-active">
                 <ul class="nav nav-tabs">
-                  <li class="btn-filter" ng-repeat="filter in $ctrl.filterList | orderBy:'id'"
-                    ng-class="{'btn-full': filter.long}" ng-click="$ctrl.selectFilter(filter)">
-                    <a ng-class="{active: $ctrl.currentFilter.id==filter.id}">{{filter.title}}</a>
+                  <li class="btn-stack" ng-repeat="stack in $ctrl.stackList | orderBy:'id'"
+                    ng-class="{'btn-full': filtstacker.long}" ng-click="$ctrl.selectFilter(stack)">
+                    <a ng-class="{active: $ctrl.stack.id==stack.id}">{{stack.title}}</a>
                   </li>
                 </ul>
               </div>

@@ -5,3 +5,27 @@
   background-color: $lightBgColor;
 }
 
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 45px 45px 0;
+}
+
+#CurrentSelections {
+  width: calc(100% - 250px);
+  display: inline-block;
+
+
+  .buttons-end {
+    display: none;
+  }
+
+  .qv-panel-current-selections .buttons{
+    margin-top: 0;
+    border-right: 1px solid rgba(64,63,62,.4)!important;
+    border-bottom: 0 !important;
+  }
+  .qv-panel-current-selections .wrap{
+    border-bottom: 0;
+  }
+}

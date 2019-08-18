@@ -3,7 +3,9 @@ import controller from './etalonnagePage.controller';
 import './etalonnagePage.scss';
 
 let EtalonnagePageComponent = {
-  bindings: {},
+  bindings: {
+    config: '<'
+  },
   template,
   controller
 };

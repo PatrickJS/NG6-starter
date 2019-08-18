@@ -5,37 +5,41 @@ class menuTabRightController {
     let _this = this;
 
     _this.$onInit = () => {
+      _this.dimension = _this.dimensionList[0];
+      _this.stack = _this.stackList[0];
+
       $('select').niceSelect();
-    }
+    };
 
     _this.$onChanges = changeObj => {
       if (changeObj.stream && changeObj.stream.currentValue) {
-        _this.tiles = getTiles(_this.stream, _this.tileList);
-        if (_this.tiles && _this.tiles.length > 0 && _this.tiles.indexOf(_this.currentTile) < 0)
-          _this.currentTile = _this.tiles[0];
-      }
-
-      if (changeObj.filterList && changeObj.filterList.currentValue) {
-        _this.currentFilter = changeObj.filterList.currentValue[0];
+        _this.measures = getTiles(_this.stream, _this.measureList);
+        if (_this.measures && _this.measures.length > 0 && _this.measures.indexOf(_this.measure) < 0) {
+          _this.measure = _this.measures[0];
+          _this.onMeasureChanged({ measure: _this.measures[0] });
+        }
       }
     };
 
-    _this.selectTile = tile => {
-      _this.currentTile = tile;
-    }
+    _this.selectMeasure = measure => {
+      _this.measure = measure;
+      _this.onMeasureChanged({ measure });
+    };
 
-    _this.selectFilter = filter => {
-      _this.currentFilter = filter;
-    }
+    _this.selectFilter = stack => {
+      _this.stack = stack;
+      _this.onStackChanged({ stack });
+    };
 
     _this.selectDimension = dimension => {
-      _this.currentDimension = dimension
-    }
+      _this.dimension = dimension;
+      _this.onDimensionChanged({ dimension });
+    };
   }
 }
 
-function getTiles(stream, tileList) {
-  return tileList.filter(tile => stream.tiles.indexOf(tile.id) > -1);
+function getTiles(stream, measureList) {
+  return measureList.filter(measure => stream.measures.indexOf(measure.id) > -1);
 }
 
 export default menuTabRightController;

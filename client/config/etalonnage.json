@@ -3,7 +3,8 @@
         {
             "id": 1,
             "title": "Courte durée",
-            "tiles": [
+            "value": "Courte durée",
+            "measures": [
                 1,
                 2,
                 3,
@@ -15,7 +16,8 @@
         {
             "id": 2,
             "title": "CDJ",
-            "tiles": [
+            "value": "CDJ",
+            "measures": [
                 1,
                 2,
                 3
@@ -24,7 +26,8 @@
         {
             "id": 3,
             "title": "Urgence",
-            "tiles": [
+            "value": "Urgence",
+            "measures": [
                 1,
                 2,
                 3,
@@ -36,99 +39,132 @@
         {
             "id": 4,
             "title": "Amb. autres",
-            "tiles": [
+            "value": "Amb. autres",
+            "measures": [
                 1,
                 2,
                 3
             ]
         }
     ],
-    "tiles": [
+    "measures": [
         {
             "id": 1,
             "title": "Coût total",
             "subtitle": "MOY 200 000 $",
             "icon": "far fa-money-bill-alt",
-            "color": "blue"
+            "color": "blue",
+            "value": "Coût total"
         },
         {
             "id": 2,
             "title": "Coût moyen",
             "subtitle": "MOY 200 000 $",
             "icon": "far fa-balance-scale",
-            "color": "green"
+            "color": "green",
+            "value": "Coût moyen"
         },
         {
             "id": 3,
             "title": "Nombre d'épisodes",
             "subtitle": "MOY 29615 $",
             "icon": "fas fa-medkit",
-            "color": "purple"
+            "color": "purple",
+            "value": "Nombre d'épisodes"
         },
         {
             "id": 4,
             "title": "DMS (jours)",
             "subtitle": "MOY 29615 $",
             "icon": "fas fa-calendar-alt",
-            "color": "orange"
+            "color": "orange",
+            "value": "DMS (jours)"
         },
         {
             "id": 5,
             "title": "Équivalents-lits (Jours / 365)",
             "subtitle": "11,06",
             "icon": "fas fa-bed",
-            "color": "maroon"
+            "color": "maroon",
+            "value": "Équivalents-lits (Jours / 365)"
         },
         {
             "id": 6,
             "title": "Nombre de patients",
             "subtitle": "MOY 29615 $",
             "icon": "fas fa-users",
-            "color": "darkgreen"
+            "color": "darkgreen",
+            "value": "Nombre de patients"
         },
         {
             "id": 7,
             "title": "% sur civière",
             "subtitle": "MOY 29615 $",
             "icon": "fa fa-pie-chart",
-            "color": "orange"
+            "color": "orange",
+            "value": "Brenda Gibson"
         },
         {
             "id": 8,
             "title": "DMS ambulant (heures)",
             "subtitle": "MOY 29615 $",
             "icon": "fa fa-stethoscope",
-            "color": "maroon"
+            "color": "maroon",
+            "value": "Carolyn Halmon"
         },
         {
             "id": 9,
             "title": "DMS civière (heures)",
             "subtitle": "MOY 29615 $",
             "icon": "fas fa-hourglass-start",
-            "color": "darkgreen"
+            "color": "darkgreen",
+            "value": "Cart Lynch"
         }
     ],
-    "filters": [
+    "stacks": [
         {
             "id": 1,
-            "title": "Groupes d'âge"
+            "title": "Groupes d'âge",
+            "value": "Groupes d'âge"
         },
         {
             "id": 2,
-            "title": "Gravité"
+            "title": "Gravité",
+            "value": "Gravité"
         },
         {
             "id": 3,
-            "title": "Typ/Atyp"
+            "title": "Typ/Atyp",
+            "value": "Typ/Atyp"
         },
         {
             "id": 4,
-            "title": "Type de soins"
+            "title": "Type de soins",
+            "value": "Type de soins"
         },
         {
             "id": 5,
             "title": "Type de coûts",
-            "long": true
+            "long": true,
+            "value": null
         }
-    ]
+    ],
+    "dimensions": [
+        {
+            "id": 1,
+            "title": "Étab",
+            "value": "Establishment"
+        },
+        {
+            "id": 2,
+            "title": "Inst",
+            "value": "Installation"
+        }
+    ],
+    "etalonnage-main-chart": "HmvEpKU",
+    "etalonnage-sub-chart": "mhftAx",
+    "stream-field": "Stream",
+    "measure-field": "EtalonnageMeasureDesc",
+    "dimension-field": "EtalonnageDimensionDesc",
+    "stack-field": "EtalonnageStackDesc"
 }

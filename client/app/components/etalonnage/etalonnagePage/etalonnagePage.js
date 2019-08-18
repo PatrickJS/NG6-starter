@@ -1,5 +1,5 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+import uiRouter, { map } from 'angular-ui-router';
 import etalonnagePageComponent from './etalonnagePage.component';
 
 let etalonnagePageModule = angular.module('etlonnage', [
@@ -14,7 +14,14 @@ let etalonnagePageModule = angular.module('etlonnage', [
     $stateProvider
       .state('etalonnage', {
         url: '/',
-        component: 'etalonnagePage'
+        component: 'etalonnagePage',
+        resolve: {
+          config: ($http) => {
+            'ngInject';
+
+            return $http.get("config/etalonnage.json").then(reply => reply.data);
+          }
+        }
       });
   })
 

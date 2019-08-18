@@ -1,24 +1,87 @@
-<navbar></navbar>
+<div class="etalonnage-page">
+  <navbar></navbar>
 
-<section class="main-tab">
-  <div class="container-fluid">
-    <stream-bar streams="$ctrl.config.streams" selected-stream="$ctrl.stream"></stream-bar>
+  <section class="main-tab">
+    <div class="container-fluid">
+      <stream-bar streams="$ctrl.config.streams" on-stream-changed="$ctrl.onStreamChanged(stream)"></stream-bar>
 
-    <div class="row">
-      <div class="col-xl-8 col-sm-12 col-quebec-left">
-        <div id="leftTabContent">
-          <etlonnage-main-chart></etlonnage-main-chart>
-          <etlonnage-sub-chart></etlonnage-sub-chart>
+      <div class="row inner-container">
+        <div class="col-xl-8 col-sm-12 col-quebec-left">
+          <div id="leftTabContent">
+            <div class="custom-content-wrapper tab-border">
+              <ul class="nav nav-tabs icoTab">
+                <li class="nav-item">
+                  <a class="active">
+                    <i class="far fa-chart-bar"></i>
+                  </a>
+                </li>
+                <li class="nav-item has-child">
+                  <a class="nav-link tab-table"><i class="fal fa-table"></i>
+                  </a>
+                  <ul class="sub-items">
+                    <li class="nav-item">
+                      <a class="sub-nav-link active"><i class="fas fa-hashtag"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="sub-nav-link">
+                        <i class="fal fa-percentage"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <div class="in">
+                <h2>{{$ctrl.measure.title}}</h2>
+                <div class="chart-wrapper">
+                  <div id="QV01" class="etalonnage-main-chart"></div>
+                </div>
+              </div>
+            </div>
+            <div class="custom-content-wrapper tab-border bottom-tab-wrapper">
+              <div class="tab-bottom chart-wrap">
+                <div class="tab-pane in active">
+                  <h2>Distribution par {{$ctrl.stack.title}} </h2>
+                  <ul class="nav nav-tabs">
+                    <li><a class="active"><i class="fas fa-hashtag"></i></a></li>
+                    <li><a><i class="fal fa-percentage"></i></a></li>
+                    <li><a><i class="fas fa-dollar-sign"></i></a></li>
+                  </ul>
+                  <div class="tab-pane in active show">
+                    <div class="chart-wrapper">
+                      <div id="QV02" class="etalonnage-sub-chart"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-sm-12 col-padding-left col-quebec-right">
+          <menu-tab-right measure-list="$ctrl.config.measures" stack-list="$ctrl.config.stacks"
+            dimension-list="$ctrl.config.dimensions" stream="$ctrl.stream"
+            on-measure-changed="$ctrl.onMeasureChanged(measure)"
+            on-dimension-changed="$ctrl.onDimensionChanged(dimension)" on-stack-changed="$ctrl.onStackChanged(stack)"
+            ref-type="$ctrl.refType" cost-type="$ctrl.costType">
+          </menu-tab-right>
         </div>
       </div>
+  </section>
 
-      <div class="col-xl-4 col-sm-12 col-padding-left col-quebec-right">
-        <menu-tab-right tile-list="$ctrl.config.tiles" filter-list="$ctrl.config.filters" stream="$ctrl.stream"
-          measure="$ctrl.measure" dimension="$ctrl.dimension" group="$ctrl.group" ref-type="$ctrl.refType"
-          cost-type="$ctrl.costType">
-        </menu-tab-right>
+
+
+  <footer class="footer">
+    <div class="container-fluid">
+      <div id="CurrentSelections"></div>
+      <div class="footer-content">
+        <div class="footer-content-wrap">
+          <span class="text">Optimisé par</span>
+          <div class="footer-logo">
+            <a href="#">
+              <img src="assets/images/footer-logo.png" alt="Qlik">
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  </div>
-</section>
+  </footer>
+</div>
