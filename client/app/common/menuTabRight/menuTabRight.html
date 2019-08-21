@@ -10,34 +10,11 @@
 
       <!-- DropDown on the right tab -->
       <div class="dropdown qubec-dropdown">
-        <select class="select1" style="display: none;">
-          <option value="moy" disabled="" selected="">Moyenne</option>
-          <option value="moy">Moyenne</option>
-          <option value="med">Médiane</option>
-        </select>
-        <div class="nice-select select1" tabindex="0"><span class="current">Moyenne</span>
-          <ul class="list">
-            <li data-value="moy" class="option selected disabled">Moyenne</li>
-            <li data-value="moy" class="option">Moyenne</li>
-            <li data-value="med" class="option">Médiane</li>
-          </ul>
-        </div>
-        <select class="select2" style="display: none;">
-          <option value="2" disabled="" selected="">Coûts directs</option>
-          <option value="2">Coûts directs</option>
-          <option value="1">Coûts totaux</option>
-        </select>
-        <div class="nice-select select2" tabindex="0"><span class="current">Coûts directs</span>
-          <ul class="list">
-            <li data-value="2" class="option selected disabled">Coûts directs</li>
-            <li data-value="2" class="option">Coûts directs</li>
-            <li data-value="1" class="option">Coûts totaux</li>
-          </ul>
-        </div>
+        <nice-select option-list="$ctrl.refTypeList" on-select-changed="$ctrl.selectRefType(selected)"></nice-select>
+        <nice-select option-list="$ctrl.costTypeList" on-select-changed="$ctrl.selectCostType(selected)"></nice-select>
       </div>
-      <div class="tab-pane show active" id="etab" role="tabpanel" aria-labelledby="first-tab">
-        <div class="tabs right-tab-items tab-moy" data-tab-parent="ico-home" data-type-name="moy"
-          style="display: block;">
+      <div class="tab-pane show active">
+        <div class="tabs right-tab-items {{$ctrl.refType.colorClass}}" style="display: block;">
           <div class="row">
             <div ng-repeat="measure in $ctrl.measures" ng-click="$ctrl.selectMeasure(measure)"
               class="col-xl-6 col-sm-6 half-padding quebec-{{measure.color}}">

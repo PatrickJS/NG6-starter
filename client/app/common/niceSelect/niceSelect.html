@@ -1,3 +1,10 @@
-<div>
-  <h1>{{ $ctrl.name }}</h1>
+<select class="select1" style="display: none;">
+  <option ng-repeat="option in $ctrl.optionList" value="option.value">{{option.title}}</option>
+</select>
+<div class="nice-select select1" tabindex="0">
+  <span class="current">{{$ctrl.selectedOption.title}}</span>
+  <ul class="list">
+    <li ng-repeat="li in $ctrl.optionList" class="option" data-value="li.value" ng-click="$ctrl.select(li)">
+      {{li.title}}</li>
+  </ul>
 </div>

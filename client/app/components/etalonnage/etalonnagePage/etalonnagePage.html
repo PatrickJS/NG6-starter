@@ -11,34 +11,45 @@
             <div class="custom-content-wrapper tab-border">
               <ul class="nav nav-tabs icoTab">
                 <li class="nav-item">
-                  <a class="active">
-                    <i class="far fa-chart-bar"></i>
+                  <a ng-class="{active: $ctrl.viewMode=='chart'}">
+                    <i class="far fa-chart-bar" ng-click="$ctrl.setChartView()"></i>
                   </a>
                 </li>
-                <li class="nav-item has-child">
-                  <a class="nav-link tab-table"><i class="fal fa-table"></i>
+                <li class="nav-item has-child" ng-class="{active: $ctrl.viewMode=='table'}">
+                  <a class="nav-link tab-table" ng-click="$ctrl.setTableView()">
+                    <i class="fal fa-table"></i>
                   </a>
                   <ul class="sub-items">
                     <li class="nav-item">
-                      <a class="sub-nav-link active"><i class="fas fa-hashtag"></i>
+                      <a class="sub-nav-link" ng-class="{active: $ctrl.tableMode=='#'}">
+                        <i class="fas fa-hashtag" ng-click="$ctrl.setHashtagTable()"></i>
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="sub-nav-link">
-                        <i class="fal fa-percentage"></i>
+                      <a class="sub-nav-link" ng-class="{active: $ctrl.tableMode=='%'}">
+                        <i class="fal fa-percentage" ng-click="$ctrl.setPercentageTable()"></i>
                       </a>
                     </li>
                   </ul>
                 </li>
               </ul>
-              <div class="in">
+              <div ng-show="$ctrl.viewMode=='chart'">
                 <h2>{{$ctrl.measure.title}}</h2>
                 <div class="chart-wrapper">
                   <div id="QV01" class="etalonnage-main-chart"></div>
                 </div>
               </div>
+
+              <div ng-show="$ctrl.viewMode=='table'">
+                <h2>TABLEAU DES DONNÉES</h2>
+                <div class="table-wrapper">
+                  <div id="QV03" class="scrolling-container">
+                    <straight-table headers="$ctrl.tableHeaders" data="$ctrl.tableData"></straight-table>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="custom-content-wrapper tab-border bottom-tab-wrapper">
+            <div class="custom-content-wrapper tab-border bottom-tab-wrapper" ng-show="$ctrl.viewMode=='chart'">
               <div class="tab-bottom chart-wrap">
                 <div class="tab-pane in active">
                   <h2>Distribution par {{$ctrl.stack.title}} </h2>
@@ -59,10 +70,11 @@
         </div>
         <div class="col-xl-4 col-sm-12 col-padding-left col-quebec-right">
           <menu-tab-right measure-list="$ctrl.config.measures" stack-list="$ctrl.config.stacks"
-            dimension-list="$ctrl.config.dimensions" stream="$ctrl.stream"
-            on-measure-changed="$ctrl.onMeasureChanged(measure)"
+            dimension-list="$ctrl.config.dimensions" stream="$ctrl.stream" ref-type-list="$ctrl.config.refTypes"
+            cost-type-list="$ctrl.config.costTypes" on-measure-changed="$ctrl.onMeasureChanged(measure)"
             on-dimension-changed="$ctrl.onDimensionChanged(dimension)" on-stack-changed="$ctrl.onStackChanged(stack)"
-            ref-type="$ctrl.refType" cost-type="$ctrl.costType">
+            on-ref-type-changed="$ctrl.onRefTypeChanged(refType)" ref-type="$ctrl.refType"
+            on-cost-type-changed="$ctrl.onCostTypeChanged(costType)" cost-type="$ctrl.costType">
           </menu-tab-right>
         </div>
       </div>

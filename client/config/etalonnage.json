@@ -38,8 +38,8 @@
         },
         {
             "id": 4,
-            "title": "Amb. autres",
-            "value": "Amb. autres",
+            "title": "Amb autres",
+            "value": "Amb autres",
             "measures": [
                 1,
                 2,
@@ -51,7 +51,7 @@
         {
             "id": 1,
             "title": "Coût total",
-            "subtitle": "MOY 200 000 $",
+            "subtitle": "-",
             "icon": "far fa-money-bill-alt",
             "color": "blue",
             "value": "Coût total"
@@ -59,7 +59,7 @@
         {
             "id": 2,
             "title": "Coût moyen",
-            "subtitle": "MOY 200 000 $",
+            "subtitle": "-",
             "icon": "far fa-balance-scale",
             "color": "green",
             "value": "Coût moyen"
@@ -67,7 +67,7 @@
         {
             "id": 3,
             "title": "Nombre d'épisodes",
-            "subtitle": "MOY 29615 $",
+            "subtitle": "-",
             "icon": "fas fa-medkit",
             "color": "purple",
             "value": "Nombre d'épisodes"
@@ -75,7 +75,7 @@
         {
             "id": 4,
             "title": "DMS (jours)",
-            "subtitle": "MOY 29615 $",
+            "subtitle": "-",
             "icon": "fas fa-calendar-alt",
             "color": "orange",
             "value": "DMS (jours)"
@@ -83,7 +83,7 @@
         {
             "id": 5,
             "title": "Équivalents-lits (Jours / 365)",
-            "subtitle": "11,06",
+            "subtitle": "-",
             "icon": "fas fa-bed",
             "color": "maroon",
             "value": "Équivalents-lits (Jours / 365)"
@@ -91,7 +91,7 @@
         {
             "id": 6,
             "title": "Nombre de patients",
-            "subtitle": "MOY 29615 $",
+            "subtitle": "-",
             "icon": "fas fa-users",
             "color": "darkgreen",
             "value": "Nombre de patients"
@@ -99,7 +99,7 @@
         {
             "id": 7,
             "title": "% sur civière",
-            "subtitle": "MOY 29615 $",
+            "subtitle": "-",
             "icon": "fa fa-pie-chart",
             "color": "orange",
             "value": "Brenda Gibson"
@@ -107,7 +107,7 @@
         {
             "id": 8,
             "title": "DMS ambulant (heures)",
-            "subtitle": "MOY 29615 $",
+            "subtitle": "-",
             "icon": "fa fa-stethoscope",
             "color": "maroon",
             "value": "Carolyn Halmon"
@@ -115,7 +115,7 @@
         {
             "id": 9,
             "title": "DMS civière (heures)",
-            "subtitle": "MOY 29615 $",
+            "subtitle": "-",
             "icon": "fas fa-hourglass-start",
             "color": "darkgreen",
             "value": "Cart Lynch"
@@ -153,18 +153,50 @@
         {
             "id": 1,
             "title": "Étab",
-            "value": "Establishment"
+            "value": "Étab"
         },
         {
             "id": 2,
             "title": "Inst",
-            "value": "Installation"
+            "value": "Inst"
+        }
+    ],
+    "refTypes": [
+        {
+            "id": 1,
+            "title": "Moyenne",
+            "value": 1,
+            "colorClass": "tab-moy"
+        },
+        {
+            "id": 2,
+            "title": "Médiane",
+            "value": 2,
+            "colorClass": "tab-med"
+        }
+    ],
+    "costTypes": [
+        {
+            "id": 1,
+            "title": "Coûts directs",
+            "value": 1
+        },
+        {
+            "id": 2,
+            "title": "Coûts totaux",
+            "value": 2
         }
     ],
     "etalonnage-main-chart": "HmvEpKU",
     "etalonnage-sub-chart": "mhftAx",
+    "etalonnage-ref-values": "DXddA",
+    "etalonnage-table": "nNt",
     "stream-field": "Stream",
     "measure-field": "EtalonnageMeasureDesc",
     "dimension-field": "EtalonnageDimensionDesc",
-    "stack-field": "EtalonnageStackDesc"
+    "stack-field": "EtalonnageStackDesc",
+    "ref-type-variable": "vRefType",
+    "cost-type-variable": "vCostType",
+    "table-mode-variable": "vTableMode",
+    "stack-mode-variable": "vStackMode"
 }

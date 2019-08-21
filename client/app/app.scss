@@ -29,3 +29,8 @@
     border-bottom: 0;
   }
 }
+
+.scrolling-container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

@@ -3,7 +3,10 @@ import controller from './niceSelect.controller';
 import './niceSelect.scss';
 
 let niceSelectComponent = {
-  bindings: {},
+  bindings: {
+    'optionList': '<',
+    'onSelectChanged': '&'
+  },
   template,
   controller
 };

@@ -7,8 +7,8 @@ class menuTabRightController {
     _this.$onInit = () => {
       _this.dimension = _this.dimensionList[0];
       _this.stack = _this.stackList[0];
-
-      $('select').niceSelect();
+      _this.refType = _this.refTypeList[0];
+      _this.costType = _this.costTypeList[0];
     };
 
     _this.$onChanges = changeObj => {
@@ -34,6 +34,16 @@ class menuTabRightController {
     _this.selectDimension = dimension => {
       _this.dimension = dimension;
       _this.onDimensionChanged({ dimension });
+    };
+
+    _this.selectRefType = selected => {
+      _this.refType = selected;
+      _this.onRefTypeChanged({ refType: _this.refType });
+    };
+
+    _this.selectCostType = selected => {
+      _this.costType = selected;
+      _this.onCostTypeChanged({ costType: _this.costType });
     };
   }
 }
