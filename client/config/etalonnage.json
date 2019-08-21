@@ -43,7 +43,8 @@
             "measures": [
                 1,
                 2,
-                3
+                3,
+                4
             ]
         }
     ],
@@ -90,7 +91,7 @@
         },
         {
             "id": 6,
-            "title": "Nombre de patients",
+            "title": "Nombre d'usagers",
             "subtitle": "-",
             "icon": "fas fa-users",
             "color": "darkgreen",
