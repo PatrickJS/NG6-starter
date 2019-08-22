@@ -31,6 +31,11 @@ class etalonnagePageController {
       _this.qlikService.setVariable(_this.config["table-mode-variable"], '#')
         .then(() => _this.tableMode = '%');
 
+    _this.stackMode = '#';
+    _this.setStackMode = mode =>
+      _this.qlikService.setVariable(_this.config["stack-mode-variable"], mode)
+        .then(() => _this.stackMode = mode);
+
     //Setup change listener from control tab [Right tab]
     _this.onStreamChanged = stream => {
       _this.stream = stream;
@@ -69,8 +74,10 @@ class etalonnagePageController {
       $('#QV01').css("height", (windowHeight - offset) * 0.6);
       $('#QV02').css("height", (windowHeight - offset) * 0.4);
       $('#QV03').css("height", (windowHeight - offset) + 97);
+      $('#QV04').css("height", (windowHeight - offset) * 0.4);
       _this.qlikService.getVisualization("QV01", _this.config["etalonnage-main-chart"]);
       _this.qlikService.getVisualization("QV02", _this.config["etalonnage-sub-chart"]);
+      _this.qlikService.getVisualization("QV04", _this.config["etalonnage-sub-chart-2"]);
       _this.qlikService.getVisualization("CurrentSelections", "CurrentSelections");
 
 

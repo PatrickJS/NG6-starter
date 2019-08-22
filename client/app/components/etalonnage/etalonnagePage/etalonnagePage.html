@@ -54,13 +54,17 @@
                 <div class="tab-pane in active">
                   <h2>Distribution par {{$ctrl.stack.title}} </h2>
                   <ul class="nav nav-tabs">
-                    <li><a class="active"><i class="fas fa-hashtag"></i></a></li>
-                    <li><a><i class="fal fa-percentage"></i></a></li>
-                    <li><a><i class="fas fa-dollar-sign"></i></a></li>
+                    <li ng-click="$ctrl.setStackMode('#')"><a ng-class="{active: $ctrl.stackMode=='#'}"><i
+                          class="fas fa-hashtag"></i></a></li>
+                    <li ng-click="$ctrl.setStackMode('%')"><a ng-class="{active: $ctrl.stackMode=='%'}"><i
+                          class="fal fa-percentage"></i></a></li>
+                    <li ng-click="$ctrl.setStackMode('$')"><a ng-class="{active: $ctrl.stackMode=='$'}"><i
+                          class="fas fa-dollar-sign"></i></a></li>
                   </ul>
                   <div class="tab-pane in active show">
                     <div class="chart-wrapper">
-                      <div id="QV02" class="etalonnage-sub-chart"></div>
+                      <div id="QV02" ng-show="$ctrl.stackMode=='#'" class="etalonnage-sub-chart"></div>
+                      <div id="QV04" ng-show="$ctrl.stackMode!='#'" class="etalonnage-sub-chart"></div>
                     </div>
                   </div>
                 </div>
