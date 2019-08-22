@@ -1,0 +1,93 @@
+<div class="comparasions-page">
+  <navbar></navbar>
+
+  <section class="main-tab">
+    <div class="container-fluid">
+      <stream-bar streams="$ctrl.config.streams" on-stream-changed="$ctrl.onStreamChanged(stream)"></stream-bar>
+
+      <div class="row inner-container">
+        <div class="col-xl-8 col-sm-12 col-quebec-left col-comp-left">
+          <div id="leftTabContent">
+            <div class="row">
+              <div class="col col-left">
+                <div class="custom-content-wrapper tab-border">
+                  <ul class="nav nav-tabs icoTab nav-table" role="tablist" data-icon-tab="ico-cdj">
+                    <li class="nav-item">
+                      <a class="col-comp-table" href="#"><i class="far fa-table"></i></a>
+                    </li>
+                    <!-- <li class="nav-item">
+                  <a class="col-comp-chart" href="#"><i class="far fa-chart-bar"></i></a>
+                </li> -->
+                    <li class="nav-item">
+                      <a class="active" data-toggle="tab" href="#com-urgence-moy-left-table-tab1"><i
+                          class="fas fa-hashtag"></i></a>
+                    </li>
+                    <li class="nav-item">
+                      <a data-toggle="tab" href="#com-urgence-moy-left-table-tab2" class=""><i
+                          class="fas fa-dollar-sign"></i></a>
+                    </li>
+                  </ul>
+
+
+                  <div id="QV01" class="table-blue">
+                    <h2>ÉCARTS</h2>
+                    <div class="com-table-wrapper">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col col-right">
+                <div class="custom-content-wrapper tab-border">
+                  <h2>Coût TOTAL</h2>
+                  <div class="com-top-chart">
+                    <img src="assets/images/com-chart-one.png" alt="image description">
+                  </div>
+                </div>
+
+                <div class="custom-content-wrapper tab-border bottom-tab-wrapper">
+                  <div class="tab-bottom chart-wrap">
+                    <h2>Distribution par groupes d’âge </h2>
+                    <ul class="nav nav-tabs">
+                      <li><a class="active" data-toggle="tab" href="#comp-urgence-moy-bottom-blue3"><i
+                            class="fas fa-hashtag"></i></a></li>
+                      <li><a data-toggle="tab" href="#comp-urgence-moy-bottom-blue4"><i
+                            class="fal fa-percentage"></i></a></li>
+                    </ul>
+                    <div class="chart-wrapper">
+                      <img src="assets/images/com-chart-two.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-sm-12 col-padding-left col-quebec-right">
+          <menu-tab-right measure-list="$ctrl.config.measures" stack-list="$ctrl.config.stacks"
+            dimension-list="$ctrl.config.dimensions" stream="$ctrl.stream" ref-type-list="$ctrl.config.refTypes"
+            cost-type-list="$ctrl.config.costTypes" on-measure-changed="$ctrl.onMeasureChanged(measure)"
+            on-dimension-changed="$ctrl.onDimensionChanged(dimension)" on-stack-changed="$ctrl.onStackChanged(stack)"
+            on-ref-type-changed="$ctrl.onRefTypeChanged(refType)" ref-type="$ctrl.refType"
+            on-cost-type-changed="$ctrl.onCostTypeChanged(costType)" cost-type="$ctrl.costType">
+          </menu-tab-right>
+        </div>
+      </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container-fluid">
+      <div id="CurrentSelections"></div>
+      <div class="footer-content">
+        <div class="footer-content-wrap">
+          <span class="text">Optimisé par</span>
+          <div class="footer-logo">
+            <a href="#">
+              <img src="assets/images/footer-logo.png" alt="Qlik">
+            </a>
+          </div>
+        </div>
+      </div>
+  </footer>
+</div>

@@ -24,7 +24,7 @@
               <div class="buttons button-active">
                 <ul class="nav nav-tabs">
                   <li class="btn-stack" ng-repeat="stack in $ctrl.stackList | orderBy:'id'"
-                    ng-class="{'btn-full': filtstacker.long}" ng-click="$ctrl.selectFilter(stack)">
+                    ng-class="{'btn-full': stack.long}" ng-click="$ctrl.selectFilter(stack)">
                     <a ng-class="{active: $ctrl.stack.id==stack.id}">{{stack.title}}</a>
                   </li>
                 </ul>

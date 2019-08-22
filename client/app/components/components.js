@@ -1,8 +1,10 @@
 import angular from 'angular';
-import EtlonnagePage from './etalonnage/etalonnagePage/etalonnagePage';
+import EtlonnagePage from './etalonnagePage/etalonnagePage';
+import ComparaisonPage from './comparaisonsPage/comparaisonsPage';
 
 let componentModule = angular.module('app.components', [
-  EtlonnagePage
+  EtlonnagePage,
+  ComparaisonPage
 ])
 
   .name;

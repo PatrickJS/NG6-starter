@@ -20,7 +20,10 @@
             "measures": [
                 1,
                 2,
-                3
+                3,
+                4,
+                5,
+                6
             ]
         },
         {
@@ -31,9 +34,7 @@
                 1,
                 2,
                 3,
-                7,
-                8,
-                9
+                7
             ]
         },
         {
@@ -43,8 +44,7 @@
             "measures": [
                 1,
                 2,
-                3,
-                4
+                3
             ]
         }
     ],
@@ -52,7 +52,6 @@
         {
             "id": 1,
             "title": "Coût total",
-            "subtitle": "-",
             "icon": "far fa-money-bill-alt",
             "color": "blue",
             "value": "Coût total"
@@ -60,7 +59,6 @@
         {
             "id": 2,
             "title": "Coût moyen",
-            "subtitle": "-",
             "icon": "far fa-balance-scale",
             "color": "green",
             "value": "Coût moyen"
@@ -68,7 +66,6 @@
         {
             "id": 3,
             "title": "Nombre d'épisodes",
-            "subtitle": "-",
             "icon": "fas fa-medkit",
             "color": "purple",
             "value": "Nombre d'épisodes"
@@ -76,7 +73,6 @@
         {
             "id": 4,
             "title": "DMS (jours)",
-            "subtitle": "-",
             "icon": "fas fa-calendar-alt",
             "color": "orange",
             "value": "DMS (jours)"
@@ -84,7 +80,6 @@
         {
             "id": 5,
             "title": "Équivalents-lits (Jours / 365)",
-            "subtitle": "-",
             "icon": "fas fa-bed",
             "color": "maroon",
             "value": "Équivalents-lits (Jours / 365)"
@@ -92,51 +87,33 @@
         {
             "id": 6,
             "title": "Nombre d'usagers",
-            "subtitle": "-",
             "icon": "fas fa-users",
             "color": "darkgreen",
             "value": "Nombre d'usagers"
         },
         {
             "id": 7,
-            "title": "% sur civière",
-            "subtitle": "-",
-            "icon": "fa fa-pie-chart",
+            "title": "DMS (heures)",
+            "icon": "fas fa-calendar-alt",
             "color": "orange",
-            "value": "% sur civière"
-        },
-        {
-            "id": 8,
-            "title": "DMS ambulant (heures)",
-            "subtitle": "-",
-            "icon": "fa fa-stethoscope",
-            "color": "maroon",
-            "value": "DMS ambulant (heures)"
-        },
-        {
-            "id": 9,
-            "title": "DMS civière (heures)",
-            "subtitle": "-",
-            "icon": "fas fa-hourglass-start",
-            "color": "darkgreen",
-            "value": "DMS civière (heures)"
+            "value": "DMS (heures)"
         }
     ],
     "stacks": [
         {
             "id": 1,
+            "title": "Typ/Atyp",
+            "value": "Typ/Atyp"
+        },
+        {
+            "id": 2,
             "title": "Groupes d'âge",
             "value": "Groupes d'âge"
         },
         {
-            "id": 2,
+            "id": 3,
             "title": "Gravité",
             "value": "Gravité"
-        },
-        {
-            "id": 3,
-            "title": "Typ/Atyp",
-            "value": "Typ/Atyp"
         },
         {
             "id": 4,
@@ -145,7 +122,7 @@
         },
         {
             "id": 5,
-            "title": "Type de coûts",
+            "title": "Région de provenance",
             "long": true,
             "value": null
         }
@@ -188,17 +165,17 @@
             "value": 2
         }
     ],
-    "etalonnage-main-chart": "HmvEpKU",
-    "etalonnage-sub-chart": "mhftAx",
-    "etalonnage-sub-chart-2": "JJLWxF",
-    "etalonnage-ref-values": "DXddA",
-    "etalonnage-table": "nNt",
+    "comparaisons-group-ref-values": "LXTvY",
+    "comparaisons-group-comp-values": "dbjHRzz",
+    "comparaisons-group-ecart-values": "WHfraZr",
+    "comparaisons-total-cost-chart": "DVUuTz",
+    "comparaisons-distribution-#-chart": "ZMQKX",
+    "comparaisons-distribution-%-chart": "PyqHE",
+    "comparaisons-table": "-",
     "stream-field": "Stream",
     "measure-field": "EtalonnageMeasureDesc",
     "dimension-field": "EtalonnageDimensionDesc",
     "stack-field": "EtalonnageStackDesc",
     "ref-type-variable": "vRefType",
-    "cost-type-variable": "vCostType",
-    "table-mode-variable": "vTableMode",
-    "stack-mode-variable": "vStackMode"
+    "cost-type-variable": "vCostType"
 }

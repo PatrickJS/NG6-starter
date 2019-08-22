@@ -5,7 +5,6 @@ import etalonnagePageComponent from './etalonnagePage.component';
 let etalonnagePageModule = angular.module('etlonnage', [
   uiRouter
 ])
-
   .config(($stateProvider, $urlRouterProvider) => {
     "ngInject";
 

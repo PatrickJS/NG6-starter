@@ -28,7 +28,7 @@ class etalonnagePageController {
         .then(() => _this.tableMode = '#');
 
     _this.setPercentageTable = () =>
-      _this.qlikService.setVariable(_this.config["table-mode-variable"], '#')
+      _this.qlikService.setVariable(_this.config["table-mode-variable"], '%')
         .then(() => _this.tableMode = '%');
 
     _this.stackMode = '#';
