@@ -9,8 +9,8 @@ export default class QlikService {
     return this.app.getObject(element, objectId);
   }
 
-  select(field, value) {
-    return this.app.field(field).selectValues([value]);
+  select(field, value, state) {
+    return this.app.field(field, state).selectValues([value]);
   }
 
   setVariable(name, value) {
@@ -19,6 +19,10 @@ export default class QlikService {
     } else {
       return this.app.variable.setNumValue(name, value);
     }
+  }
+
+  applyBookmark(id) {
+    return this.app.bookmark.apply(id);
   }
 
   resize() {

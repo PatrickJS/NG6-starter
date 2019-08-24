@@ -6,7 +6,9 @@ let compareTableComponent = {
   bindings: {
     refData: '<',
     compData: '<',
-    diffData: '<'
+    ecartData: '<',
+    refColor: '<',
+    refType: '<'
   },
   template,
   controller

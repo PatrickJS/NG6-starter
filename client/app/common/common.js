@@ -5,7 +5,7 @@ import SelectCard from './selectCard/selectCard';
 import MenuTabRight from './MenuTabRight/MenuTabRight';
 import NiceSelect from './niceSelect/niceSelect';
 import StraightTable from './straightTable/straightTable';
-
+import CompareTable from './compareTable/compareTable';
 
 let commonModule = angular.module('app.common', [
   Navbar,
@@ -13,7 +13,8 @@ let commonModule = angular.module('app.common', [
   SelectCard,
   MenuTabRight,
   NiceSelect,
-  StraightTable
+  StraightTable,
+  CompareTable
 ])
 
   .name;

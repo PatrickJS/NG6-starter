@@ -21,6 +21,8 @@ class etalonnagePageController {
       _this.viewMode = 'table';
     }
 
+    _this.stacks = [];
+
     //Setup table mode, # by default
     _this.tableMode = '#';
     _this.setHashtagTable = () =>
@@ -30,11 +32,6 @@ class etalonnagePageController {
     _this.setPercentageTable = () =>
       _this.qlikService.setVariable(_this.config["table-mode-variable"], '%')
         .then(() => _this.tableMode = '%');
-
-    _this.stackMode = '#';
-    _this.setStackMode = mode =>
-      _this.qlikService.setVariable(_this.config["stack-mode-variable"], mode)
-        .then(() => _this.stackMode = mode);
 
     //Setup change listener from control tab [Right tab]
     _this.onStreamChanged = stream => {
@@ -54,7 +51,19 @@ class etalonnagePageController {
 
     _this.onStackChanged = stack => {
       _this.stack = stack;
-      qlikService.select(_this.config["stack-field"], stack.value);
+      if (stack.value) {
+        if (_this.stackMode === "!") {
+          _this.setStackMode("$");
+        }
+
+        qlikService.select(_this.config["stack-field"], stack.value);
+      }
+      //Special chart for cost distribution
+      else {
+        _this.setStackMode("!");
+      }
+
+      qlikService.resize();
     };
 
     _this.onRefTypeChanged = refType => {
@@ -68,18 +77,40 @@ class etalonnagePageController {
     };
 
     _this.$onInit = () => {
+      //Initial Selections
+      _this.qlikService.applyBookmark(_this.config['startup-bookmark']);
+
       //Create charts
-      let windowHeight = $("body").height(),
+      let windowHeight = $(window).height(),
         offset = 463;
       $('#QV01').css("height", (windowHeight - offset) * 0.6);
       $('#QV02').css("height", (windowHeight - offset) * 0.4);
       $('#QV03').css("height", (windowHeight - offset) + 97);
       $('#QV04').css("height", (windowHeight - offset) * 0.4);
+      $('#QV05').css("height", (windowHeight - offset) * 0.4);
+
       _this.qlikService.getVisualization("QV01", _this.config["etalonnage-main-chart"]);
       _this.qlikService.getVisualization("QV02", _this.config["etalonnage-sub-chart"]);
       _this.qlikService.getVisualization("QV04", _this.config["etalonnage-sub-chart-2"]);
+      _this.qlikService.getVisualization("QV05", _this.config["etalonnage-cost-chart"]);
       _this.qlikService.getVisualization("CurrentSelections", "CurrentSelections");
 
+      _this.setStackMode = mode =>
+        _this.qlikService.setVariable(_this.config["stack-mode-variable"], mode)
+          .then(() => {
+            let hits = _this.config["stack-mode"].filter(m => m.title === mode);
+
+            let stacks = [];
+            if (hits.length > 0) {
+              hits[0].stacks.map(id => {
+                stacks = stacks.concat(_this.config["stacks"].filter(s => s.id === id));
+              });
+            }
+            _this.stacks = stacks;
+            _this.stackMode = mode;
+          });
+
+      _this.setStackMode("#");
 
       _this.qlikService.bindVisualizationData(_this.config["etalonnage-ref-values"], cube => {
         let data = cube.qHyperCube.qDataPages[0].qMatrix[0];

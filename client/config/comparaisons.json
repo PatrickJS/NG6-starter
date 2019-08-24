@@ -102,13 +102,13 @@
     "stacks": [
         {
             "id": 1,
-            "title": "Typ/Atyp",
-            "value": "Typ/Atyp"
+            "title": "Groupes d'âge",
+            "value": "Groupes d'âge"
         },
         {
             "id": 2,
-            "title": "Groupes d'âge",
-            "value": "Groupes d'âge"
+            "title": "Typ/Atyp",
+            "value": "Typ/Atyp"
         },
         {
             "id": 3,
@@ -168,14 +168,17 @@
     "comparaisons-group-ref-values": "LXTvY",
     "comparaisons-group-comp-values": "dbjHRzz",
     "comparaisons-group-ecart-values": "WHfraZr",
-    "comparaisons-total-cost-chart": "DVUuTz",
+    "comparaisons-kpi-chart": "DVUuTz",
     "comparaisons-distribution-#-chart": "ZMQKX",
     "comparaisons-distribution-%-chart": "PyqHE",
-    "comparaisons-table": "-",
+    "comparaisons-table": "VsCxpe",
+    "group-ref-list": "FGMrKh",
+    "group-comp-list": "MpNYzya",
     "stream-field": "Stream",
     "measure-field": "EtalonnageMeasureDesc",
     "dimension-field": "EtalonnageDimensionDesc",
     "stack-field": "EtalonnageStackDesc",
     "ref-type-variable": "vRefType",
-    "cost-type-variable": "vCostType"
+    "cost-type-variable": "vCostType",
+    "startup-bookmark": "3faa9133-02ac-46e1-9030-adc1fd37f987"
 }

@@ -58,13 +58,16 @@
                           class="fas fa-hashtag"></i></a></li>
                     <li ng-click="$ctrl.setStackMode('%')"><a ng-class="{active: $ctrl.stackMode=='%'}"><i
                           class="fal fa-percentage"></i></a></li>
-                    <li ng-click="$ctrl.setStackMode('$')"><a ng-class="{active: $ctrl.stackMode=='$'}"><i
+                    <li ng-click="$ctrl.setStackMode('$')"><a
+                        ng-class="{active: $ctrl.stackMode=='$' || $ctrl.stackMode==='!'}"><i
                           class="fas fa-dollar-sign"></i></a></li>
                   </ul>
                   <div class="tab-pane in active show">
                     <div class="chart-wrapper">
                       <div id="QV02" ng-show="$ctrl.stackMode=='#'" class="etalonnage-sub-chart"></div>
-                      <div id="QV04" ng-show="$ctrl.stackMode!='#'" class="etalonnage-sub-chart"></div>
+                      <div id="QV04" ng-show="$ctrl.stackMode=='%' ||  $ctrl.stackMode=='$'"
+                        class="etalonnage-sub-chart"></div>
+                      <div id="QV05" ng-show="$ctrl.stackMode=='!'" class="etalonnage-cost-chart"></div>
                     </div>
                   </div>
                 </div>
@@ -73,7 +76,7 @@
           </div>
         </div>
         <div class="col-xl-4 col-sm-12 col-padding-left col-quebec-right">
-          <menu-tab-right measure-list="$ctrl.config.measures" stack-list="$ctrl.config.stacks"
+          <menu-tab-right measure-list="$ctrl.config.measures" stack-list="$ctrl.stacks"
             dimension-list="$ctrl.config.dimensions" stream="$ctrl.stream" ref-type-list="$ctrl.config.refTypes"
             cost-type-list="$ctrl.config.costTypes" on-measure-changed="$ctrl.onMeasureChanged(measure)"
             on-dimension-changed="$ctrl.onDimensionChanged(dimension)" on-stack-changed="$ctrl.onStackChanged(stack)"

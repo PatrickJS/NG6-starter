@@ -1,4 +1,4 @@
-<div class="tab-right menu-tab-right">
+<div class="tab-right menu-tab-right table-{{$ctrl.measure.color}}">
   <ul class="nav nav-tabs" id="myTabTwo">
     <li class="nav-item" ng-repeat="dimension in $ctrl.dimensionList | orderBy:'id'"
       ng-click="$ctrl.selectDimension(dimension)">
@@ -13,6 +13,24 @@
         <nice-select option-list="$ctrl.refTypeList" on-select-changed="$ctrl.selectRefType(selected)"></nice-select>
         <nice-select option-list="$ctrl.costTypeList" on-select-changed="$ctrl.selectCostType(selected)"></nice-select>
       </div>
+
+      <div class="reference-lists" ng-if="$ctrl.refList && $ctrl.compList">
+        <div class="ref-list col-ref">
+          <span class="title"><strong>Gr réf. </strong> <span class="badge">{{$ctrl.refGroupCount}}</span></span>
+          <div class="ref-dropdown">
+            <div class="ref-dropdown-wrap filter-list" id="LIST01">
+            </div>
+          </div>
+        </div>
+        <div class="ref-list col-comp">
+          <span class="title"><strong>Gr comp. </strong> <span class="badge">{{$ctrl.compGroupCount}}</span></span>
+          <div class="ref-dropdown">
+            <div class="ref-dropdown-wrap filter-list" id="LIST02">
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="tab-pane show active">
         <div class="tabs right-tab-items {{$ctrl.refType.colorClass}}" style="display: block;">
           <div class="row">

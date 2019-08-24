@@ -1,5 +1,9 @@
 class menuTabRightController {
-  constructor() {
+  /**
+* @param {QlikService} qlikService
+*/
+  constructor(qlikService) {
+    'ngInject';
     this.name = 'menuTabRight';
 
     let _this = this;
@@ -9,6 +13,41 @@ class menuTabRightController {
       _this.stack = _this.stackList[0];
       _this.refType = _this.refTypeList[0];
       _this.costType = _this.costTypeList[0];
+
+      if (_this.refList)
+        qlikService.getVisualization("LIST01", _this.refList).then(model => {
+          _this.refGroupCount = model.layout.title;
+
+          $('.reference-lists').find('.ref-list').click(function (e) {
+            var $this = $(this);
+
+            if ($this.hasClass('active')) {
+              if ($(e.target).parents('.ref-dropdown-wrap').length === 0) {
+                $this.removeClass('active');
+                $this.children('.ref-dropdown').slideUp();
+                qlikService.resize();
+              }
+            } else {
+              $('.ref-list').removeClass('active');
+              $this.parents().find('.ref-dropdown').slideUp();
+              $this.addClass('active');
+              $this.children('.ref-dropdown').slideDown();
+              qlikService.resize();
+            }
+          });
+
+          model.Validated.bind(function () {
+            _this.refGroupCount = model.layout.title;
+          });
+        });
+
+      if (_this.compList)
+        qlikService.getVisualization("LIST02", _this.compList).then(model => {
+          _this.compGroupCount = model.layout.title;
+          model.Validated.bind(function () {
+            _this.compGroupCount = model.layout.title;
+          });
+        });
     };
 
     _this.$onChanges = changeObj => {

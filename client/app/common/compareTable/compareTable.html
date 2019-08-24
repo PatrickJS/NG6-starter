@@ -2,17 +2,17 @@
   <thead>
     <tr>
       <th></th>
-      <th class="bg">Gr réf.</th>
+      <th class="bg-{{$ctrl.refColor}}">Gr réf.</th>
       <th class="bg-yellow">Gr comp</th>
       <th class="bg-grey">Écart</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="row in $ctrl.data" ng-class="{active: row.active}">
+    <tr ng-repeat="row in $ctrl.data" ng-class="{active: row.active}" ng-hide="$ctrl.checkHide(row)">
       <td><strong>{{row.title}}</strong></td>
       <td>{{row.ref}}</td>
       <td>{{row.comp}}</td>
-      <td>{{row.diff}}</td>
+      <td>{{row.ecart}}</td>
     </tr>
   </tbody>
 </table>

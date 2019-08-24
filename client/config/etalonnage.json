@@ -150,6 +150,50 @@
             "value": null
         }
     ],
+    "stack-mode": [
+        {
+            "id": 1,
+            "title": "#",
+            "stacks": [
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "id": 2,
+            "title": "%",
+            "stacks": [
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "id": 3,
+            "title": "$",
+            "stacks": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "id": 4,
+            "title": "!",
+            "stacks": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    ],
     "dimensions": [
         {
             "id": 1,
@@ -192,6 +236,7 @@
     "etalonnage-sub-chart": "mhftAx",
     "etalonnage-sub-chart-2": "JJLWxF",
     "etalonnage-ref-values": "DXddA",
+    "etalonnage-cost-chart": "hJEvjF",
     "etalonnage-table": "nNt",
     "stream-field": "Stream",
     "measure-field": "EtalonnageMeasureDesc",
@@ -200,5 +245,6 @@
     "ref-type-variable": "vRefType",
     "cost-type-variable": "vCostType",
     "table-mode-variable": "vTableMode",
-    "stack-mode-variable": "vStackMode"
+    "stack-mode-variable": "vStackMode",
+    "startup-bookmark": "3faa9133-02ac-46e1-9030-adc1fd37f987"
 }

@@ -1,7 +1,7 @@
 <div class="comparasions-page">
   <navbar></navbar>
 
-  <section class="main-tab">
+  <section class="main-tab" ng-class="{'full-col': $ctrl.viewMode=='table'}">
     <div class="container-fluid">
       <stream-bar streams="$ctrl.config.streams" on-stream-changed="$ctrl.onStreamChanged(stream)"></stream-bar>
 
@@ -10,29 +10,48 @@
           <div id="leftTabContent">
             <div class="row">
               <div class="col col-left">
-                <div class="custom-content-wrapper tab-border">
-                  <ul class="nav nav-tabs icoTab nav-table" role="tablist" data-icon-tab="ico-cdj">
-                    <li class="nav-item">
-                      <a class="col-comp-table" href="#"><i class="far fa-table"></i></a>
-                    </li>
-                    <!-- <li class="nav-item">
-                  <a class="col-comp-chart" href="#"><i class="far fa-chart-bar"></i></a>
-                </li> -->
-                    <li class="nav-item">
-                      <a class="active" data-toggle="tab" href="#com-urgence-moy-left-table-tab1"><i
-                          class="fas fa-hashtag"></i></a>
+                <div class="custom-content-wrapper tab-border" ng-show="$ctrl.viewMode=='table'">
+                  <ul class="nav nav-tabs icoTab">
+                    <li class="nav-item" ng-click="$ctrl.setChartView()">
+                      <a class="col-comp-chart"><i class="far fa-chart-bar"></i></a>
                     </li>
                     <li class="nav-item">
-                      <a data-toggle="tab" href="#com-urgence-moy-left-table-tab2" class=""><i
-                          class="fas fa-dollar-sign"></i></a>
+                      <a class="active"><i class="fas fa-hashtag"></i></a>
+                    </li>
+                    <li class="nav-item">
+                      <a><i class="fas fa-dollar-sign"></i></a>
                     </li>
                   </ul>
 
+                  <div>
+                    <h2>ÉCARTS</h2>
+                    <div class="table-wrapper">
+                      <div id="QV05" class="scrolling-container">
+                        <straight-table headers="$ctrl.tableHeaders" data="$ctrl.tableData"></straight-table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="custom-content-wrapper tab-border" ng-show="$ctrl.viewMode=='chart'">
+                  <ul class=" nav nav-tabs icoTab">
+                    <li class="nav-item">
+                      <a class="col-comp-table" ng-click="$ctrl.setTableView()"><i class="far fa-table"></i></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="active"><i class="fas fa-hashtag"></i></a>
+                    </li>
+                    <li class="nav-item">
+                      <a><i class="fas fa-dollar-sign"></i></a>
+                    </li>
+                  </ul>
 
                   <div id="QV01" class="table-blue">
                     <h2>ÉCARTS</h2>
                     <div class="com-table-wrapper">
-
+                      <compare-table ref-data="$ctrl.refTableData" comp-data="$ctrl.compTableData"
+                        ecart-data="$ctrl.ecartTableData" ref-color="$ctrl.measure.color" ref-type="$ctrl.refType">
+                      </compare-table>
                     </div>
                   </div>
                 </div>
@@ -40,23 +59,26 @@
 
               <div class="col col-right">
                 <div class="custom-content-wrapper tab-border">
-                  <h2>Coût TOTAL</h2>
-                  <div class="com-top-chart">
-                    <img src="assets/images/com-chart-one.png" alt="image description">
+                  <h2>{{$ctrl.measure.title}}</h2>
+                  <div class="chart-wrapper">
+                    <div id="QV02"></div>
                   </div>
                 </div>
 
-                <div class="custom-content-wrapper tab-border bottom-tab-wrapper">
-                  <div class="tab-bottom chart-wrap">
-                    <h2>Distribution par groupes d’âge </h2>
+                <div class="custom-content-wrapper tab-border bottom-tab-wrapper" ng-show="$ctrl.viewMode=='chart'">
+                  <div class=" tab-bottom chart-wrap">
+                    <h2>Distribution par {{$ctrl.stack.title}}</h2>
                     <ul class="nav nav-tabs">
-                      <li><a class="active" data-toggle="tab" href="#comp-urgence-moy-bottom-blue3"><i
+                      <li ng-click="$ctrl.setStackMode('#')"><a ng-class="{active: $ctrl.stackMode=='#'}"><i
                             class="fas fa-hashtag"></i></a></li>
-                      <li><a data-toggle="tab" href="#comp-urgence-moy-bottom-blue4"><i
+                      <li ng-click="$ctrl.setStackMode('%')"><a ng-class="{active: $ctrl.stackMode=='%'}"><i
                             class="fal fa-percentage"></i></a></li>
                     </ul>
-                    <div class="chart-wrapper">
-                      <img src="assets/images/com-chart-two.png">
+                    <div class="chart-wrapper" ng-show="$ctrl.stackMode=='#'">
+                      <div id="QV03"></div>
+                    </div>
+                    <div class="chart-wrapper" ng-show="$ctrl.stackMode=='%'">
+                      <div id="QV04"></div>
                     </div>
                   </div>
                 </div>
@@ -70,7 +92,8 @@
             cost-type-list="$ctrl.config.costTypes" on-measure-changed="$ctrl.onMeasureChanged(measure)"
             on-dimension-changed="$ctrl.onDimensionChanged(dimension)" on-stack-changed="$ctrl.onStackChanged(stack)"
             on-ref-type-changed="$ctrl.onRefTypeChanged(refType)" ref-type="$ctrl.refType"
-            on-cost-type-changed="$ctrl.onCostTypeChanged(costType)" cost-type="$ctrl.costType">
+            on-cost-type-changed="$ctrl.onCostTypeChanged(costType)" cost-type="$ctrl.costType"
+            ref-list="$ctrl.config['group-ref-list']" comp-list="$ctrl.config['group-comp-list']">
           </menu-tab-right>
         </div>
       </div>

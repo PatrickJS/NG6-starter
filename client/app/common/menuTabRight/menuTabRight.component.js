@@ -16,7 +16,9 @@ let menuTabRightComponent = {
     onRefTypeChanged: '&',
     onCostTypeChanged: '&',
     refType: '=',
-    costType: '='
+    costType: '=',
+    refList: '<',
+    compList: '<',
   },
   template,
   controller

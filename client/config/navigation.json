@@ -1,0 +1,38 @@
+{
+    "tabs": [
+        {
+            "id": 1,
+            "title": "Étalonnage",
+            "link": "/"
+        },
+        {
+            "id": 2,
+            "title": "Comparaisons",
+            "link": "/comparaisons"
+        },
+        {
+            "id": 3,
+            "title": "Profil de coûts"
+        },
+        {
+            "id": 4,
+            "title": "Analyses cliniques"
+        },
+        {
+            "id": 5,
+            "title": "Q&S"
+        },
+        {
+            "id": 6,
+            "title": "Analyse géospatiale"
+        },
+        {
+            "id": 7,
+            "title": "PdP"
+        },
+        {
+            "id": 8,
+            "title": "QdDR"
+        }
+    ]
+}
