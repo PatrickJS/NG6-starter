@@ -3,36 +3,42 @@
         {
             "id": 1,
             "title": "Étalonnage",
-            "link": "/"
+            "link": "etalonnage"
         },
         {
             "id": 2,
             "title": "Comparaisons",
-            "link": "/comparaisons"
+            "link": "comparaisons"
         },
         {
             "id": 3,
-            "title": "Profil de coûts"
+            "title": "Profil de coûts",
+            "link": "profile"
         },
         {
             "id": 4,
-            "title": "Analyses cliniques"
+            "title": "Analyses cliniques",
+            "link": "cliniques"
         },
         {
             "id": 5,
-            "title": "Q&S"
+            "title": "Q&S",
+            "link": "qns"
         },
         {
             "id": 6,
-            "title": "Analyse géospatiale"
+            "title": "Analyse géospatiale",
+            "link": "geospatiale"
         },
         {
             "id": 7,
-            "title": "PdP"
+            "title": "PdP",
+            "link": "pdp"
         },
         {
             "id": 8,
-            "title": "QdDR"
+            "title": "QdDR",
+            "link": "qddr"
         }
     ]
 }

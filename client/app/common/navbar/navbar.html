@@ -18,8 +18,8 @@
       </div>
       <nav class="main-menu ml-auto">
         <ul class="menu-list">
-          <li ng-repeat="nav in $ctrl.config.tabs | orderBy:'id'" ng-class="{active: nav.link==$ctrl.route}"><a
-              ng-href="{{nav.link}}">{{nav.title}}</a></li>
+          <li ng-repeat="nav in $ctrl.config.tabs | orderBy:'id'"><a ui-sref="{{nav.link}}"
+              ui-sref-active="active">{{nav.title}}</a></li>
         </ul>
         <ul class="info-user">
           <li class="info-menu"><a href="table.html"><i class="fas fa-info-circle"></i></a></li>

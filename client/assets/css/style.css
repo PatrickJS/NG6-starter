@@ -7238,7 +7238,7 @@ body {
         bottom: -6px;
         width: 1px;
         background: rgba(255, 255, 255, 0.2); }
-    .main-header nav ul li.active a {
+    .main-header nav ul li a.active {
       color: #FFF; }
     .main-header nav ul.menu-list {
       margin-left: 6px;
