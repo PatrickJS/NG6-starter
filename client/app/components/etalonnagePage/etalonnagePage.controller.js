@@ -10,6 +10,7 @@ class etalonnagePageController {
 
     //Setup qlik Service
     _this.qlikService = qlikService;
+    _this.showRightMenu = false;
 
     //Setup view mode, chart by default
     _this.viewMode = 'chart';
@@ -34,19 +35,18 @@ class etalonnagePageController {
         .then(() => _this.tableMode = '%');
 
     //Setup change listener from control tab [Right tab]
-    _this.onStreamChanged = stream => {
-      _this.stream = stream;
-      qlikService.select(_this.config["stream-field"], stream.value);
+    _this.onStreamChanged = streams => {
+      _this.streams = streams;
     };
 
     _this.onMeasureChanged = measure => {
       _this.measure = measure;
-      qlikService.select(_this.config["measure-field"], measure.value);
+      qlikService.select(_this.config["measure-field"], [measure.value]);
     };
 
     _this.onDimensionChanged = dimension => {
       _this.dimension = dimension;
-      qlikService.select(_this.config["dimension-field"], dimension.value);
+      qlikService.select(_this.config["dimension-field"], [dimension.value]);
     };
 
     _this.onStackChanged = stack => {
@@ -56,7 +56,7 @@ class etalonnagePageController {
           _this.setStackMode("$");
         }
 
-        qlikService.select(_this.config["stack-field"], stack.value);
+        qlikService.select(_this.config["stack-field"], [stack.value]);
       }
       //Special chart for cost distribution
       else {
@@ -77,9 +77,6 @@ class etalonnagePageController {
     };
 
     _this.$onInit = () => {
-      //Initial Selections
-      _this.qlikService.applyBookmark(_this.config['startup-bookmark']);
-
       //Create charts
       let windowHeight = $(window).height(),
         offset = 463;
@@ -125,10 +122,12 @@ class etalonnagePageController {
           let hit = measureData.filter(d => d.name === measure.title);
 
           if (hit.length > 0) {
-            newMeasure.subtitle = (_this.refType.value === 2 ? "MED " : "MOY ") + hit[0].value;
+            newMeasure.subtitle = ((_this.refType && _this.refType.value === 2) ? "MED " : "MOY ") + hit[0].value;
           }
           return newMeasure;
         });
+
+        _this.showRightMenu = true;
       });
 
       _this.qlikService.bindVisualizationData(_this.config["etalonnage-table"], cube => {
@@ -146,6 +145,8 @@ class etalonnagePageController {
 
         _this.tableHeaders = headers;
       });
+
+
     }
   }
 }

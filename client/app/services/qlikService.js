@@ -9,8 +9,14 @@ export default class QlikService {
     return this.app.getObject(element, objectId);
   }
 
-  select(field, value, state) {
-    return this.app.field(field, state).selectValues([value]);
+  field(field, callback) {
+    let f = this.app.field(...field).getData();
+    f.OnData.bind(callback);
+    return f;
+  }
+
+  select(field, values, state, toggle) {
+    return this.app.field(field, state).selectValues(values, toggle);
   }
 
   setVariable(name, value) {

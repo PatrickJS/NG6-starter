@@ -15,10 +15,16 @@ let etalonnagePageModule = angular.module('etlonnage', [
         url: '/',
         component: 'etalonnagePage',
         resolve: {
-          config: ($http) => {
+          config: ($http, qlikService) => {
             'ngInject';
 
-            return $http.get("config/etalonnage.json").then(reply => reply.data);
+            return $http.get("config/etalonnage.json").then(reply => {
+              let data = reply.data;
+
+              return qlikService.applyBookmark(data['startup-bookmark']).then(() => {
+                return data;
+              });
+            });
           }
         }
       });

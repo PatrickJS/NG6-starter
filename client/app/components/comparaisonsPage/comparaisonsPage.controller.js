@@ -65,7 +65,7 @@ class ComparaisonsPageController {
 
     _this.$onInit = () => {
       //Initial Selections
-      _this.qlikService.applyBookmark(_this.config['startup-bookmark']);
+      // _this.qlikService.applyBookmark(_this.config['startup-bookmark']);
 
       let windowHeight = $(window).height(),
         offset = 296;

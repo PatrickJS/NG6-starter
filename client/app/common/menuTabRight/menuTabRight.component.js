@@ -4,12 +4,13 @@ import './menuTabRight.scss';
 
 let menuTabRightComponent = {
   bindings: {
+    qlikConfig: '<',
     measureList: '<',
     stackList: '<',
     dimensionList: '<',
     refTypeList: '<',
     costTypeList: '<',
-    stream: '<',
+    streams: '<',
     onDimensionChanged: '&',
     onMeasureChanged: '&',
     onStackChanged: '&',

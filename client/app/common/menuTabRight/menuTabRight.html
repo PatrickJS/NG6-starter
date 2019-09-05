@@ -2,7 +2,7 @@
   <ul class="nav nav-tabs" id="myTabTwo">
     <li class="nav-item" ng-repeat="dimension in $ctrl.dimensionList | orderBy:'id'"
       ng-click="$ctrl.selectDimension(dimension)">
-      <a class="nav-link" ng-class="{active: dimension.id == $ctrl.dimension.id}">{{dimension.title}}</a>
+      <a class="nav-link" ng-class="{active: dimension.selected}">{{dimension.title}}</a>
     </li>
   </ul>
   <div class="custom-content-wrapper tab-border">
@@ -36,14 +36,14 @@
           <div class="row">
             <div ng-repeat="measure in $ctrl.measures" ng-click="$ctrl.selectMeasure(measure)"
               class="col-xl-6 col-sm-6 half-padding quebec-{{measure.color}}">
-              <select-card data="measure" active="measure.id==$ctrl.measure.id"></select-card>
+              <select-card data="measure" active="measure.selected"></select-card>
             </div>
             <div class="col-xl-12 button-wrap">
               <div class="buttons button-active">
                 <ul class="nav nav-tabs">
                   <li class="btn-stack" ng-repeat="stack in $ctrl.stackList | orderBy:'id'"
                     ng-class="{'btn-full': stack.long}" ng-click="$ctrl.selectFilter(stack)">
-                    <a ng-class="{active: $ctrl.stack.id==stack.id}">{{stack.title}}</a>
+                    <a ng-class="{active: stack.selected}">{{stack.title}}</a>
                   </li>
                 </ul>
               </div>

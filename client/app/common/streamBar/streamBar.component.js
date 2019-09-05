@@ -5,7 +5,8 @@ import './streamBar.scss';
 let streamBarComponent = {
   bindings: {
     streams: "<",
-    onStreamChanged: '&'
+    onStreamChanged: '&',
+    qlikField: "<"
   },
   template,
   controller
