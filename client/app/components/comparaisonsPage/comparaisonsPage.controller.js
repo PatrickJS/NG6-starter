@@ -28,29 +28,29 @@ class ComparaisonsPageController {
     }
 
     //Setup change listener from control tab [Right tab]
-    _this.onStreamChanged = stream => {
-      _this.stream = stream;
-      qlikService.select(_this.config["stream-field"], stream.value);
-      qlikService.select(_this.config["stream-field"], stream.value, "GrRef");
-      qlikService.select(_this.config["stream-field"], stream.value, "GrComp");
+    _this.onStreamChanged = streams => {
+      _this.streams = streams;
+      // qlikService.select(_this.config["stream-field"], [stream.value]);
+      // qlikService.select(_this.config["stream-field"], [stream.value], "GrRef");
+      // qlikService.select(_this.config["stream-field"], [stream.value], "GrComp");
     };
 
     _this.onMeasureChanged = measure => {
       _this.measure = measure;
-      qlikService.select(_this.config["measure-field"], measure.value);
+      qlikService.select(_this.config["measure-field"], [measure.value]);
     };
 
     _this.onDimensionChanged = dimension => {
       _this.dimension = dimension;
 
-      qlikService.select(_this.config["dimension-field"], dimension.value);
-      qlikService.select(_this.config["dimension-field"], dimension.value, "GrRef");
-      qlikService.select(_this.config["dimension-field"], dimension.value, "GrComp");
+      qlikService.select(_this.config["dimension-field"], [dimension.value]);
+      qlikService.select(_this.config["dimension-field"], [dimension.value], "GrRef");
+      qlikService.select(_this.config["dimension-field"], [dimension.value], "GrComp");
     };
 
     _this.onStackChanged = stack => {
       _this.stack = stack;
-      qlikService.select(_this.config["stack-field"], stack.value);
+      qlikService.select(_this.config["stack-field"], [stack.value]);
     };
 
     _this.onRefTypeChanged = refType => {

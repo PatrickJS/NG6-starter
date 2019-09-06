@@ -174,11 +174,10 @@
     "comparaisons-table": "VsCxpe",
     "group-ref-list": "FGMrKh",
     "group-comp-list": "MpNYzya",
-    "stream-field": "Stream",
-    "measure-field": "EtalonnageMeasureDesc",
-    "dimension-field": "EtalonnageDimensionDesc",
-    "stack-field": "EtalonnageStackDesc",
+    "stream-field": "%Stream",
+    "measure-field": "%EtalonnageMeasureDesc",
+    "dimension-field": "%EtalonnageDimensionDesc",
+    "stack-field": "%EtalonnageStackDesc",
     "ref-type-variable": "vRefType",
-    "cost-type-variable": "vCostType",
-    "startup-bookmark": "3faa9133-02ac-46e1-9030-adc1fd37f987"
+    "cost-type-variable": "vCostType"
 }

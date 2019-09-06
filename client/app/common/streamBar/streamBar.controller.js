@@ -6,27 +6,25 @@ class StreamBarController {
     'ngInject';
 
     let _this = this;
+    let streamField;
+    let streamFieldListener = () => {
+      let streams = [..._this.streams];
 
-    _this.$onInit = () => {
-      // _this.stream = _this.streams[0];
-      // _this.onStreamChanged({ stream: _this.stream });
-
-      let field = qlikService.field([_this.qlikField], () => {
-        let streams = [..._this.streams];
-
-        field.rows.map((row) => {
-          streams.forEach(stream => {
-            if (stream.value === row.qText) {
-              stream.selected = row.qState === 'S';
-            }
-          })
-        });
-
-        _this.streams = streams;
-
-        _this.onStreamChanged({ streams: streams.filter(stream => stream.selected) });
+      streamField.rows.map((row) => {
+        streams.forEach(stream => {
+          if (stream.value === row.qText) {
+            stream.selected = row.qState === 'S';
+          }
+        })
       });
 
+      _this.streams = streams;
+
+      _this.onStreamChanged({ streams: streams.filter(stream => stream.selected) });
+    };
+
+    _this.$onInit = () => {
+      streamField = qlikService.field([_this.qlikField], streamFieldListener);
     };
 
     _this.selectStream = stream => {
@@ -38,10 +36,13 @@ class StreamBarController {
       if (selected.length === 1 && selected[0].title === stream.title) {
         return;
       }
-      qlikService.select(_this.qlikField, [stream.title], null, true);
-      // .then(() =>
+
+      streamField.selectValues([stream.title], true, true);
     };
 
+    _this.$onDestroy = () => {
+      streamField.OnData.unbind(streamFieldListener);
+    };
   }
 }
 

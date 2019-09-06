@@ -7,6 +7,8 @@ class menuTabRightController {
     this.name = 'menuTabRight';
 
     let _this = this;
+    let dimensionField, measureField, stackField;
+    let dimensionFieldListener, measureFieldListener, stackFieldListener;
 
     _this.$onInit = () => {
       // _this.dimension = _this.dimensionList[0];
@@ -50,7 +52,7 @@ class menuTabRightController {
         });
 
       //Dimension handling
-      let dimensionField = qlikService.field([_this.qlikConfig["dimension-field"]], () => {
+      dimensionFieldListener = () => {
         if (_this.dimensionList && _this.dimensionList.length > 0) {
           dimensionField.rows.forEach(row => {
             _this.dimensionList.forEach(dimension => {
@@ -60,10 +62,11 @@ class menuTabRightController {
             });
           });
         }
-      });
+      };
+      dimensionField = qlikService.field([_this.qlikConfig["dimension-field"]], dimensionFieldListener);
 
       //Measure handling
-      let measureField = qlikService.field([_this.qlikConfig["measure-field"]], () => {
+      measureFieldListener =  () => {
         if (_this.measures && _this.measures.length > 0) {
           measureField.rows.forEach(row => {
             _this.measures.forEach(measure => {
@@ -73,10 +76,11 @@ class menuTabRightController {
             });
           });
         }
-      });
+      };
+      measureField = qlikService.field([_this.qlikConfig["measure-field"]],measureFieldListener);
 
       //Stack handling
-      let stackField = qlikService.field([_this.qlikConfig["stack-field"]], () => {
+      stackFieldListener = () => {
         if (_this.stackList && _this.stackList.length > 0) {
           stackField.rows.forEach(row => {
             _this.stackList.forEach(stack => {
@@ -86,7 +90,8 @@ class menuTabRightController {
             });
           });
         } 0
-      });
+      };
+      stackField = qlikService.field([_this.qlikConfig["stack-field"]], stackFieldListener);
     };
 
     _this.$onChanges = changeObj => {
@@ -98,8 +103,6 @@ class menuTabRightController {
         // }
       }
     };
-
-
 
     _this.selectMeasure = measure => {
       _this.measure = measure;
@@ -124,6 +127,12 @@ class menuTabRightController {
     _this.selectCostType = selected => {
       _this.costType = selected;
       _this.onCostTypeChanged({ costType: _this.costType });
+    };
+
+    _this.$onDestroy = () => {
+      dimensionField.OnData.unbind(dimensionFieldListener);
+      measureField.OnData.unbind(measureFieldListener);
+      stackField.OnData.unbind(stackFieldListener);
     };
   }
 }
