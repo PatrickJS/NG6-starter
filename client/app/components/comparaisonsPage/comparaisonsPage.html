@@ -3,7 +3,8 @@
 
   <section class="main-tab" ng-class="{'full-col': $ctrl.viewMode=='table'}">
     <div class="container-fluid">
-      <stream-bar streams="$ctrl.config.streams" on-stream-changed="$ctrl.onStreamChanged(streams)" qlik-field="$ctrl.config['stream-field']"></stream-bar>
+      <stream-bar streams="$ctrl.config.streams" on-stream-changed="$ctrl.onStreamChanged(streams)"
+        qlik-field="$ctrl.config['stream-field']"></stream-bar>
 
       <div class="row inner-container">
         <div class="col-xl-8 col-sm-12 col-quebec-left col-comp-left">
@@ -87,7 +88,7 @@
           </div>
         </div>
         <div class="col-xl-4 col-sm-12 col-padding-left col-quebec-right">
-          <menu-tab-right qlik-config="$ctrl.config" measure-list="$ctrl.config.measures"
+          <menu-tab-right ng-if="$ctrl.showRightMenu" qlik-config="$ctrl.config" measure-list="$ctrl.config.measures"
             stack-list="$ctrl.config.stacks" dimension-list="$ctrl.config.dimensions" streams="$ctrl.streams"
             ref-type-list="$ctrl.config.refTypes" cost-type-list="$ctrl.config.costTypes"
             on-measure-changed="$ctrl.onMeasureChanged(measure)"

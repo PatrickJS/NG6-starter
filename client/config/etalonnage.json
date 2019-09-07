@@ -234,7 +234,9 @@
     ],
     "etalonnage-main-chart": "HmvEpKU",
     "etalonnage-sub-chart": "mhftAx",
+    "etalonnage-sub-chart-legend": "QyFaQM",
     "etalonnage-sub-chart-2": "JJLWxF",
+    "etalonnage-sub-chart-2-legend": "KVyeLzv",
     "etalonnage-ref-values": "DXddA",
     "etalonnage-cost-chart": "hJEvjF",
     "etalonnage-table": "nNt",
@@ -246,6 +248,5 @@
     "cost-type-variable": "vCostType",
     "table-mode-variable": "vTableMode",
     "stack-mode-variable": "vStackMode",
-    "startup-bookmark": "904dbdf7-93bf-47f6-90ee-86d4e60a2567",
-    "categoryField": "%Stream"
+    "startup-bookmark": "92c3d232-13eb-4787-8344-1da5b0e75bdb"
 }

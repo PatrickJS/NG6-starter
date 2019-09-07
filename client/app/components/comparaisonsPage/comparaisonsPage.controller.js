@@ -1,11 +1,12 @@
 class ComparaisonsPageController {
   /**
- * @param {QlikService} qlikService
+ * @param {qlikService} qlikService
  */
   constructor(qlikService) {
     'ngInject';
 
     let _this = this;
+    _this.showRightMenu = false;
 
     //Setup qlik Service
     _this.qlikService = qlikService;
@@ -36,8 +37,7 @@ class ComparaisonsPageController {
     };
 
     _this.onMeasureChanged = measure => {
-      _this.measure = measure;
-      qlikService.select(_this.config["measure-field"], [measure.value]);
+      _this.measure = measure[0];
     };
 
     _this.onDimensionChanged = dimension => {
@@ -137,6 +137,8 @@ class ComparaisonsPageController {
         });
 
         _this.tableHeaders = headers;
+
+        _this.showRightMenu = true;
       });
     }
   }

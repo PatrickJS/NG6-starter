@@ -1,8 +1,9 @@
 class menuTabRightController {
   /**
-* @param {QlikService} qlikService
+* @param {qlikService} qlikService
+* @param {utilService} utilService
 */
-  constructor(qlikService) {
+  constructor(qlikService, utilService) {
     'ngInject';
     this.name = 'menuTabRight';
 
@@ -66,7 +67,7 @@ class menuTabRightController {
       dimensionField = qlikService.field([_this.qlikConfig["dimension-field"]], dimensionFieldListener);
 
       //Measure handling
-      measureFieldListener =  () => {
+      measureFieldListener = () => {
         if (_this.measures && _this.measures.length > 0) {
           measureField.rows.forEach(row => {
             _this.measures.forEach(measure => {
@@ -75,9 +76,11 @@ class menuTabRightController {
               }
             });
           });
+
+          _this.onMeasureChanged({ measure: _this.measures.filter(m => m.selected) });
         }
       };
-      measureField = qlikService.field([_this.qlikConfig["measure-field"]],measureFieldListener);
+      measureField = qlikService.field([_this.qlikConfig["measure-field"]], measureFieldListener);
 
       //Stack handling
       stackFieldListener = () => {
@@ -89,14 +92,14 @@ class menuTabRightController {
               }
             });
           });
-        } 0
+        }
       };
       stackField = qlikService.field([_this.qlikConfig["stack-field"]], stackFieldListener);
     };
 
     _this.$onChanges = changeObj => {
       if (changeObj.streams && changeObj.streams.currentValue) {
-        _this.measures = getTiles(_this.streams, _this.measureList);
+        _this.measures = utilService.getMeasuresByStreams(_this.streams, _this.measureList);
         // if (_this.measures && _this.measures.length > 0 && _this.measures.indexOf(_this.measure) < 0) {
         //   _this.measure = _this.measures[0];
         //   _this.onMeasureChanged({ measure: _this.measures[0] });
@@ -106,7 +109,7 @@ class menuTabRightController {
 
     _this.selectMeasure = measure => {
       _this.measure = measure;
-      _this.onMeasureChanged({ measure });
+      measureField.selectValues([measure.value]);
     };
 
     _this.selectFilter = stack => {
@@ -135,23 +138,6 @@ class menuTabRightController {
       stackField.OnData.unbind(stackFieldListener);
     };
   }
-}
-
-function getTiles(streams, measureList) {
-  let tiles = [];
-
-  streams.forEach(stream => {
-    let hits = measureList.filter(measure => stream.measures.indexOf(measure.id) > -1);
-
-    hits.forEach(hit => {
-      if (tiles.indexOf(hit) < 0) {
-        tiles.push(hit);
-      }
-    });
-  });
-
-  return tiles;
-
 }
 
 export default menuTabRightController;

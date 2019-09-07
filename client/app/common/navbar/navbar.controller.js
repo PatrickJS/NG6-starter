@@ -1,5 +1,5 @@
 class NavbarController {
-  constructor($http, $location) {
+  constructor($http, $location, loadService) {
     'ngInject';
 
     let _this = this;
@@ -7,11 +7,13 @@ class NavbarController {
     _this.name = 'navbar';
     _this.route = $location.path();
 
-    $http.get("config/navigation.json").then(reply => {
-      _this.config = reply.data;;
+    loadService.loadConfig('navigation').then(data => _this.config = data);
+
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+      $('.wrapper').toggleClass('active');
     });
 
-    //_this.selectNav = nav => _this.currentNav = nav;
   }
 }
 

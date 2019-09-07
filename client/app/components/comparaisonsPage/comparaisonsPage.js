@@ -16,10 +16,10 @@ let comparaisonsPageModule = angular.module('comparaisonsPage', [
         url: '/comparaisons',
         component: 'comparaisonsPage',
         resolve: {
-          config: ($http) => {
+          config: (loadService) => {
             'ngInject';
 
-            return $http.get("config/comparaisons.json").then(reply => reply.data);
+            return loadService.loadConfig('comparaisons');
           }
         }
       });

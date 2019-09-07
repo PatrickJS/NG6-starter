@@ -1,7 +1,8 @@
-export default class QlikService {
+export default class qlikService {
   constructor(qlik) {
     'ngInject';
     this.qlik = qlik.instance;
+    this.config = qlik.config;
     this.app = qlik.instance.openApp(qlik.appId, qlik.config);
   }
 
@@ -50,6 +51,23 @@ export default class QlikService {
       }];
 
       return _this.app.createCube(qHyperCubeDef, callback);
+    });
+  }
+
+  exportData(qlikObj) {
+    qlikObj.exportData().then(reply => {
+      //console.log(reply)
+
+      let baseUri = (this.config.isSecure ? "https://" : "http://") + this.config.host + (this.config.port ? ":" + this.config.port : "") + this.config.prefix;
+      let dataUri = baseUri + reply.qUrl.substr(1);
+      let fileName = "Data.xlsx";
+
+      var a = document.createElement("a");
+      a.style = "display:none";
+      a.href = dataUri;
+      a.download = fileName;
+      a.click();
+      console.log("Report downloaded");
     });
   }
 }

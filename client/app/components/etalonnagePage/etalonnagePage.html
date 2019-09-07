@@ -4,7 +4,7 @@
   <section class="main-tab">
     <div class="container-fluid">
       <stream-bar streams="$ctrl.config.streams" on-stream-changed="$ctrl.onStreamChanged(streams)"
-        qlik-field="$ctrl.config.categoryField"></stream-bar>
+        qlik-field="$ctrl.config['stream-field']"></stream-bar>
 
       <div class="row inner-container">
         <div class="col-xl-8 col-sm-12 col-quebec-left">
@@ -32,6 +32,9 @@
                       </a>
                     </li>
                   </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" ng-click="$ctrl.exportTable()">Export</a>
                 </li>
               </ul>
               <div ng-show="$ctrl.viewMode=='chart'">
@@ -69,6 +72,7 @@
                       <div id="QV04" ng-show="$ctrl.stackMode=='%' ||  $ctrl.stackMode=='$'"
                         class="etalonnage-sub-chart"></div>
                       <div id="QV05" ng-show="$ctrl.stackMode=='!'" class="etalonnage-cost-chart"></div>
+                      <chart-legend legend-list="$ctrl.legendList"></chart-legend>
                     </div>
                   </div>
                 </div>

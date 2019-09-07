@@ -1,12 +1,12 @@
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th ng-repeat="header in $ctrl.headers">{{header}}</th>
+      <th ng-show="header.visible" ng-repeat="header in $ctrl.headers">{{header.title}}</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="row in $ctrl.data">
-      <td ng-repeat="cell in row track by $index">{{cell}}</td>
+      <td ng-show="$ctrl.headers[$index].visible" ng-repeat="cell in row track by $index">{{cell}}</td>
     </tr>
   </tbody>
 </table>

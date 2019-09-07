@@ -1,0 +1,25 @@
+.legend {
+	display: flex;
+	justify-content: center;
+	margin-top: 15px;
+
+	&.legend-large-padding{
+		margin-top: 38px;
+	}
+
+	li {
+		color: rgba(40,40,40,0.5);
+		font-size: 13px;
+		& + li {
+			margin-left: 26px;
+		}
+	}
+
+	.color {
+		display:inline-block;
+		vertical-align:middle;
+		width: 8px;
+		height: 8px;
+		margin: 0 5px 2px 0;
+	}
+}
