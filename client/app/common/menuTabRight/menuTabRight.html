@@ -1,6 +1,6 @@
 <div class="tab-right menu-tab-right table-{{$ctrl.measure.color}}">
   <ul class="nav nav-tabs" id="myTabTwo">
-    <li class="nav-item" ng-repeat="dimension in $ctrl.dimensionList | orderBy:'id'"
+    <li class="nav-item" ng-repeat="dimension in $ctrl.qlikConfig.dimensions | orderBy:'id'"
       ng-click="$ctrl.selectDimension(dimension)">
       <a class="nav-link" ng-class="{active: dimension.selected}">{{dimension.title}}</a>
     </li>
@@ -10,11 +10,13 @@
 
       <!-- DropDown on the right tab -->
       <div class="dropdown qubec-dropdown">
-        <nice-select option-list="$ctrl.refTypeList" on-select-changed="$ctrl.selectRefType(selected)"></nice-select>
-        <nice-select option-list="$ctrl.costTypeList" on-select-changed="$ctrl.selectCostType(selected)"></nice-select>
+        <nice-select option-list="$ctrl.qlikConfig.refTypes" on-select-changed="$ctrl.selectRefType(selected)">
+        </nice-select>
+        <nice-select option-list="$ctrl.qlikConfig.costTypes" on-select-changed="$ctrl.selectCostType(selected)">
+        </nice-select>
       </div>
 
-      <div class="reference-lists" ng-if="$ctrl.refList && $ctrl.compList">
+      <div class="reference-lists" ng-if="$ctrl.showCompare">
         <div class="ref-list col-ref">
           <span class="title"><strong>Gr réf. </strong> <span class="badge">{{$ctrl.refGroupCount}}</span></span>
           <div class="ref-dropdown">
@@ -41,7 +43,7 @@
             <div class="col-xl-12 button-wrap">
               <div class="buttons button-active">
                 <ul class="nav nav-tabs">
-                  <li class="btn-stack" ng-repeat="stack in $ctrl.stackList | orderBy:'id'"
+                  <li class="btn-stack" ng-repeat="stack in $ctrl.stacks | orderBy:'id'"
                     ng-class="{'btn-full': stack.long}" ng-click="$ctrl.selectFilter(stack)">
                     <a ng-class="{active: stack.selected}">{{stack.title}}</a>
                   </li>

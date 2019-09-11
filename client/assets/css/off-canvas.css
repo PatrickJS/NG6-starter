@@ -109,7 +109,7 @@ a[data-toggle="collapse"] {
 
 ul ul a {
     font-size: 0.9em !important;
-    padding-left: 30px !important;
+    /* padding-left: 30px !important; */
     background: #6d7fcc;
 }
 
@@ -235,13 +235,13 @@ a.article:hover {
 #sidebar .ham-menu-items li a:after{
     border: none;
 }
-#sidebar .ham-menu-items li a:before{
+/* #sidebar .ham-menu-items li a:before{
     content: "\f002";
     font-family: 'Font Awesome 5 Pro';
     font-weight: 600;
     color: #c7c7c7;
     margin-right: 22px;
-}
+} */
 #sidebar .ham-menu-items li a i{
     float: right;
     margin-right: 15px;
@@ -249,12 +249,12 @@ a.article:hover {
 
 /* SUB OFFSET MENU AS ACCORDIAN */
 #sidebar .ham-menu-items ul.sub-offset-menu li{
-    padding: 13px 0;
+    /* padding: 13px 0;
     text-transform: uppercase;
     background: #52cc53;
     border-bottom: 1px solid #ace7ac;
     display: inline-block;
-    width: 100%;
+    width: 100%; */
 }
 #sidebar .ham-menu-items ul.sub-offset-menu li:last-of-type{
     margin-bottom: 50px;

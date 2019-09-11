@@ -22,7 +22,7 @@ class etalonnagePageController {
   $onInit() {
     //Create charts
     let windowHeight = $(window).height(),
-      offset = 463;
+      offset = 493;
     $('#QV01').css("height", (windowHeight - offset) * 0.6);
     $('#QV02').css("height", (windowHeight - offset) * 0.4);
     $('#QV03').css("height", (windowHeight - offset) + 97);
@@ -67,7 +67,10 @@ class etalonnagePageController {
 
       let headers = [];
       cube.qHyperCube.qDimensionInfo.map(dimension => {
-        headers.push(dimension.qFallbackTitle);
+        headers.push({
+          title: dimension.qFallbackTitle,
+          visible: true
+        });
       })
 
       //Determine which fields to be visible in table view according to selected streams
@@ -94,6 +97,17 @@ class etalonnagePageController {
         color: row[1].qText
       }));
     });
+
+    //Bind legend values to stack bar chart for Type de coût
+    this.qlikService.bindVisualizationData(this.config["etalonnage-sub-chart-2-legend"], cube => {
+      let data = cube.qHyperCube.qDataPages[0].qMatrix;
+
+      this.legendList2 = data.map(row => ({
+        value: row[0].qText,
+        color: row[1].qText
+      }));
+    });
+
   }
 
   exportTable() {
@@ -124,15 +138,15 @@ class etalonnagePageController {
   setStackMode(mode) {
     this.qlikService.setVariable(this.config["stack-mode-variable"], mode)
       .then(() => {
-        let hits = this.config["stack-mode"].filter(m => m.title === mode);
+        // let hits = this.config["stack-mode"].filter(m => m.title === mode);
 
-        let stacks = [];
-        if (hits.length > 0) {
-          hits[0].stacks.map(id => {
-            stacks = stacks.concat(this.config["stacks"].filter(s => s.id === id));
-          });
-        }
-        this.stacks = stacks;
+        // let stacks = [];
+        // if (hits.length > 0) {
+        //   hits[0].stacks.map(id => {
+        //     stacks = stacks.concat(this.config["stacks"].filter(s => s.id === id));
+        //   });
+        // }
+        // this.stacks = stacks;
         this.stackMode = mode;
       });
   }
@@ -157,18 +171,17 @@ class etalonnagePageController {
 
   onStackChanged(stack) {
     this.stack = stack;
-    if (stack.value) {
+    if (stack.value !== "Type de coûts") {
       if (this.stackMode === "!") {
         this.setStackMode("$");
       }
-
-      this.qlikService.select(this.config["stack-field"], [stack.value]);
     }
     //Special chart for cost distribution
     else {
       this.setStackMode("!");
     }
 
+    this.qlikService.select(this.config["stack-field"], [stack.value]);
     this.qlikService.resize();
   }
 

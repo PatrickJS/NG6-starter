@@ -88,14 +88,11 @@
           </div>
         </div>
         <div class="col-xl-4 col-sm-12 col-padding-left col-quebec-right">
-          <menu-tab-right ng-if="$ctrl.showRightMenu" qlik-config="$ctrl.config" measure-list="$ctrl.config.measures"
-            stack-list="$ctrl.config.stacks" dimension-list="$ctrl.config.dimensions" streams="$ctrl.streams"
-            ref-type-list="$ctrl.config.refTypes" cost-type-list="$ctrl.config.costTypes"
-            on-measure-changed="$ctrl.onMeasureChanged(measure)"
+          <menu-tab-right ng-if="$ctrl.showRightMenu" qlik-config="$ctrl.config" show-compare="true"
+            streams="$ctrl.streams" on-measure-changed="$ctrl.onMeasureChanged(measure)"
             on-dimension-changed="$ctrl.onDimensionChanged(dimension)" on-stack-changed="$ctrl.onStackChanged(stack)"
-            on-ref-type-changed="$ctrl.onRefTypeChanged(refType)" ref-type="$ctrl.refType"
-            on-cost-type-changed="$ctrl.onCostTypeChanged(costType)" cost-type="$ctrl.costType"
-            ref-list="$ctrl.config['group-ref-list']" comp-list="$ctrl.config['group-comp-list']">
+            on-ref-type-changed="$ctrl.onRefTypeChanged(refType)"
+            on-cost-type-changed="$ctrl.onCostTypeChanged(costType)">
           </menu-tab-right>
         </div>
       </div>

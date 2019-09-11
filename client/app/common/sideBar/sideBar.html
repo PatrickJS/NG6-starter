@@ -1,4 +1,4 @@
-<nav id="sidebar">
+<nav id="sidebar" class="sideBar">
   <div class="offset-header">
     <div class="offset-logo">
       <img src="assets/images/ps-logo.png" alt="Quebec">
@@ -21,52 +21,13 @@
     </div>
   </div>
   <ul class="list-unstyled components off-canvas-items ham-menu-items">
-    <li>
-      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Filtres généraux<i
-          class="fas fa-chevron-down"></i></a>
-      <ul class="collapse list-unstyled sub-offset-menu" id="homeSubmenu">
-        <li>
-          <a href="#">Année fiscale</a>
-        </li>
-        <li>
-          <a href="#">Types/catégories d’épisodes</a>
-        </li>
-        <li>
-          <a href="#">Coûts directs versus coûts totaux</a>
-        </li>
-        <li>
-          <a href="#">Exclusion épisodes «&nbsp;incomplets</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#menutwo" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Types d’usagers <i
-          class="fas fa-chevron-down"></i></a>
-      <ul class="collapse list-unstyled sub-offset-menu" id="menutwo">
-        <li>
-          <a href="#">Page 1</a>
-        </li>
-        <li>
-          <a href="#">Page 2</a>
-        </li>
-        <li>
-          <a href="#">Page 3</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#menuthree" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Caractéristiques des
-        établissements <i class="fas fa-chevron-down"></i></a>
-      <ul class="collapse list-unstyled sub-offset-menu" id="menuthree">
-        <li>
-          <a href="#">Page 1</a>
-        </li>
-        <li>
-          <a href="#">Page 2</a>
-        </li>
-        <li>
-          <a href="#">Page 3</a>
-        </li>
+    <li ng-repeat="filter in $ctrl.filters">
+      <a class="dropdown-toggle" ng-click="$ctrl.toggle(filter)">{{filter.title}}<i class="fas"
+          ng-class="{'fa-chevron-down': !filter.active, 'fa-chevron-up': filter.active}"></i></a>
+      <ul class="list-unstyled sub-offset-menu" ng-class="{collapse: !filter.active}">
+        <a>
+          <div ng-repeat="o in filter.obj" class="sidebar-filter" id="{{o}}"></div>
+        </a>
       </ul>
     </li>
   </ul>

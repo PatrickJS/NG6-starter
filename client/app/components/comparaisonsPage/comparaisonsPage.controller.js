@@ -1,146 +1,161 @@
 class ComparaisonsPageController {
   /**
  * @param {qlikService} qlikService
+ * @param {utilService} utilService
  */
-  constructor(qlikService) {
+  constructor(qlikService, utilService) {
     'ngInject';
 
-    let _this = this;
-    _this.showRightMenu = false;
+    this.qlikService = qlikService;
+    this.utilService = utilService;
 
-    //Setup qlik Service
-    _this.qlikService = qlikService;
+    this.showRightMenu = false;
 
     //Setup view mode, chart by default
-    _this.viewMode = 'chart';
-    _this.setChartView = () => {
-      _this.viewMode = 'chart';
-      _this.qlikService.resize();
-    }
-    _this.setTableView = () => {
-      _this.viewMode = 'table';
-    }
+    this.viewMode = 'chart';
 
     //Setup stack mode
-    _this.stackMode = '#';
-    _this.setStackMode = mode => {
-      _this.stackMode = mode;
-      qlikService.resize();
-    }
+    this.stackMode = '#';
+  }
 
-    //Setup change listener from control tab [Right tab]
-    _this.onStreamChanged = streams => {
-      _this.streams = streams;
-      // qlikService.select(_this.config["stream-field"], [stream.value]);
-      // qlikService.select(_this.config["stream-field"], [stream.value], "GrRef");
-      // qlikService.select(_this.config["stream-field"], [stream.value], "GrComp");
-    };
+  setChartView() {
+    this.viewMode = 'chart';
+    this.qlikService.resize();
+  }
+  setTableView() {
+    this.viewMode = 'table';
+  }
 
-    _this.onMeasureChanged = measure => {
-      _this.measure = measure[0];
-    };
+  setStackMode(mode) {
+    this.stackMode = mode;
+    this.qlikService.resize();
+  }
 
-    _this.onDimensionChanged = dimension => {
-      _this.dimension = dimension;
+  //Setup change listener from control tab [Right tab]
+  onStreamChanged(streams) {
+    this.streams = streams;
+    // qlikService.select(this.config["stream-field"], [stream.value]);
+    // qlikService.select(this.config["stream-field"], [stream.value], "GrRef");
+    // qlikService.select(this.config["stream-field"], [stream.value], "GrComp");
+  }
 
-      qlikService.select(_this.config["dimension-field"], [dimension.value]);
-      qlikService.select(_this.config["dimension-field"], [dimension.value], "GrRef");
-      qlikService.select(_this.config["dimension-field"], [dimension.value], "GrComp");
-    };
+  onMeasureChanged(measure) {
+    this.measure = measure[0];
+  }
 
-    _this.onStackChanged = stack => {
-      _this.stack = stack;
-      qlikService.select(_this.config["stack-field"], [stack.value]);
-    };
+  onDimensionChanged(dimension) {
+    this.dimension = dimension;
 
-    _this.onRefTypeChanged = refType => {
-      _this.refType = refType;
-      qlikService.setVariable(_this.config["ref-type-variable"], refType.value);
-    };
+    this.qlikService.select(this.config["dimension-field"], [dimension.value]);
+    this.qlikService.select(this.config["dimension-field"], [dimension.value], "GrRef");
+    this.qlikService.select(this.config["dimension-field"], [dimension.value], "GrComp");
+  }
 
-    _this.onCostTypeChanged = costType => {
-      _this.costType = costType;
-      qlikService.setVariable(_this.config["cost-type-variable"], costType.value);
-    };
+  onStackChanged(stack) {
+    this.stack = stack;
+    this.qlikService.select(this.config["stack-field"], [stack.value]);
+  }
 
-    _this.$onInit = () => {
-      //Initial Selections
-      // _this.qlikService.applyBookmark(_this.config['startup-bookmark']);
+  onRefTypeChanged(refType) {
+    this.refType = refType;
+    this.qlikService.setVariable(this.config["ref-type-variable"], refType.value);
+  }
 
-      let windowHeight = $(window).height(),
-        offset = 296;
+  onCostTypeChanged(costType) {
+    this.costType = costType;
+    this.qlikService.setVariable(this.config["cost-type-variable"], costType.value);
+  }
 
-      //Écarts table
-      $('#QV01').css("height", (windowHeight - offset));
+  $onInit() {
+    let windowHeight = $(window).height(),
+      offset = 296;
 
-      offset = 463;
-      //KPI compare chart
-      $('#QV02').css("height", (windowHeight - offset) * 0.5);
+    //Écarts table
+    $('#QV01').css("height", (windowHeight - offset));
 
-      //Distribution stack chart
-      $('#QV03').css("height", (windowHeight - offset) * 0.5);
-      $('#QV04').css("height", (windowHeight - offset) * 0.5);
+    offset = 463;
+    //KPI compare chart
+    $('#QV02').css("height", (windowHeight - offset) * 0.5);
 
-      $('#QV05').css("height", (windowHeight - offset) + 97);
+    //Distribution stack chart
+    $('#QV03').css("height", (windowHeight - offset) * 0.5);
+    $('#QV04').css("height", (windowHeight - offset) * 0.5);
 
-      _this.qlikService.getVisualization("QV02", _this.config["comparaisons-kpi-chart"]);
-      _this.qlikService.getVisualization("QV03", _this.config["comparaisons-distribution-#-chart"]);
-      _this.qlikService.getVisualization("QV04", _this.config["comparaisons-distribution-%-chart"]);
+    $('#QV05').css("height", (windowHeight - offset) + 97);
 
-      _this.qlikService.getVisualization("CurrentSelections", "CurrentSelections");
+    this.qlikService.getVisualization("QV02", this.config["comparaisons-kpi-chart"]);
+    this.qlikService.getVisualization("QV03", this.config["comparaisons-distribution-#-chart"]);
+    this.qlikService.getVisualization("QV04", this.config["comparaisons-distribution-%-chart"]);
 
-      //Setup Écarts Table
-      //Ref column data
-      _this.qlikService.bindVisualizationData(_this.config["comparaisons-group-ref-values"], cube => {
-        let data = cube.qHyperCube.qDataPages[0].qMatrix[0];
-        let measures = cube.qHyperCube.qMeasureInfo;
+    this.qlikService.getVisualization("CurrentSelections", "CurrentSelections");
 
-        _this.refTableData = data.map((cell, index) => ({
-          title: measures[index].qFallbackTitle,
-          value: cell.qText
-        }));
+    //Setup Écarts Table
+    //Ref column data
+    this.qlikService.bindVisualizationData(this.config["comparaisons-group-ref-values"], cube => {
+      let data = cube.qHyperCube.qDataPages[0].qMatrix[0];
+      let measures = cube.qHyperCube.qMeasureInfo;
+
+      let refTableData = data.map((cell, index) => ({
+        title: measures[index].qFallbackTitle,
+        value: cell.qText
+      }));
+
+      let measureList = this.utilService.getMeasuresByStreams(this.streams, this.config.measures);
+
+      this.refTableData = refTableData.map(row => {
+        row.visible = measureList.map(m => m.title).indexOf(row.title) > -1;
+        return row;
       });
-      //Comp column data
-      _this.qlikService.bindVisualizationData(_this.config["comparaisons-group-comp-values"], cube => {
+    });
+    //Comp column data
+    this.qlikService.bindVisualizationData(this.config["comparaisons-group-comp-values"], cube => {
 
-        let data = cube.qHyperCube.qDataPages[0].qMatrix[0];
-        let measures = cube.qHyperCube.qMeasureInfo;
+      let data = cube.qHyperCube.qDataPages[0].qMatrix[0];
+      let measures = cube.qHyperCube.qMeasureInfo;
 
-        _this.compTableData = data.map((cell, index) => ({
-          title: measures[index].qFallbackTitle,
-          value: cell.qText
-        }));
+      this.compTableData = data.map((cell, index) => ({
+        title: measures[index].qFallbackTitle,
+        value: cell.qText
+      }));
+    });
+    //écart column data
+    this.qlikService.bindVisualizationData(this.config["comparaisons-group-ecart-values"], cube => {
+      let data = cube.qHyperCube.qDataPages[0].qMatrix[0];
+      let measures = cube.qHyperCube.qMeasureInfo;
+
+      this.ecartTableData = data.map((cell, index) => ({
+        title: measures[index].qFallbackTitle,
+        value: cell.qText
+      }));
+    });
+
+    //Table view data
+    this.qlikService.bindVisualizationData(this.config["comparaisons-table"], cube => {
+      let data = cube.qHyperCube.qDataPages[0].qMatrix;
+
+      this.tableData = data.map(row => (row.map(cell => cell.qText)));
+
+      let headers = [];
+      cube.qHyperCube.qDimensionInfo.map(dimension => {
+        headers.push(dimension.qFallbackTitle);
       });
-      //écart column data
-      _this.qlikService.bindVisualizationData(_this.config["comparaisons-group-ecart-values"], cube => {
-        let data = cube.qHyperCube.qDataPages[0].qMatrix[0];
-        let measures = cube.qHyperCube.qMeasureInfo;
 
-        _this.ecartTableData = data.map((cell, index) => ({
-          title: measures[index].qFallbackTitle,
-          value: cell.qText
-        }));
-      });
+      //Determine which fields to be visible in table view according to selected streams
+      let visibles = [];
+      visibles = visibles.concat(this.utilService.getMeasuresByStreams(this.streams, this.config.measures).map(measure => measure.title));
 
-      //Table view data
-      _this.qlikService.bindVisualizationData(_this.config["comparaisons-table"], cube => {
-        let data = cube.qHyperCube.qDataPages[0].qMatrix;
-
-        _this.tableData = data.map(row => (row.map(cell => cell.qText)));
-
-        let headers = [];
-        cube.qHyperCube.qDimensionInfo.map(dimension => {
-          headers.push(dimension.qFallbackTitle);
+      cube.qHyperCube.qMeasureInfo.map(measure => {
+        let title = measure.qFallbackTitle;
+        headers.push({
+          title,
+          visible: visibles.indexOf(title) > 0
         });
-        cube.qHyperCube.qMeasureInfo.map(measure => {
-          headers.push(measure.qFallbackTitle);
-        });
-
-        _this.tableHeaders = headers;
-
-        _this.showRightMenu = true;
       });
-    }
+
+      this.tableHeaders = headers;
+
+      this.showRightMenu = true;
+    });
   }
 }
 

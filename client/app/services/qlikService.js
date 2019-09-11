@@ -20,6 +20,13 @@ export default class qlikService {
     return this.app.field(field, state).selectValues(values, toggle);
   }
 
+  getVariable(name, callback) {
+    return this.app.variable.getContent(name, reply => {
+      let v = reply.qContent.qIsNum ? reply.qContent.qString / 1 : reply.qContent.qString;
+      return callback(v);
+    });
+  }
+
   setVariable(name, value) {
     if (isNaN(value)) {
       return this.app.variable.setStringValue(name, value);
@@ -69,5 +76,16 @@ export default class qlikService {
       a.click();
       console.log("Report downloaded");
     });
+  }
+
+  createFilterList(filter) {
+    return this.app.visualization.create(
+      'listbox',
+      [filter.field],
+      {
+        "showTitle": true,
+        "title": filter.title
+      }
+    )
   }
 }

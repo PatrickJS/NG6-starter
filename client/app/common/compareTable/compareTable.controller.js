@@ -1,6 +1,3 @@
-import { $IncludedByStateFilter } from "angular-ui-router/lib/stateFilters";
-import { map } from "@uirouter/core";
-
 class CompareTableController {
   constructor() {
     let _this = this;
@@ -8,7 +5,6 @@ class CompareTableController {
     _this.data = [];
 
     _this.$onChanges = changeObj => {
-      console.log(changeObj)
 
       if (changeObj.refData && changeObj.refData.currentValue) {
         applyChange(changeObj.refData.currentValue, 'ref', _this);
@@ -22,7 +18,7 @@ class CompareTableController {
     }
 
     _this.checkHide = row => {
-      return (row.title === 'Coût moyen' && _this.refType && _this.refType.value === 2) || (row.title === 'Coût meden' && _this.refType && _this.refType.value === 1);
+      return (row.title === 'Coût moyen' && _this.refType && _this.refType.value === 2) || (row.title === 'Coût médiane' && _this.refType && _this.refType.value === 1);
     };
 
   }
@@ -34,11 +30,20 @@ function applyChange(data, type, scope) {
 
     if (hits.length > 0) {
       hits[0][type] = d.value;
+
+      if (type === 'ref') {
+        hits[0]['visible'] = d.visible;
+      }
     } else {
-      scope.data.push({
+      let row = {
         title: d.title,
         [type]: d.value
-      });
+      }
+      if (type === 'ref') {
+        row['visible'] = d.visible;
+      }
+
+      scope.data.push(row);
     }
   });
 }

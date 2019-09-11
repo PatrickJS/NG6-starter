@@ -37,7 +37,9 @@ class StreamBarController {
         return;
       }
 
-      streamField.selectValues([stream.title], true, true);
+      streamField.selectValues([stream.title], true);
+      qlikService.select(_this.qlikField, [stream.value], "GrRef", true);
+      qlikService.select(_this.qlikField, [stream.value], "GrComp", true);
     };
 
     _this.$onDestroy = () => {

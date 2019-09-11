@@ -11,6 +11,13 @@
                 4,
                 5,
                 6
+            ],
+            "stacks": [
+                1,
+                2,
+                3,
+                4,
+                5
             ]
         },
         {
@@ -21,9 +28,14 @@
                 1,
                 2,
                 3,
-                4,
-                5,
                 6
+            ],
+            "stacks": [
+                1,
+                2,
+                3,
+                4,
+                5
             ]
         },
         {
@@ -34,7 +46,17 @@
                 1,
                 2,
                 3,
-                7
+                7,
+                8,
+                9,
+                10
+            ],
+            "stacks": [
+                1,
+                6,
+                7,
+                8,
+                5
             ]
         },
         {
@@ -44,7 +66,12 @@
             "measures": [
                 1,
                 2,
-                3
+                3,
+                6
+            ],
+            "stacks": [
+                1,
+                5
             ]
         }
     ],
@@ -97,6 +124,27 @@
             "icon": "fas fa-calendar-alt",
             "color": "orange",
             "value": "DMS (heures)"
+        },
+        {
+            "id": 8,
+            "title": "% hospitalise",
+            "icon": "fas fa-calendar-alt",
+            "color": "orange",
+            "value": "% hospitalise"
+        },
+        {
+            "id": 9,
+            "title": "DMS avant dem",
+            "icon": "fas fa-calendar-alt",
+            "color": "orange",
+            "value": "DMS avant dem"
+        },
+        {
+            "id": 10,
+            "title": "DMS après dem",
+            "icon": "fas fa-calendar-alt",
+            "color": "orange",
+            "value": "DMS après dem"
         }
     ],
     "stacks": [
@@ -122,9 +170,28 @@
         },
         {
             "id": 5,
+            "title": "Type de coûts",
+            "value": "Type de coûts"
+        },
+        {
+            "id": 6,
+            "title": "Priorité triage",
+            "value": "Priorité triage"
+        },
+        {
+            "id": 7,
+            "title": "Destination",
+            "value": "Destination"
+        },
+        {
+            "id": 8,
+            "title": "Mode d'arrivée",
+            "value": "Mode d'arrivée"
+        },
+        {
+            "id": 9,
             "title": "Région de provenance",
-            "long": true,
-            "value": null
+            "value": "Région de provenance"
         }
     ],
     "dimensions": [

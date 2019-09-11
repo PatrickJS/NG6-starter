@@ -11,6 +11,13 @@
                 4,
                 5,
                 6
+            ],
+            "stacks": [
+                1,
+                2,
+                3,
+                4,
+                5
             ]
         },
         {
@@ -21,6 +28,13 @@
                 1,
                 2,
                 3
+            ],
+            "stacks": [
+                1,
+                2,
+                3,
+                4,
+                5
             ]
         },
         {
@@ -34,6 +48,13 @@
                 7,
                 8,
                 9
+            ],
+            "stacks": [
+                1,
+                6,
+                7,
+                8,
+                5
             ]
         },
         {
@@ -44,7 +65,11 @@
                 1,
                 2,
                 3,
-                4
+                6
+            ],
+            "stacks": [
+                1,
+                5
             ]
         }
     ],
@@ -146,8 +171,22 @@
         {
             "id": 5,
             "title": "Type de coûts",
-            "long": true,
-            "value": null
+            "value": "Type de coûts"
+        },
+        {
+            "id": 6,
+            "title": "Priorité triage",
+            "value": "Priorité triage"
+        },
+        {
+            "id": 7,
+            "title": "Destination",
+            "value": "Destination"
+        },
+        {
+            "id": 8,
+            "title": "Mode d'arrivée",
+            "value": "Mode d'arrivée"
         }
     ],
     "stack-mode": [

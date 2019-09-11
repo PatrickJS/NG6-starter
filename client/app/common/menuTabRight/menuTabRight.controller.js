@@ -7,136 +7,143 @@ class menuTabRightController {
     'ngInject';
     this.name = 'menuTabRight';
 
+    this.qlikService = qlikService;
+    this.utilService = utilService;
+  }
+
+  $onInit() {
     let _this = this;
-    let dimensionField, measureField, stackField;
-    let dimensionFieldListener, measureFieldListener, stackFieldListener;
 
-    _this.$onInit = () => {
-      // _this.dimension = _this.dimensionList[0];
-      // _this.stack = _this.stackList[0];
-      _this.refType = _this.refTypeList[0];
-      _this.costType = _this.costTypeList[0];
+    if (this.showCompare)
+      this.qlikService.getVisualization("LIST01", this.qlikConfig['group-ref-list']).then(model => {
+        this.refGroupCount = model.layout.title;
 
-      if (_this.refList)
-        qlikService.getVisualization("LIST01", _this.refList).then(model => {
-          _this.refGroupCount = model.layout.title;
+        $('.reference-lists').find('.ref-list').click(function (e) {
+          var $this = $(this);
 
-          $('.reference-lists').find('.ref-list').click(function (e) {
-            var $this = $(this);
-
-            if ($this.hasClass('active')) {
-              if ($(e.target).parents('.ref-dropdown-wrap').length === 0) {
-                $this.removeClass('active');
-                $this.children('.ref-dropdown').slideUp();
-                qlikService.resize();
-              }
-            } else {
-              $('.ref-list').removeClass('active');
-              $this.parents().find('.ref-dropdown').slideUp();
-              $this.addClass('active');
-              $this.children('.ref-dropdown').slideDown();
-              qlikService.resize();
+          if ($this.hasClass('active')) {
+            if ($(e.target).parents('.ref-dropdown-wrap').length === 0) {
+              $this.removeClass('active');
+              $this.children('.ref-dropdown').slideUp();
+              _this.qlikService.resize();
             }
-          });
-
-          model.Validated.bind(function () {
-            _this.refGroupCount = model.layout.title;
-          });
+          } else {
+            $('.ref-list').removeClass('active');
+            $this.parents().find('.ref-dropdown').slideUp();
+            $this.addClass('active');
+            $this.children('.ref-dropdown').slideDown();
+            _this.qlikService.resize();
+          }
         });
 
-      if (_this.compList)
-        qlikService.getVisualization("LIST02", _this.compList).then(model => {
+        model.Validated.bind(() => {
+          _this.refGroupCount = model.layout.title;
+        });
+      });
+
+    if (this.showCompare)
+      this.qlikService.getVisualization("LIST02", this.qlikConfig['group-comp-list']).then(model => {
+        this.compGroupCount = model.layout.title;
+        model.Validated.bind(() => {
           _this.compGroupCount = model.layout.title;
-          model.Validated.bind(function () {
-            _this.compGroupCount = model.layout.title;
-          });
         });
+      });
 
-      //Dimension handling
-      dimensionFieldListener = () => {
-        if (_this.dimensionList && _this.dimensionList.length > 0) {
-          dimensionField.rows.forEach(row => {
-            _this.dimensionList.forEach(dimension => {
-              if (row.qText === dimension.title) {
-                dimension.selected = row.qState === 'S';
-              }
-            });
-          });
-        }
-      };
-      dimensionField = qlikService.field([_this.qlikConfig["dimension-field"]], dimensionFieldListener);
+    //refType handling
+    this.qlikService.getVariable(this.qlikConfig["ref-type-variable"], value => {
+      this.refType = value;
 
-      //Measure handling
-      measureFieldListener = () => {
-        if (_this.measures && _this.measures.length > 0) {
-          measureField.rows.forEach(row => {
-            _this.measures.forEach(measure => {
-              if (row.qText === measure.title) {
-                measure.selected = row.qState === 'S';
-              }
-            });
-          });
+      let hits = this.qlikConfig.refTypes.filter(r => r.value === value);
 
-          _this.onMeasureChanged({ measure: _this.measures.filter(m => m.selected) });
-        }
-      };
-      measureField = qlikService.field([_this.qlikConfig["measure-field"]], measureFieldListener);
+      if (hits && hits.length > 0)
+        this.onRefTypeChanged(hits[0]);
+    });
 
-      //Stack handling
-      stackFieldListener = () => {
-        if (_this.stackList && _this.stackList.length > 0) {
-          stackField.rows.forEach(row => {
-            _this.stackList.forEach(stack => {
-              if (row.qText === stack.title) {
-                stack.selected = row.qState === 'S';
-              }
-            });
-          });
-        }
-      };
-      stackField = qlikService.field([_this.qlikConfig["stack-field"]], stackFieldListener);
+    //costType handling
+    this.qlikService.getVariable(this.qlikConfig["cost-type-variable"], value => {
+      this.costType = value;
+
+      let hits = this.qlikConfig.costType.filter(r => r.value === value);
+
+      if (hits && hits.length > 0)
+        this.onCostTypeChanged(hits[0]);
+    });
+
+    //Dimension handling
+    this.dimensionFieldListener = () => {
+      this.dimensionField.rows.forEach(row => {
+        this.qlikConfig.dimensions.forEach(dimension => {
+          if (row.qText === dimension.title) {
+            dimension.selected = row.qState === 'S';
+          }
+        });
+      });
     };
+    this.dimensionField = this.qlikService.field([this.qlikConfig["dimension-field"]], this.dimensionFieldListener);
 
-    _this.$onChanges = changeObj => {
-      if (changeObj.streams && changeObj.streams.currentValue) {
-        _this.measures = utilService.getMeasuresByStreams(_this.streams, _this.measureList);
-        // if (_this.measures && _this.measures.length > 0 && _this.measures.indexOf(_this.measure) < 0) {
-        //   _this.measure = _this.measures[0];
-        //   _this.onMeasureChanged({ measure: _this.measures[0] });
-        // }
-      }
-    };
+    //Measure handling
+    this.measureFieldListener = () => {
+      this.measureField.rows.forEach(row => {
+        this.measures.forEach(measure => {
+          if (row.qText === measure.title) {
+            measure.selected = row.qState === 'S';
+          }
+        });
+      });
 
-    _this.selectMeasure = measure => {
-      _this.measure = measure;
-      measureField.selectValues([measure.value]);
+      this.onMeasureChanged({ measure: this.measures.filter(m => m.selected) });
     };
+    this.measureField = this.qlikService.field([this.qlikConfig["measure-field"]], this.measureFieldListener);
 
-    _this.selectFilter = stack => {
-      _this.stack = stack;
-      _this.onStackChanged({ stack });
+    //Stack handling
+    this.stackFieldListener = () => {
+      this.stackField.rows.forEach(row => {
+        this.qlikConfig.stacks.forEach(stack => {
+          if (row.qText === stack.title) {
+            stack.selected = row.qState === 'S';
+          }
+        });
+      });
     };
+    this.stackField = this.qlikService.field([this.qlikConfig["stack-field"]], this.stackFieldListener);
+  }
 
-    _this.selectDimension = dimension => {
-      _this.dimension = dimension;
-      _this.onDimensionChanged({ dimension });
-    };
+  $onChanges(changeObj) {
+    if (changeObj.streams && changeObj.streams.currentValue) {
+      this.measures = this.utilService.getMeasuresByStreams(this.streams, this.qlikConfig.measures);
+      this.stacks = this.utilService.getStacksByStreams(this.streams, this.qlikConfig.stacks);
+    }
+  }
 
-    _this.selectRefType = selected => {
-      _this.refType = selected;
-      _this.onRefTypeChanged({ refType: _this.refType });
-    };
+  selectMeasure(measure) {
+    this.measure = measure;
+    this.measureField.selectValues([measure.value]);
+  }
 
-    _this.selectCostType = selected => {
-      _this.costType = selected;
-      _this.onCostTypeChanged({ costType: _this.costType });
-    };
+  selectFilter(stack) {
+    this.stack = stack;
+    this.onStackChanged({ stack });
+  }
 
-    _this.$onDestroy = () => {
-      dimensionField.OnData.unbind(dimensionFieldListener);
-      measureField.OnData.unbind(measureFieldListener);
-      stackField.OnData.unbind(stackFieldListener);
-    };
+  selectDimension(dimension) {
+    this.dimension = dimension;
+    this.onDimensionChanged({ dimension });
+  }
+
+  selectRefType(selected) {
+    this.refType = selected;
+    this.onRefTypeChanged({ refType: this.refType });
+  }
+
+  selectCostType(selected) {
+    this.costType = selected;
+    this.onCostTypeChanged({ costType: this.costType });
+  }
+
+  $onDestroy() {
+    this.dimensionField.OnData.unbind(this.dimensionFieldListener);
+    this.measureField.OnData.unbind(this.measureFieldListener);
+    this.stackField.OnData.unbind(this.stackFieldListener);
   }
 }
 

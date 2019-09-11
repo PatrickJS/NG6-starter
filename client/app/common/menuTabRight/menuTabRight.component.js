@@ -5,21 +5,13 @@ import './menuTabRight.scss';
 let menuTabRightComponent = {
   bindings: {
     qlikConfig: '<',
-    measureList: '<',
-    stackList: '<',
-    dimensionList: '<',
-    refTypeList: '<',
-    costTypeList: '<',
+    showCompare: '@',
     streams: '<',
-    onDimensionChanged: '&',
     onMeasureChanged: '&',
+    onDimensionChanged: '&',
     onStackChanged: '&',
     onRefTypeChanged: '&',
-    onCostTypeChanged: '&',
-    refType: '=',
-    costType: '=',
-    refList: '<',
-    compList: '<',
+    onCostTypeChanged: '&'
   },
   template,
   controller
