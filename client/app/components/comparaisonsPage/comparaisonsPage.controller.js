@@ -10,6 +10,7 @@ class ComparaisonsPageController {
     this.utilService = utilService;
 
     this.showRightMenu = false;
+    this.showCostStack = false;
 
     //Setup view mode, chart by default
     this.viewMode = 'chart';
@@ -53,6 +54,9 @@ class ComparaisonsPageController {
 
   onStackChanged(stack) {
     this.stack = stack;
+
+    this.showCostStack = stack.value === "Type de coûts";
+
     this.qlikService.select(this.config["stack-field"], [stack.value]);
   }
 
@@ -73,19 +77,22 @@ class ComparaisonsPageController {
     //Écarts table
     $('#QV01').css("height", (windowHeight - offset));
 
-    offset = 463;
+    offset = 493;
     //KPI compare chart
     $('#QV02').css("height", (windowHeight - offset) * 0.5);
 
     //Distribution stack chart
-    $('#QV03').css("height", (windowHeight - offset) * 0.5);
-    $('#QV04').css("height", (windowHeight - offset) * 0.5);
-
+    $('#QV03a').css("height", (windowHeight - offset) * 0.5);
+    $('#QV03b').css("height", (windowHeight - offset) * 0.5);
+    $('#QV04a').css("height", (windowHeight - offset) * 0.5);
+    $('#QV04b').css("height", (windowHeight - offset) * 0.5);
     $('#QV05').css("height", (windowHeight - offset) + 97);
 
     this.qlikService.getVisualization("QV02", this.config["comparaisons-kpi-chart"]);
-    this.qlikService.getVisualization("QV03", this.config["comparaisons-distribution-#-chart"]);
-    this.qlikService.getVisualization("QV04", this.config["comparaisons-distribution-%-chart"]);
+    this.qlikService.getVisualization("QV03a", this.config["comparaisons-distribution-#-chart"]);
+    this.qlikService.getVisualization("QV03b", this.config["comparaisons-distribution-#-chart-cost"]);
+    this.qlikService.getVisualization("QV04a", this.config["comparaisons-distribution-%-chart"]);
+    this.qlikService.getVisualization("QV04b", this.config["comparaisons-distribution-%-chart-cost"]);
 
     this.qlikService.getVisualization("CurrentSelections", "CurrentSelections");
 
@@ -103,7 +110,12 @@ class ComparaisonsPageController {
       let measureList = this.utilService.getMeasuresByStreams(this.streams, this.config.measures);
 
       this.refTableData = refTableData.map(row => {
-        row.visible = measureList.map(m => m.title).indexOf(row.title) > -1;
+        if (this.refType && (row.title === 'Coût moyen' || row.title === 'Coût médiane')) {
+          row.visible = (this.refType.value === 1 && row.title === 'Coût moyen') || (this.refType.value === 2 && row.title === 'Coût médiane')
+        } else {
+          row.visible = measureList.map(m => m.title).indexOf(row.title) > -1;
+        }
+
         return row;
       });
     });
@@ -137,7 +149,10 @@ class ComparaisonsPageController {
 
       let headers = [];
       cube.qHyperCube.qDimensionInfo.map(dimension => {
-        headers.push(dimension.qFallbackTitle);
+        headers.push({
+          title: dimension.qFallbackTitle,
+          visible: true
+        });
       });
 
       //Determine which fields to be visible in table view according to selected streams
@@ -155,6 +170,26 @@ class ComparaisonsPageController {
       this.tableHeaders = headers;
 
       this.showRightMenu = true;
+    });
+
+    //Bind legend values to stack bar chart
+    this.qlikService.bindVisualizationData(this.config["etalonnage-sub-chart-legend"], cube => {
+      let data = cube.qHyperCube.qDataPages[0].qMatrix;
+
+      this.legendList = data.map(row => ({
+        value: row[0].qText,
+        color: row[1].qText
+      }));
+    });
+
+    //Bind legend values to stack bar chart for Type de coût
+    this.qlikService.bindVisualizationData(this.config["etalonnage-sub-chart-2-legend"], cube => {
+      let data = cube.qHyperCube.qDataPages[0].qMatrix;
+
+      this.legendList2 = data.map(row => ({
+        value: row[0].qText,
+        color: row[1].qText
+      }));
     });
   }
 }

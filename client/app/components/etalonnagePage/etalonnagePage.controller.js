@@ -11,6 +11,7 @@ class etalonnagePageController {
     this.qlikService = qlikService;
     this.utilService = utilService;
     this.showRightMenu = false;
+    this.showCostStack = false;
 
     //Setup view mode, chart by default
     this.viewMode = 'chart';
@@ -25,7 +26,8 @@ class etalonnagePageController {
       offset = 493;
     $('#QV01').css("height", (windowHeight - offset) * 0.6);
     $('#QV02').css("height", (windowHeight - offset) * 0.4);
-    $('#QV03').css("height", (windowHeight - offset) + 97);
+    $('#QV03a').css("height", (windowHeight - offset) + 97);
+    $('#QV03b').css("height", (windowHeight - offset) + 97);
     $('#QV04').css("height", (windowHeight - offset) * 0.4);
     $('#QV05').css("height", (windowHeight - offset) * 0.4);
 
@@ -59,11 +61,11 @@ class etalonnagePageController {
       this.showRightMenu = true;
     });
 
-    //Bind table view to the page
-    this.tableObj = this.qlikService.bindVisualizationData(this.config["etalonnage-table"], cube => {
+    //Bind # table view to the page
+    this.tableObj = this.qlikService.bindVisualizationData(this.config["etalonnage-sharp-table"], cube => {
       let data = cube.qHyperCube.qDataPages[0].qMatrix;
 
-      this.tableData = data.map(row => (row.map(cell => cell.qText)));
+      this.sharpTableData = data.map(row => (row.map(cell => cell.qText)));
 
       let headers = [];
       cube.qHyperCube.qDimensionInfo.map(dimension => {
@@ -71,7 +73,7 @@ class etalonnagePageController {
           title: dimension.qFallbackTitle,
           visible: true
         });
-      })
+      });
 
       //Determine which fields to be visible in table view according to selected streams
       let visibles = ['Coût directs', 'Coût indirects'];
@@ -85,7 +87,36 @@ class etalonnagePageController {
         });
       });
 
-      this.tableHeaders = headers;
+      this.sharpTableHeaders = headers;
+    });
+
+    //Bind % table view to the page
+    this.tableObj = this.qlikService.bindVisualizationData(this.config["etalonnage-percentage-table"], cube => {
+      let data = cube.qHyperCube.qDataPages[0].qMatrix;
+
+      this.percentageTableData = data.map(row => (row.map(cell => cell.qText)));
+
+      let headers = [];
+      cube.qHyperCube.qDimensionInfo.map(dimension => {
+        headers.push({
+          title: dimension.qFallbackTitle,
+          visible: true
+        });
+      });
+
+      //Determine which fields to be visible in table view according to selected streams
+      let visibles = ['Coût directs', 'Coût indirects'];
+      visibles = visibles.concat(this.utilService.getMeasuresByStreams(this.streams, this.config.measures).map(measure => measure.title));
+
+      cube.qHyperCube.qMeasureInfo.map(measure => {
+        let title = measure.qFallbackTitle;
+        headers.push({
+          title,
+          visible: visibles.indexOf(title) > 0
+        });
+      });
+
+      this.percentageTableHeaders = headers;
     });
 
     //Bind legend values to stack bar chart
@@ -138,15 +169,6 @@ class etalonnagePageController {
   setStackMode(mode) {
     this.qlikService.setVariable(this.config["stack-mode-variable"], mode)
       .then(() => {
-        // let hits = this.config["stack-mode"].filter(m => m.title === mode);
-
-        // let stacks = [];
-        // if (hits.length > 0) {
-        //   hits[0].stacks.map(id => {
-        //     stacks = stacks.concat(this.config["stacks"].filter(s => s.id === id));
-        //   });
-        // }
-        // this.stacks = stacks;
         this.stackMode = mode;
       });
   }
@@ -171,15 +193,8 @@ class etalonnagePageController {
 
   onStackChanged(stack) {
     this.stack = stack;
-    if (stack.value !== "Type de coûts") {
-      if (this.stackMode === "!") {
-        this.setStackMode("$");
-      }
-    }
-    //Special chart for cost distribution
-    else {
-      this.setStackMode("!");
-    }
+
+    this.showCostStack = stack.value === "Type de coûts";
 
     this.qlikService.select(this.config["stack-field"], [stack.value]);
     this.qlikService.resize();

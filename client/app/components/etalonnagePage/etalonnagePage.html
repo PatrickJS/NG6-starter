@@ -47,8 +47,13 @@
               <div ng-show="$ctrl.viewMode=='table'">
                 <h2>TABLEAU DES DONNÉES</h2>
                 <div class="table-wrapper">
-                  <div id="QV03" class="scrolling-container">
-                    <straight-table headers="$ctrl.tableHeaders" data="$ctrl.tableData"></straight-table>
+                  <div id="QV03a" class="scrolling-container" ng-show="$ctrl.tableMode=='#'">
+                    <straight-table headers="$ctrl.sharpTableHeaders" data="$ctrl.sharpTableData"></straight-table>
+                  </div>
+
+                  <div id="QV03b" class="scrolling-container" ng-show="$ctrl.tableMode=='%'">
+                    <straight-table headers="$ctrl.percentageTableHeaders" data="$ctrl.percentageTableData">
+                    </straight-table>
                   </div>
                 </div>
               </div>
@@ -56,24 +61,24 @@
             <div class="custom-content-wrapper tab-border bottom-tab-wrapper" ng-show="$ctrl.viewMode=='chart'">
               <div class="tab-bottom chart-wrap">
                 <div class="tab-pane in active">
-                  <h2>Distribution par {{$ctrl.stack.title}} </h2>
+                  <h2>Distribution par {{$ctrl.stack.title || "Groupes d'âge"}} </h2>
                   <ul class="nav nav-tabs">
                     <li ng-click="$ctrl.setStackMode('#')"><a ng-class="{active: $ctrl.stackMode=='#'}"><i
                           class="fas fa-hashtag"></i></a></li>
                     <li ng-click="$ctrl.setStackMode('%')"><a ng-class="{active: $ctrl.stackMode=='%'}"><i
                           class="fal fa-percentage"></i></a></li>
-                    <li ng-click="$ctrl.setStackMode('$')"><a
-                        ng-class="{active: $ctrl.stackMode=='$' || $ctrl.stackMode==='!'}"><i
+                    <li ng-click="$ctrl.setStackMode('$')"><a ng-class="{active: $ctrl.stackMode=='$'}"><i
                           class="fas fa-dollar-sign"></i></a></li>
                   </ul>
                   <div class="tab-pane in active show">
                     <div class="chart-wrapper">
-                      <div id="QV02" ng-show="$ctrl.stackMode=='#'" class="etalonnage-sub-chart"></div>
-                      <div id="QV04" ng-show="$ctrl.stackMode=='%' ||  $ctrl.stackMode=='$'"
+                      <div id="QV02" ng-show="!$ctrl.showCostStack && $ctrl.stackMode=='#'"
                         class="etalonnage-sub-chart"></div>
-                      <div id="QV05" ng-show="$ctrl.stackMode=='!'" class="etalonnage-cost-chart"></div>
-                      <chart-legend ng-show="$ctrl.stackMode!='!'" legend-list="$ctrl.legendList"></chart-legend>
-                      <chart-legend ng-show="$ctrl.stackMode=='!'" legend-list="$ctrl.legendList2"></chart-legend>
+                      <div id="QV04" ng-show="!$ctrl.showCostStack && ($ctrl.stackMode=='%' ||  $ctrl.stackMode=='$')"
+                        class="etalonnage-sub-chart"></div>
+                      <div id="QV05" ng-show="$ctrl.showCostStack" class="etalonnage-cost-chart"></div>
+                      <chart-legend ng-show="!$ctrl.showCostStack" legend-list="$ctrl.legendList"></chart-legend>
+                      <chart-legend ng-show="$ctrl.showCostStack" legend-list="$ctrl.legendList2"></chart-legend>
                     </div>
                   </div>
                 </div>

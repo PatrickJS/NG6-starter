@@ -76,11 +76,15 @@
                             class="fal fa-percentage"></i></a></li>
                     </ul>
                     <div class="chart-wrapper" ng-show="$ctrl.stackMode=='#'">
-                      <div id="QV03"></div>
+                      <div id="QV03a" ng-show="!$ctrl.showCostStack"></div>
+                      <div id="QV03b" ng-show="$ctrl.showCostStack"></div>
                     </div>
                     <div class="chart-wrapper" ng-show="$ctrl.stackMode=='%'">
-                      <div id="QV04"></div>
+                      <div id="QV04a" ng-show="!$ctrl.showCostStack"></div>
+                      <div id="QV04b" ng-show="$ctrl.showCostStack"></div>
                     </div>
+                    <chart-legend ng-show="!$ctrl.showCostStack" legend-list="$ctrl.legendList"></chart-legend>
+                    <chart-legend ng-show="$ctrl.showCostStack" legend-list="$ctrl.legendList2"></chart-legend>
                   </div>
                 </div>
               </div>

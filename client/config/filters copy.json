@@ -1,0 +1,147 @@
+{
+    "Corte durée": [
+        {
+            "title": "Généraux",
+            "obj": [
+                "XvsPJRs",
+                "tRgeqU",
+                "UCrAjU",
+                "pJfUadX"
+            ]
+        },
+        {
+            "title": "Relatif aux épisodes/patients",
+            "obj": [
+                "mgKzc",
+                "ZpcNxPD",
+                "BujUGcD",
+                "AjBhpP"
+            ]
+        },
+        {
+            "title": "Territoire de résidence",
+            "obj": [
+                "jmDtBS",
+                "Dght",
+                "abKZDeQ",
+                "YXhNg",
+                "NnMTta"
+            ]
+        },
+        {
+            "title": "Types d’atypiques (liste déroulante)",
+            "obj": [
+                "bPuWnu",
+                "BtEkEd",
+                "jkpRe",
+                "JRAxZ",
+                "GUDVJxk"
+            ]
+        }
+    ],
+    "CDJ": [
+        {
+            "title": "Généraux",
+            "obj": [
+                "XvsPJRs",
+                "tRgeqU",
+                "UCrAjU",
+                "pJfUadX"
+            ]
+        },
+        {
+            "title": "Relatif aux épisodes/patients",
+            "obj": [
+                "mgKzc",
+                "ZpcNxPD",
+                "BujUGcD",
+                "AjBhpP"
+            ]
+        },
+        {
+            "title": "Territoire de résidence",
+            "obj": [
+                "jmDtBS",
+                "Dght",
+                "abKZDeQ",
+                "YXhNg"
+            ]
+        },
+        {
+            "title": "Types d’atypiques (liste déroulante)",
+            "obj": [
+                "bPuWnu",
+                "BtEkEd",
+                "jkpRe",
+                "JRAxZ",
+                "GUDVJxk"
+            ]
+        }
+    ],
+    "Urgence": [
+        {
+            "title": "Généraux",
+            "obj": [
+                "XvsPJRs",
+                "tRgeqU",
+                "UCrAjU",
+                "pJfUadX"
+            ]
+        },
+        {
+            "title": "Relatif aux épisodes/patients",
+            "obj": [
+                "mgKzc",
+                "ZpcNxPD",
+                "BujUGcD",
+                "AjBhpP"
+            ]
+        },
+        {
+            "title": "Territoire de résidence",
+            "obj": [
+                "jmDtBS",
+                "Dght",
+                "abKZDeQ",
+                "YXhNg"
+            ]
+        },
+        {
+            "title": "Types d’atypiques (liste déroulante)",
+            "obj": [
+                "GUDVJxk",
+                "qUVue",
+                "xAsUUSw"
+            ]
+        }
+    ],
+    "Amb autres": [
+        {
+            "title": "Généraux",
+            "obj": [
+                "XvsPJRs",
+                "tRgeqU",
+                "UCrAjU",
+                "pJfUadX"
+            ]
+        },
+        {
+            "title": "Relatif aux épisodes/patients",
+            "obj": [
+                "mgKzc",
+                "ZpcNxPD",
+                "BujUGcD",
+                "AjBhpP"
+            ]
+        },
+        {
+            "title": "Territoire de résidence",
+            "obj": [
+                "jmDtBS",
+                "Dght",
+                "abKZDeQ",
+                "YXhNg"
+            ]
+        }
+    ]
+}

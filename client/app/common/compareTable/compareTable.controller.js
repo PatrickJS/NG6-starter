@@ -17,9 +17,9 @@ class CompareTableController {
       }
     }
 
-    _this.checkHide = row => {
-      return (row.title === 'Coût moyen' && _this.refType && _this.refType.value === 2) || (row.title === 'Coût médiane' && _this.refType && _this.refType.value === 1);
-    };
+    // _this.checkHide = row => {
+    //   return (row.title === 'Coût moyen' && _this.refType && _this.refType.value === 2) || (row.title === 'Coût médiane' && _this.refType && _this.refType.value === 1);
+    // };
 
   }
 }

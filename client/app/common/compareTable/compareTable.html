@@ -8,8 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="row in $ctrl.data" ng-class="{active: row.active}" ng-hide="$ctrl.checkHide(row)"
-      ng-if="row.visible">
+    <tr ng-repeat="row in $ctrl.data" ng-class="{active: row.active}" ng-if="row.visible">
       <td><strong>{{row.title}}</strong></td>
       <td>{{row.ref}}</td>
       <td>{{row.comp}}</td>

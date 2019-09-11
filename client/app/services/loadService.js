@@ -11,7 +11,7 @@ export default class loadService {
     promises.push($http.get("config/filters.json").then(reply => _this.config.filters = reply.data));
     promises.push($http.get("config/etalonnage.json").then(reply => _this.config.etalonnage = reply.data));
     promises.push($http.get("config/comparaisons.json").then(reply => _this.config.comparaisons = reply.data));
-    promises.push(qlikService.applyBookmark("92c3d232-13eb-4787-8344-1da5b0e75bdb"));
+    promises.push(qlikService.applyBookmark("42484a93-6b6c-4d6c-a9d3-82445b984693"));
 
     this.initialized = Promise.all(promises);
   }
