@@ -62,7 +62,7 @@ class etalonnagePageController {
     });
 
     //Bind # table view to the page
-    this.tableObj = this.qlikService.bindVisualizationData(this.config["etalonnage-sharp-table"], cube => {
+    this.sharpTableObj = this.qlikService.bindVisualizationData(this.config["etalonnage-sharp-table"], cube => {
       let data = cube.qHyperCube.qDataPages[0].qMatrix;
 
       this.sharpTableData = data.map(row => (row.map(cell => cell.qText)));
@@ -91,7 +91,7 @@ class etalonnagePageController {
     });
 
     //Bind % table view to the page
-    this.tableObj = this.qlikService.bindVisualizationData(this.config["etalonnage-percentage-table"], cube => {
+    this.perentageTableObj = this.qlikService.bindVisualizationData(this.config["etalonnage-percentage-table"], cube => {
       let data = cube.qHyperCube.qDataPages[0].qMatrix;
 
       this.percentageTableData = data.map(row => (row.map(cell => cell.qText)));
@@ -143,8 +143,12 @@ class etalonnagePageController {
 
   exportTable() {
     //this.tableObj.then(model => { debugger })
+    if (this.tableMode === '%') {
+      this.perentageTableObj.then(model => this.qlikService.exportData(model));
+    } else {
+      this.sharpTableObj.then(model => this.qlikService.exportData(model));
+    }
 
-    this.tableObj.then(model => this.qlikService.exportData(model));
 
   }
 

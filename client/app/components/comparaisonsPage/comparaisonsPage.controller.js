@@ -109,6 +109,7 @@ class ComparaisonsPageController {
 
       let measureList = this.utilService.getMeasuresByStreams(this.streams, this.config.measures);
 
+      //Special handling of Coût moyen and Coût médiane
       this.refTableData = refTableData.map(row => {
         if (this.refType && (row.title === 'Coût moyen' || row.title === 'Coût médiane')) {
           row.visible = (this.refType.value === 1 && row.title === 'Coût moyen') || (this.refType.value === 2 && row.title === 'Coût médiane')
@@ -161,9 +162,18 @@ class ComparaisonsPageController {
 
       cube.qHyperCube.qMeasureInfo.map(measure => {
         let title = measure.qFallbackTitle;
+        let visible;
+
+        //Special handling of Coût moyen and Coût médiane
+        if (this.refType && (title === 'Coût moyen' || title === 'Coût médiane')) {
+          visible = (this.refType.value === 1 && title === 'Coût moyen') || (this.refType.value === 2 && title === 'Coût médiane')
+        } else {
+          visible = visibles.indexOf(title) > -1;
+        }
+
         headers.push({
           title,
-          visible: visibles.indexOf(title) > 0
+          visible
         });
       });
 

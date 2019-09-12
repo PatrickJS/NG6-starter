@@ -1,7 +1,7 @@
 {
     "stream-field": "%Stream",
     "filters": {
-        "Corte durée": [
+        "Courte durée": [
             {
                 "title": "Généraux",
                 "obj": [

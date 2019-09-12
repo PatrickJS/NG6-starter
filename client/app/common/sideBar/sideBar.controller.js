@@ -9,7 +9,7 @@ class SideBarController {
     loadService.loadConfig('filters').then(data => {
       this.config = data;
 
-      this.filters = this.config.filters["Corte durée"];
+      this.filters = this.config.filters["Courte durée"];
       // this.streamFieldListener = () => {
       //   this.streamField.rows.forEach(row => {
       //     if (row.qState === 'S') {

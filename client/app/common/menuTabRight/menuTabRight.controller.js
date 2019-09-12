@@ -55,8 +55,10 @@ class menuTabRightController {
 
       let hits = this.qlikConfig.refTypes.filter(r => r.value === value);
 
-      if (hits && hits.length > 0)
-        this.onRefTypeChanged(hits[0]);
+      if (hits && hits.length > 0) {
+        let refType = hits[0];
+        this.onRefTypeChanged(refType);
+      }
     });
 
     //costType handling
@@ -73,7 +75,7 @@ class menuTabRightController {
     this.dimensionFieldListener = () => {
       this.dimensionField.rows.forEach(row => {
         this.qlikConfig.dimensions.forEach(dimension => {
-          if (row.qText === dimension.title) {
+          if (row.qText === dimension.value) {
             dimension.selected = row.qState === 'S';
           }
         });
@@ -85,7 +87,7 @@ class menuTabRightController {
     this.measureFieldListener = () => {
       this.measureField.rows.forEach(row => {
         this.measures.forEach(measure => {
-          if (row.qText === measure.title) {
+          if (row.qText === measure.value) {
             measure.selected = row.qState === 'S';
           }
         });
@@ -99,7 +101,7 @@ class menuTabRightController {
     this.stackFieldListener = () => {
       this.stackField.rows.forEach(row => {
         this.qlikConfig.stacks.forEach(stack => {
-          if (row.qText === stack.title) {
+          if (row.qText === stack.value) {
             stack.selected = row.qState === 'S';
           }
         });
@@ -133,6 +135,13 @@ class menuTabRightController {
   selectRefType(selected) {
     this.refType = selected;
     this.onRefTypeChanged({ refType: this.refType });
+
+    //Special handling of Coût moyen and Coût médiane
+    this.measures.filter(measure => {
+      if (measure.title === 'Coût moyen' || measure.title === 'Coût médiane') {
+        measure.title = this.refType.value === 1 ? 'Coût moyen' : 'Coût médiane';
+      }
+    });
   }
 
   selectCostType(selected) {
