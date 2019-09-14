@@ -43,6 +43,24 @@ export default class qlikService {
     this.qlik.resize();
   }
 
+  bindListData(listExp, callback) {
+    let _this = this;
+
+    return _this.app.createList({
+      "qDef": {
+        "qFieldDefs": [
+          listExp
+        ]
+      },
+      "qInitialDataFetch": [{
+        qTop: 0,
+        qLeft: 0,
+        qHeight: 20,
+        qWidth: 1
+      }]
+    }, callback);
+  }
+
   bindVisualizationData(objectId, callback) {
     let _this = this;
 

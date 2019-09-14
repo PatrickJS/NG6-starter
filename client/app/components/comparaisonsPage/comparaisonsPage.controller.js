@@ -2,75 +2,26 @@ class ComparaisonsPageController {
   /**
  * @param {qlikService} qlikService
  * @param {utilService} utilService
+ * @param {stateService} stateService
  */
-  constructor(qlikService, utilService) {
+  constructor(qlikService, utilService, stateService) {
     'ngInject';
 
     this.qlikService = qlikService;
     this.utilService = utilService;
+    this.stateService = stateService;
 
     this.showRightMenu = false;
     this.showCostStack = false;
-
-    //Setup view mode, chart by default
-    this.viewMode = 'chart';
-
-    //Setup stack mode
-    this.stackMode = '#';
-  }
-
-  setChartView() {
-    this.viewMode = 'chart';
-    this.qlikService.resize();
-  }
-  setTableView() {
-    this.viewMode = 'table';
-  }
-
-  setStackMode(mode) {
-    this.stackMode = mode;
-    this.qlikService.resize();
-  }
-
-  //Setup change listener from control tab [Right tab]
-  onStreamChanged(streams) {
-    this.streams = streams;
-    // qlikService.select(this.config["stream-field"], [stream.value]);
-    // qlikService.select(this.config["stream-field"], [stream.value], "GrRef");
-    // qlikService.select(this.config["stream-field"], [stream.value], "GrComp");
-  }
-
-  onMeasureChanged(measure) {
-    this.measure = measure[0];
-  }
-
-  onDimensionChanged(dimension) {
-    this.dimension = dimension;
-
-    this.qlikService.select(this.config["dimension-field"], [dimension.value]);
-    this.qlikService.select(this.config["dimension-field"], [dimension.value], "GrRef");
-    this.qlikService.select(this.config["dimension-field"], [dimension.value], "GrComp");
-  }
-
-  onStackChanged(stack) {
-    this.stack = stack;
-
-    this.showCostStack = stack.value === "Type de coûts";
-
-    this.qlikService.select(this.config["stack-field"], [stack.value]);
-  }
-
-  onRefTypeChanged(refType) {
-    this.refType = refType;
-    this.qlikService.setVariable(this.config["ref-type-variable"], refType.value);
-  }
-
-  onCostTypeChanged(costType) {
-    this.costType = costType;
-    this.qlikService.setVariable(this.config["cost-type-variable"], costType.value);
   }
 
   $onInit() {
+    //Setup state
+    this.viewMode = this.stateService.getState('viewMode');
+    this.tableMode = this.stateService.getState('tableMode');
+    this.stackMode = '#';
+    this.refType = this.utilService.getTypeByValue(this.stateService.getState('refType'), this.config.refTypes);
+
     let windowHeight = $(window).height(),
       offset = 296;
 
@@ -201,6 +152,67 @@ class ComparaisonsPageController {
         color: row[1].qText
       }));
     });
+  }
+
+
+  setChartView() {
+    this.viewMode = this.stateService.setState('viewMode', 'chart');
+    this.qlikService.resize();
+  }
+  setTableView() {
+    this.viewMode = this.stateService.setState('viewMode', 'table');
+  }
+
+  setStackMode(mode) {
+    this.stackMode = mode;
+    this.qlikService.resize();
+  }
+
+  //Setup change listener from control tab [Right tab]
+  onStreamChanged(streams) {
+    this.streams = streams;
+    // qlikService.select(this.config["stream-field"], [stream.value]);
+    // qlikService.select(this.config["stream-field"], [stream.value], "GrRef");
+    // qlikService.select(this.config["stream-field"], [stream.value], "GrComp");
+  }
+
+  onMeasureChanged(measure) {
+    this.measure = measure[0];
+  }
+
+  onDimensionChanged(dimension) {
+    this.dimension = dimension;
+
+    this.qlikService.select(this.config["dimension-field"], [dimension.value]);
+    this.qlikService.select(this.config["dimension-field"], [dimension.value], "GrRef");
+    this.qlikService.select(this.config["dimension-field"], [dimension.value], "GrComp");
+  }
+
+  onStackChanged(stack) {
+    this.stack = stack;
+
+    this.showCostStack = stack.value === "Type de coûts";
+
+    let value;
+    if (stack.value === "Groupes d’âge normaux") {
+      value = this.stateService.getState('ageMode').title;
+    } else {
+      value = stack.value;
+    }
+
+    this.qlikService.select(this.config["stack-field"], [value]);
+  }
+
+  onRefTypeChanged(refType) {
+    this.refType = refType;
+    this.qlikService.setVariable(this.config["ref-type-variable"], refType.value)
+      .then(() => this.stateService.setState('refType', refType.value));
+  }
+
+  onCostTypeChanged(costType) {
+    this.costType = costType;
+    this.qlikService.setVariable(this.config["cost-type-variable"], costType.value)
+      .then(() => this.stateService.setState('costType', costType.value));
   }
 }
 

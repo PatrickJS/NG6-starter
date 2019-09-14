@@ -2,7 +2,7 @@
 <div class="tab-r-items tab-link" ng-class="{active: $ctrl.active}">
   <div class="ico-text">
     <i class="{{$ctrl.data.icon}}"></i>
-    <h3>{{$ctrl.data.title}}</h3>
+    <h3>{{$ctrl.getTitle()}}</h3>
   </div>
   <div class="price-wrap" ng-if="$ctrl.data.subtitle">
     <p>{{$ctrl.data.subtitle}}</p>

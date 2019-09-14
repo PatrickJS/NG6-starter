@@ -32,4 +32,14 @@ export default class utilService {
     }
     return stacks;
   }
+
+  getTypeByValue(value, types) {
+    let hits = types.filter(t => t.value === value);
+
+    if (hits.length > 0) {
+      return hits[0];
+    }
+
+    return null;
+  }
 }

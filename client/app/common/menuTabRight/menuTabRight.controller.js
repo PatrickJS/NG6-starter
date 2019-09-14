@@ -2,13 +2,15 @@ class menuTabRightController {
   /**
 * @param {qlikService} qlikService
 * @param {utilService} utilService
+* @param {stateService} stateService
 */
-  constructor(qlikService, utilService) {
+  constructor(qlikService, utilService, stateService) {
     'ngInject';
     this.name = 'menuTabRight';
 
     this.qlikService = qlikService;
     this.utilService = utilService;
+    this.stateService = stateService;
   }
 
   $onInit() {
@@ -50,26 +52,12 @@ class menuTabRightController {
       });
 
     //refType handling
-    this.qlikService.getVariable(this.qlikConfig["ref-type-variable"], value => {
-      this.refType = value;
-
-      let hits = this.qlikConfig.refTypes.filter(r => r.value === value);
-
-      if (hits && hits.length > 0) {
-        let refType = hits[0];
-        this.onRefTypeChanged(refType);
-      }
-    });
+    this.refType = this.utilService.getTypeByValue(this.stateService.getState('refType'), this.qlikConfig.refTypes);
+    this.onRefTypeChanged({refType : this.refType});
 
     //costType handling
-    this.qlikService.getVariable(this.qlikConfig["cost-type-variable"], value => {
-      this.costType = value;
-
-      let hits = this.qlikConfig.costType.filter(r => r.value === value);
-
-      if (hits && hits.length > 0)
-        this.onCostTypeChanged(hits[0]);
-    });
+    this.costType = this.utilService.getTypeByValue(this.stateService.getState('costType'), this.qlikConfig.costTypes);
+    this.onCostTypeChanged({costType : this.costType});
 
     //Dimension handling
     this.dimensionFieldListener = () => {
@@ -99,12 +87,17 @@ class menuTabRightController {
 
     //Stack handling
     this.stackFieldListener = () => {
-      this.stackField.rows.forEach(row => {
-        this.qlikConfig.stacks.forEach(stack => {
-          if (row.qText === stack.value) {
-            stack.selected = row.qState === 'S';
+      this.qlikConfig.stacks.forEach(stack => {
+        let selected = false;
+        let hits = this.stackField.rows.filter(row => row.qText === stack.value || (stack.alt && stack.alt.indexOf(row.qText) > -1));
+
+        hits.forEach(hit => {
+          if(hit.qState === 'S'){
+            selected = true;
           }
         });
+
+        stack.selected = selected;
       });
     };
     this.stackField = this.qlikService.field([this.qlikConfig["stack-field"]], this.stackFieldListener);
@@ -135,13 +128,6 @@ class menuTabRightController {
   selectRefType(selected) {
     this.refType = selected;
     this.onRefTypeChanged({ refType: this.refType });
-
-    //Special handling of Coût moyen and Coût médiane
-    this.measures.filter(measure => {
-      if (measure.title === 'Coût moyen' || measure.title === 'Coût médiane') {
-        measure.title = this.refType.value === 1 ? 'Coût moyen' : 'Coût médiane';
-      }
-    });
   }
 
   selectCostType(selected) {

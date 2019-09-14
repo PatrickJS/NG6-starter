@@ -151,7 +151,11 @@
         {
             "id": 1,
             "title": "Groupes d'âge",
-            "value": "Groupes d'âge"
+            "value": "Groupes d’âge normaux",
+            "alt": [
+                "Groupes d’âge pédiatriques",
+                "Groupes d’âge gériatriques"
+            ]
         },
         {
             "id": 2,

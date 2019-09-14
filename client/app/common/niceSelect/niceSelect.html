@@ -1,4 +1,4 @@
-<select class="select1" style="display: none;">
+<select class="select1" style="display: none;" ng-model="$ctrl.model">
   <option ng-repeat="option in $ctrl.optionList" value="option.value">{{option.title}}</option>
 </select>
 <div class="nice-select select1" tabindex="0">

@@ -4,6 +4,7 @@ import './niceSelect.scss';
 
 let niceSelectComponent = {
   bindings: {
+    'model': '<',
     'optionList': '<',
     'onSelectChanged': '&'
   },

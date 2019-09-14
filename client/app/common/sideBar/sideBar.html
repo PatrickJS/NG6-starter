@@ -4,22 +4,23 @@
       <img src="assets/images/ps-logo.png" alt="Quebec">
     </div>
   </div>
-  <div class="ham-dropdown">
+
+  <div class="ham-dropdown" ng-repeat="subgroup in $ctrl.subgroups">
     <div class="dropdown qubec-dropdown">
-      <select style="display: none;">
-        <option value="1" selected="">Groupes d’âge normaux</option>
-        <option value="2">Groupes d’âge pédiatriques</option>
-        <option value="3">Groupes d’âge gériatriques</option>
+      <select style="display: none;" ng-model="$ctrl[subgroup.model]"
+        ng-change="$ctrl.onSubGroupChange(subgroup, $ctrl[subgroup.model])">
+        <option ng-repeat="option in subgroup.options" value="{{option.value}}">{{option.title}}</option>
       </select>
-      <div class="nice-select" tabindex="0"><span class="current">Groupes d’âge normaux</span>
+      <div class="nice-select"><span class="current">{{subgroup.options[subgroup.default].title}}</span>
         <ul class="list">
-          <li data-value="1" class="option selected">Groupes d’âge normaux</li>
-          <li data-value="2" class="option">Groupes d’âge pédiatriques</li>
-          <li data-value="3" class="option">Groupes d’âge gériatriques</li>
+          <li ng-repeat="li in subgroup.options" data-value="{{li.value}}" class="option"
+            ng-class="{selected: subgroup.options[subgroup.default].value==li.value}">{{li.title}}
+            </option>
         </ul>
       </div>
     </div>
   </div>
+
   <ul class="list-unstyled components off-canvas-items ham-menu-items">
     <li ng-repeat="filter in $ctrl.filters">
       <a class="dropdown-toggle" ng-click="$ctrl.toggle(filter)">{{filter.title}}<i class="fas"

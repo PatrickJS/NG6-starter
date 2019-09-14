@@ -5,7 +5,8 @@ import './selectCard.scss';
 let selectCardComponent = {
   bindings: {
     data: "<",
-    active: "="
+    active: "=",
+    refType: '<'
   },
   template,
   controller

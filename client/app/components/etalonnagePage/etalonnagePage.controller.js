@@ -1,26 +1,29 @@
+import stateService from "../../services/stateService";
+
 class etalonnagePageController {
 
   /**
  * @param {qlikService} qlikService
  * @param {utilService} utilService
+ * @param {stateService} stateService
  */
-  constructor(qlikService, utilService) {
+  constructor(qlikService, utilService, stateService) {
     'ngInject';
 
     //Setup qlik Service
     this.qlikService = qlikService;
     this.utilService = utilService;
+    this.stateService = stateService;
     this.showRightMenu = false;
     this.showCostStack = false;
-
-    //Setup view mode, chart by default
-    this.viewMode = 'chart';
-
-    //Setup table mode, # by default
-    this.tableMode = '#';
   }
 
   $onInit() {
+    //Get states
+    this.viewMode = this.stateService.getState('viewMode');
+    this.tableMode = this.stateService.getState('tableMode');
+    this.refType = this.utilService.getTypeByValue(this.stateService.getState('refType'), this.config.refTypes);
+
     //Create charts
     let windowHeight = $(window).height(),
       offset = 493;
@@ -50,7 +53,7 @@ class etalonnagePageController {
 
       this.config.measures = this.config.measures.map(measure => {
         let newMeasure = measure;
-        let hit = measureData.filter(d => d.name === measure.title);
+        let hit = measureData.filter(d => d.name === measure.value);
 
         if (hit.length > 0) {
           newMeasure.subtitle = ((this.refType && this.refType.value === 2) ? "MÉD. " : "MOY. ") + hit[0].value;
@@ -153,33 +156,40 @@ class etalonnagePageController {
   }
 
   setChartView() {
-    this.viewMode = 'chart';
+    this.viewMode = this.stateService.setState('viewMode', 'chart');
     this.qlikService.resize();
   }
   setTableView() {
-    this.viewMode = 'table';
+    this.viewMode = this.stateService.setState('viewMode', 'table');
   }
 
   setHashtagTable() {
     this.qlikService.setVariable(this.config["table-mode-variable"], '#')
-      .then(() => this.tableMode = '#');
+      .then(() => this.tableMode = this.stateService.setState('tableMode', '#'));
   }
 
   setPercentageTable() {
     this.qlikService.setVariable(this.config["table-mode-variable"], '%')
-      .then(() => this.tableMode = '%');
+      .then(() => this.tableMode = this.stateService.setState('tableMode,', '%'));
   }
 
   setStackMode(mode) {
     this.qlikService.setVariable(this.config["stack-mode-variable"], mode)
       .then(() => {
-        this.stackMode = mode;
+        this.stackMode = this.stateService.setState('stackMode', mode);
       });
+  }
+
+  onRefTypeChanged(refType) {
+    this.refType = refType;
+    this.qlikService.setVariable(this.config["ref-type-variable"], refType.value)
+      .then(() => this.stateService.setState('refType', refType.value));
   }
 
   onCostTypeChanged(costType) {
     this.costType = costType;
-    this.qlikService.setVariable(this.config["cost-type-variable"], costType.value);
+    this.qlikService.setVariable(this.config["cost-type-variable"], costType.value)
+      .then(() => this.stateService.setState('costType', costType.value));
   }
 
   onStreamChanged(streams) {
@@ -200,15 +210,16 @@ class etalonnagePageController {
 
     this.showCostStack = stack.value === "Type de coûts";
 
-    this.qlikService.select(this.config["stack-field"], [stack.value]);
+    let value;
+    if (stack.value === "Groupes d’âge normaux") {
+      value = this.stateService.getState('ageMode').title;
+    } else {
+      value = stack.value;
+    }
+
+    this.qlikService.select(this.config["stack-field"], [value]);
     this.qlikService.resize();
   }
-
-  onRefTypeChanged(refType) {
-    this.refType = refType;
-    this.qlikService.setVariable(this.config["ref-type-variable"], refType.value);
-  }
-
 }
 
 export default etalonnagePageController;

@@ -1,15 +1,19 @@
 class SideBarController {
-  constructor(loadService, qlikService) {
+  constructor(loadService, qlikService, stateService) {
     'ngInject';
     this.name = 'sideBar';
 
     this.qlikService = qlikService;
+    this.stateService = stateService;
     this.filters = [];
+
+    this.ageGroup = 1;
 
     loadService.loadConfig('filters').then(data => {
       this.config = data;
 
       this.filters = this.config.filters["Courte durée"];
+      this.subgroups = this.config.subgroups;
       // this.streamFieldListener = () => {
       //   this.streamField.rows.forEach(row => {
       //     if (row.qState === 'S') {
@@ -33,6 +37,15 @@ class SideBarController {
       });
 
     }
+  }
+
+  onSubGroupChange(subgroup, value) {
+    //console.log(subgroup, value);
+
+    this.qlikService.setVariable(subgroup.variable, value / 1);
+    this.qlikService.select('%EtalonnageStackDesc', subgroup.options.filter(option => option.value === value / 1).map(option => option.title));
+
+    this.stateService.setState(subgroup.state, subgroup.options.filter(option => option.value === value / 1)[0]);
   }
 }
 

@@ -1,5 +1,27 @@
 {
     "stream-field": "%Stream",
+    "subgroups": [
+        {
+            "state": "ageMode",
+            "variable": "vAgeGroup",
+            "model": "ageGroup",
+            "default": 0,
+            "options": [
+                {
+                    "title": "Groupes d’âge normaux",
+                    "value": 1
+                },
+                {
+                    "title": "Groupes d’âge pédiatriques",
+                    "value": 2
+                },
+                {
+                    "title": "Groupes d’âge gériatriques",
+                    "value": 3
+                }
+            ]
+        }
+    ],
     "filters": {
         "Courte durée": [
             {
@@ -15,17 +37,11 @@
                 "title": "Relatif aux épisodes/patients",
                 "obj": [
                     "mgKzc",
-                    "ZpcNxPD",
-                    "BujUGcD",
-                    "AjBhpP"
+                    "mNyMJUw"
                 ]
             },
             {
                 "title": "Territoire de résidence",
-                "obj": []
-            },
-            {
-                "title": "Types d’atypiques (liste déroulante)",
                 "obj": []
             }
         ],
