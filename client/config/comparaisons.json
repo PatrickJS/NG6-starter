@@ -254,5 +254,7 @@
     "dimension-field": "%EtalonnageDimensionDesc",
     "stack-field": "%EtalonnageStackDesc",
     "ref-type-variable": "vRefType",
-    "cost-type-variable": "vCostType"
+    "cost-type-variable": "vCostType",
+    "table-mode-variable": "vTableMode",
+    "stack-mode-variable": "vStackMode"
 }

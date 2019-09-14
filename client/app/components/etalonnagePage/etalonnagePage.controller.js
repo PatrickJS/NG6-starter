@@ -16,6 +16,8 @@ class etalonnagePageController {
     this.stateService = stateService;
     this.showRightMenu = false;
     this.showCostStack = false;
+
+    this.qlikObj = [];
   }
 
   $onInit() {
@@ -23,6 +25,7 @@ class etalonnagePageController {
     this.viewMode = this.stateService.getState('viewMode');
     this.tableMode = this.stateService.getState('tableMode');
     this.refType = this.utilService.getTypeByValue(this.stateService.getState('refType'), this.config.refTypes);
+    this.stackMode = this.stateService.getState('stackMode');
 
     //Create charts
     let windowHeight = $(window).height(),
@@ -39,8 +42,6 @@ class etalonnagePageController {
     this.qlikService.getVisualization("QV04", this.config["etalonnage-sub-chart-2"]);
     this.qlikService.getVisualization("QV05", this.config["etalonnage-cost-chart"]);
     this.qlikService.getVisualization("CurrentSelections", "CurrentSelections");
-
-    this.setStackMode("#");
 
     //Bind Reference values to each measure tile in right menu
     this.qlikService.bindVisualizationData(this.config["etalonnage-ref-values"], cube => {
@@ -62,7 +63,7 @@ class etalonnagePageController {
       });
 
       this.showRightMenu = true;
-    });
+    }).then(object => this.qlikObj.push(object));
 
     //Bind # table view to the page
     this.sharpTableObj = this.qlikService.bindVisualizationData(this.config["etalonnage-sharp-table"], cube => {
@@ -91,7 +92,9 @@ class etalonnagePageController {
       });
 
       this.sharpTableHeaders = headers;
-    });
+
+      this.qlikService.resize();
+    }).then(object => this.qlikObj.push(object));
 
     //Bind % table view to the page
     this.perentageTableObj = this.qlikService.bindVisualizationData(this.config["etalonnage-percentage-table"], cube => {
@@ -120,7 +123,9 @@ class etalonnagePageController {
       });
 
       this.percentageTableHeaders = headers;
-    });
+
+      this.qlikService.resize();
+    }).then(object => this.qlikObj.push(object));
 
     //Bind legend values to stack bar chart
     this.qlikService.bindVisualizationData(this.config["etalonnage-sub-chart-legend"], cube => {
@@ -130,7 +135,7 @@ class etalonnagePageController {
         value: row[0].qText,
         color: row[1].qText
       }));
-    });
+    }).then(object => this.qlikObj.push(object));
 
     //Bind legend values to stack bar chart for Type de coût
     this.qlikService.bindVisualizationData(this.config["etalonnage-sub-chart-2-legend"], cube => {
@@ -140,8 +145,7 @@ class etalonnagePageController {
         value: row[0].qText,
         color: row[1].qText
       }));
-    });
-
+    }).then(object => this.qlikObj.push(object));
   }
 
   exportTable() {
@@ -197,16 +201,16 @@ class etalonnagePageController {
   }
 
   onMeasureChanged(measure) {
-    this.measure = measure[0];
+    //this.measure = measure[0];
   }
 
   onDimensionChanged(dimension) {
-    this.dimension = dimension;
+    //this.dimension = dimension;
     this.qlikService.select(this.config["dimension-field"], [dimension.value]);
   }
 
   onStackChanged(stack) {
-    this.stack = stack;
+    //this.stack = stack;
 
     this.showCostStack = stack.value === "Type de coûts";
 
@@ -219,6 +223,12 @@ class etalonnagePageController {
 
     this.qlikService.select(this.config["stack-field"], [value]);
     this.qlikService.resize();
+  }
+
+  $onDestroy() {
+    console.log('etalonnagePage component Destroyed');
+
+    this.qlikService.destroy(this.qlikObj);
   }
 }
 

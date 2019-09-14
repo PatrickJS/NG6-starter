@@ -16,12 +16,12 @@
                     <li class="nav-item" ng-click="$ctrl.setChartView()">
                       <a class="col-comp-chart"><i class="far fa-chart-bar"></i></a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                       <a class="active"><i class="fas fa-hashtag"></i></a>
                     </li>
                     <li class="nav-item">
                       <a><i class="fas fa-dollar-sign"></i></a>
-                    </li>
+                    </li> -->
                   </ul>
 
                   <div>
@@ -39,12 +39,12 @@
                     <li class="nav-item">
                       <a class="col-comp-table" ng-click="$ctrl.setTableView()"><i class="far fa-table"></i></a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                       <a class="active"><i class="fas fa-hashtag"></i></a>
                     </li>
                     <li class="nav-item">
                       <a><i class="fas fa-dollar-sign"></i></a>
-                    </li>
+                    </li> -->
                   </ul>
 
                   <div id="QV01" class="table-blue">
@@ -76,15 +76,17 @@
                             class="fal fa-percentage"></i></a></li>
                     </ul>
                     <div class="chart-wrapper" ng-show="$ctrl.stackMode=='#'">
-                      <div id="QV03a" ng-show="!$ctrl.showCostStack"></div>
-                      <div id="QV03b" ng-show="$ctrl.showCostStack"></div>
+                      <div id="QV03a" ng-show="$ctrl.stack.value!='Type de coûts'"></div>
+                      <div id="QV03b" ng-show="$ctrl.stack.value=='Type de coûts'"></div>
                     </div>
                     <div class="chart-wrapper" ng-show="$ctrl.stackMode=='%'">
-                      <div id="QV04a" ng-show="!$ctrl.showCostStack"></div>
-                      <div id="QV04b" ng-show="$ctrl.showCostStack"></div>
+                      <div id="QV04a" ng-show="$ctrl.stack.value!='Type de coûts'"></div>
+                      <div id="QV04b" ng-show="$ctrl.stack.value=='Type de coûts'"></div>
                     </div>
-                    <chart-legend ng-show="!$ctrl.showCostStack" legend-list="$ctrl.legendList"></chart-legend>
-                    <chart-legend ng-show="$ctrl.showCostStack" legend-list="$ctrl.legendList2"></chart-legend>
+                    <chart-legend ng-show="$ctrl.stack.value!='Type de coûts'" legend-list="$ctrl.legendList">
+                    </chart-legend>
+                    <chart-legend ng-show="$ctrl.stack.value=='Type de coûts'" legend-list="$ctrl.legendList2">
+                    </chart-legend>
                   </div>
                 </div>
               </div>
@@ -92,8 +94,9 @@
           </div>
         </div>
         <div class="col-xl-4 col-sm-12 col-padding-left col-quebec-right">
-          <menu-tab-right ng-if="$ctrl.showRightMenu" qlik-config="$ctrl.config" show-compare="true"
-            streams="$ctrl.streams" on-measure-changed="$ctrl.onMeasureChanged(measure)"
+          <menu-tab-right ng-if="$ctrl.showRightMenu" measure="$ctrl.measure" dimension="$ctrl.dimension"
+            stack="$ctrl.stack" qlik-config="$ctrl.config" show-compare="true" streams="$ctrl.streams"
+            on-measure-changed="$ctrl.onMeasureChanged(measure)"
             on-dimension-changed="$ctrl.onDimensionChanged(dimension)" on-stack-changed="$ctrl.onStackChanged(stack)"
             on-ref-type-changed="$ctrl.onRefTypeChanged(refType)"
             on-cost-type-changed="$ctrl.onCostTypeChanged(costType)">

@@ -11,13 +11,35 @@ class menuTabRightController {
     this.qlikService = qlikService;
     this.utilService = utilService;
     this.stateService = stateService;
+
+    this.$onDestroy = () => {
+      console.log('menuTabRight component Destroyed');
+      if (this.showCompare) {
+        this.refGroupCountModel.Validated.unbind(this.refGroupCountListener);
+        this.compGroupCountModel.Validated.unbind(this.compGroupCountListener);
+      }
+
+      this.dimensionField.OnData.unbind(this.dimensionFieldListener);
+      this.measureField.OnData.unbind(this.measureFieldListener);
+      this.stackField.OnData.unbind(this.stackFieldListener);
+    }
   }
+
+
 
   $onInit() {
     let _this = this;
+    let measure = this.stateService.getState('measure');
+    let dimension = this.stateService.getState('dimension');
+    let stack = this.stateService.getState('stack');
+
+    if (measure) this.measure = measure;
+    if (dimension) this.dimension = dimension;
+    if (stack) this.stack = stack;
 
     if (this.showCompare)
       this.qlikService.getVisualization("LIST01", this.qlikConfig['group-ref-list']).then(model => {
+        this.refGroupCountModel = model;
         this.refGroupCount = model.layout.title;
 
         $('.reference-lists').find('.ref-list').click(function (e) {
@@ -38,33 +60,39 @@ class menuTabRightController {
           }
         });
 
-        model.Validated.bind(() => {
+        this.refGroupCountListener = () => {
           _this.refGroupCount = model.layout.title;
-        });
+        };
+        model.Validated.bind(this.refGroupCountListener);
       });
 
     if (this.showCompare)
       this.qlikService.getVisualization("LIST02", this.qlikConfig['group-comp-list']).then(model => {
+        this.compGroupCountModel = model;
         this.compGroupCount = model.layout.title;
-        model.Validated.bind(() => {
+
+        this.compGroupCountListener = () => {
           _this.compGroupCount = model.layout.title;
-        });
+        };
+
+        model.Validated.bind(this.compGroupCountListener);
       });
 
     //refType handling
     this.refType = this.utilService.getTypeByValue(this.stateService.getState('refType'), this.qlikConfig.refTypes);
-    this.onRefTypeChanged({refType : this.refType});
+    this.onRefTypeChanged({ refType: this.refType });
 
     //costType handling
     this.costType = this.utilService.getTypeByValue(this.stateService.getState('costType'), this.qlikConfig.costTypes);
-    this.onCostTypeChanged({costType : this.costType});
+    this.onCostTypeChanged({ costType: this.costType });
 
     //Dimension handling
     this.dimensionFieldListener = () => {
       this.dimensionField.rows.forEach(row => {
         this.qlikConfig.dimensions.forEach(dimension => {
-          if (row.qText === dimension.value) {
-            dimension.selected = row.qState === 'S';
+          if (row.qText === dimension.value && row.qState === 'S') {
+            this.dimension = dimension;
+            this.stateService.setState('dimension', this.dimension);
           }
         });
       });
@@ -75,13 +103,14 @@ class menuTabRightController {
     this.measureFieldListener = () => {
       this.measureField.rows.forEach(row => {
         this.measures.forEach(measure => {
-          if (row.qText === measure.value) {
-            measure.selected = row.qState === 'S';
+          if (row.qText === measure.value && row.qState === 'S') {
+            this.measure = measure;
+            this.stateService.setState('measure', this.measure);
           }
         });
       });
 
-      this.onMeasureChanged({ measure: this.measures.filter(m => m.selected) });
+      this.onMeasureChanged({ measure: this.measure });
     };
     this.measureField = this.qlikService.field([this.qlikConfig["measure-field"]], this.measureFieldListener);
 
@@ -92,12 +121,15 @@ class menuTabRightController {
         let hits = this.stackField.rows.filter(row => row.qText === stack.value || (stack.alt && stack.alt.indexOf(row.qText) > -1));
 
         hits.forEach(hit => {
-          if(hit.qState === 'S'){
+          if (hit.qState === 'S') {
             selected = true;
           }
         });
 
-        stack.selected = selected;
+        if (selected) {
+          this.stack = stack;
+          this.stateService.setState('stack', this.stack);
+        }
       });
     };
     this.stackField = this.qlikService.field([this.qlikConfig["stack-field"]], this.stackFieldListener);
@@ -113,6 +145,7 @@ class menuTabRightController {
   selectMeasure(measure) {
     this.measure = measure;
     this.measureField.selectValues([measure.value]);
+
   }
 
   selectFilter(stack) {

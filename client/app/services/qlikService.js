@@ -106,4 +106,12 @@ export default class qlikService {
       }
     )
   }
+
+  destroy(qlikObj) {
+    qlikObj.forEach(obj => {
+      if (obj && obj.id) {
+        this.app.destroySessionObject(obj.id);
+      }
+    });
+  }
 }

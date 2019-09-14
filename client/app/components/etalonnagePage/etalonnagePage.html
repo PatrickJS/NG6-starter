@@ -72,13 +72,16 @@
                   </ul>
                   <div class="tab-pane in active show">
                     <div class="chart-wrapper">
-                      <div id="QV02" ng-show="!$ctrl.showCostStack && $ctrl.stackMode=='#'"
+                      <div id="QV02" ng-show="$ctrl.stack.value!='Type de coûts' && $ctrl.stackMode=='#'"
                         class="etalonnage-sub-chart"></div>
-                      <div id="QV04" ng-show="!$ctrl.showCostStack && ($ctrl.stackMode=='%' ||  $ctrl.stackMode=='$')"
+                      <div id="QV04"
+                        ng-show="$ctrl.stack.value!='Type de coûts' && ($ctrl.stackMode=='%' ||  $ctrl.stackMode=='$')"
                         class="etalonnage-sub-chart"></div>
-                      <div id="QV05" ng-show="$ctrl.showCostStack" class="etalonnage-cost-chart"></div>
-                      <chart-legend ng-show="!$ctrl.showCostStack" legend-list="$ctrl.legendList"></chart-legend>
-                      <chart-legend ng-show="$ctrl.showCostStack" legend-list="$ctrl.legendList2"></chart-legend>
+                      <div id="QV05" ng-show="$ctrl.stack.value=='Type de coûts'" class="etalonnage-cost-chart"></div>
+                      <chart-legend ng-show="$ctrl.stack.value!='Type de coûts'" legend-list="$ctrl.legendList">
+                      </chart-legend>
+                      <chart-legend ng-show="$ctrl.stack.value=='Type de coûts'" legend-list="$ctrl.legendList2">
+                      </chart-legend>
                     </div>
                   </div>
                 </div>
@@ -87,7 +90,8 @@
           </div>
         </div>
         <div class="col-xl-4 col-sm-12 col-padding-left col-quebec-right">
-          <menu-tab-right ng-if="$ctrl.showRightMenu" qlik-config="$ctrl.config" streams="$ctrl.streams"
+          <menu-tab-right ng-if="$ctrl.showRightMenu" measure="$ctrl.measure" dimension="$ctrl.dimension"
+            stack="$ctrl.stack" qlik-config="$ctrl.config" streams="$ctrl.streams"
             on-measure-changed="$ctrl.onMeasureChanged(measure)"
             on-dimension-changed="$ctrl.onDimensionChanged(dimension)" on-stack-changed="$ctrl.onStackChanged(stack)"
             on-ref-type-changed="$ctrl.onRefTypeChanged(refType)"

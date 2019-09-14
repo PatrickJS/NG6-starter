@@ -1,3 +1,7 @@
-.straightTable {
-  color: red;
+.table-layout-fixed {
+  table-layout: fixed;
+
+  th:first-child {
+    width: 40%;
+  }
 }

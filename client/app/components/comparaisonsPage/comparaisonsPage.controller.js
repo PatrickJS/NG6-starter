@@ -13,14 +13,19 @@ class ComparaisonsPageController {
 
     this.showRightMenu = false;
     this.showCostStack = false;
+
+    this.qlikObj = [];
   }
 
   $onInit() {
     //Setup state
     this.viewMode = this.stateService.getState('viewMode');
     this.tableMode = this.stateService.getState('tableMode');
-    this.stackMode = '#';
     this.refType = this.utilService.getTypeByValue(this.stateService.getState('refType'), this.config.refTypes);
+
+    let stackMode = this.stackMode = this.stateService.getState('stackMode');
+    if (stackMode === '$') { stackMode = '%' }
+    this.stackMode = stackMode;
 
     let windowHeight = $(window).height(),
       offset = 296;
@@ -70,7 +75,8 @@ class ComparaisonsPageController {
 
         return row;
       });
-    });
+    }).then(object => this.qlikObj.push(object));
+
     //Comp column data
     this.qlikService.bindVisualizationData(this.config["comparaisons-group-comp-values"], cube => {
 
@@ -81,7 +87,8 @@ class ComparaisonsPageController {
         title: measures[index].qFallbackTitle,
         value: cell.qText
       }));
-    });
+    }).then(object => this.qlikObj.push(object));
+
     //écart column data
     this.qlikService.bindVisualizationData(this.config["comparaisons-group-ecart-values"], cube => {
       let data = cube.qHyperCube.qDataPages[0].qMatrix[0];
@@ -91,7 +98,7 @@ class ComparaisonsPageController {
         title: measures[index].qFallbackTitle,
         value: cell.qText
       }));
-    });
+    }).then(object => this.qlikObj.push(object));
 
     //Table view data
     this.qlikService.bindVisualizationData(this.config["comparaisons-table"], cube => {
@@ -131,7 +138,9 @@ class ComparaisonsPageController {
       this.tableHeaders = headers;
 
       this.showRightMenu = true;
-    });
+
+      this.qlikService.resize();
+    }).then(object => this.qlikObj.push(object));
 
     //Bind legend values to stack bar chart
     this.qlikService.bindVisualizationData(this.config["etalonnage-sub-chart-legend"], cube => {
@@ -141,7 +150,7 @@ class ComparaisonsPageController {
         value: row[0].qText,
         color: row[1].qText
       }));
-    });
+    }).then(object => this.qlikObj.push(object));
 
     //Bind legend values to stack bar chart for Type de coût
     this.qlikService.bindVisualizationData(this.config["etalonnage-sub-chart-2-legend"], cube => {
@@ -151,7 +160,7 @@ class ComparaisonsPageController {
         value: row[0].qText,
         color: row[1].qText
       }));
-    });
+    }).then(object => this.qlikObj.push(object));
   }
 
 
@@ -164,8 +173,11 @@ class ComparaisonsPageController {
   }
 
   setStackMode(mode) {
-    this.stackMode = mode;
-    this.qlikService.resize();
+    this.qlikService.setVariable(this.config["stack-mode-variable"], mode)
+      .then(() => {
+        this.stackMode = this.stateService.setState('stackMode', mode);
+        this.qlikService.resize();
+      });
   }
 
   //Setup change listener from control tab [Right tab]
@@ -177,20 +189,15 @@ class ComparaisonsPageController {
   }
 
   onMeasureChanged(measure) {
-    this.measure = measure[0];
   }
 
   onDimensionChanged(dimension) {
-    this.dimension = dimension;
-
     this.qlikService.select(this.config["dimension-field"], [dimension.value]);
     this.qlikService.select(this.config["dimension-field"], [dimension.value], "GrRef");
     this.qlikService.select(this.config["dimension-field"], [dimension.value], "GrComp");
   }
 
   onStackChanged(stack) {
-    this.stack = stack;
-
     this.showCostStack = stack.value === "Type de coûts";
 
     let value;
@@ -213,6 +220,12 @@ class ComparaisonsPageController {
     this.costType = costType;
     this.qlikService.setVariable(this.config["cost-type-variable"], costType.value)
       .then(() => this.stateService.setState('costType', costType.value));
+  }
+
+  $onDestroy() {
+    console.log('comparaisonsPage component Destroyed');
+
+    this.qlikService.destroy(this.qlikObj);
   }
 }
 

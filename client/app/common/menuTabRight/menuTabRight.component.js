@@ -4,6 +4,9 @@ import './menuTabRight.scss';
 
 let menuTabRightComponent = {
   bindings: {
+    measure: '=',
+    dimension: '=',
+    stack: '=',
     qlikConfig: '<',
     showCompare: '@',
     streams: '<',

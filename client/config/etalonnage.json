@@ -291,6 +291,5 @@
     "ref-type-variable": "vRefType",
     "cost-type-variable": "vCostType",
     "table-mode-variable": "vTableMode",
-    "stack-mode-variable": "vStackMode",
-    "startup-bookmark": "42484a93-6b6c-4d6c-a9d3-82445b984693"
+    "stack-mode-variable": "vStackMode"
 }
