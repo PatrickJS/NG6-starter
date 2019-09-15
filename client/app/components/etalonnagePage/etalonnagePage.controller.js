@@ -135,6 +135,8 @@ class etalonnagePageController {
         value: row[0].qText,
         color: row[1].qText
       }));
+
+      this.legendField = cube.qHyperCube.qDimensionInfo[0].qFallbackTitle;
     }).then(object => this.qlikObj.push(object));
 
     //Bind legend values to stack bar chart for Type de coût
@@ -145,6 +147,7 @@ class etalonnagePageController {
         value: row[0].qText,
         color: row[1].qText
       }));
+      this.legendField2 = cube.qHyperCube.qDimensionInfo[0].qFallbackTitle;
     }).then(object => this.qlikObj.push(object));
   }
 

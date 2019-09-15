@@ -54,50 +54,35 @@ class ComparaisonsPageController {
 
     //Setup Écarts Table
     //Ref column data
-    this.qlikService.bindVisualizationData(this.config["comparaisons-group-ref-values"], cube => {
-      let data = cube.qHyperCube.qDataPages[0].qMatrix[0];
-      let measures = cube.qHyperCube.qMeasureInfo;
+    this.qlikService.bindVisualizationData(this.config["comparaisons-ecart-table"], cube => {
 
-      let refTableData = data.map((cell, index) => ({
-        title: measures[index].qFallbackTitle,
-        value: cell.qText
-      }));
+      let data = cube.qHyperCube.qDataPages[0].qMatrix;
+      let measures = cube.qHyperCube.qMeasureInfo.filter(measure => measure.qFallbackTitle);
 
-      let measureList = this.utilService.getMeasuresByStreams(this.streams, this.config.measures);
+      let ecartTableHeader = [];
+      let ecartTableData = {};
 
-      //Special handling of Coût moyen and Coût médiane
-      this.refTableData = refTableData.map(row => {
-        if (this.refType && (row.title === 'Coût moyen' || row.title === 'Coût médiane')) {
-          row.visible = (this.refType.value === 1 && row.title === 'Coût moyen') || (this.refType.value === 2 && row.title === 'Coût médiane')
-        } else {
-          row.visible = measureList.map(m => m.title).indexOf(row.title) > -1;
-        }
+      data.forEach(row => {
+        row.forEach((cell, index) => {
+          if (index > 0) {
+            let key = measures[index - 1].qFallbackTitle;
 
-        return row;
+            if (key) {
+              if (!ecartTableData[key]) {
+                ecartTableData[key] = [];
+              }
+              ecartTableData[key].push(cell.qText);
+            }
+          } else {
+            //Otherwise it's group name
+            ecartTableHeader.push(cell.qText);
+          }
+        });
       });
-    }).then(object => this.qlikObj.push(object));
 
-    //Comp column data
-    this.qlikService.bindVisualizationData(this.config["comparaisons-group-comp-values"], cube => {
+      this.ecartTableHeader = ecartTableHeader;
+      this.ecartTableData = Object.keys(ecartTableData).map(key => [key, ...ecartTableData[key]]);
 
-      let data = cube.qHyperCube.qDataPages[0].qMatrix[0];
-      let measures = cube.qHyperCube.qMeasureInfo;
-
-      this.compTableData = data.map((cell, index) => ({
-        title: measures[index].qFallbackTitle,
-        value: cell.qText
-      }));
-    }).then(object => this.qlikObj.push(object));
-
-    //écart column data
-    this.qlikService.bindVisualizationData(this.config["comparaisons-group-ecart-values"], cube => {
-      let data = cube.qHyperCube.qDataPages[0].qMatrix[0];
-      let measures = cube.qHyperCube.qMeasureInfo;
-
-      this.ecartTableData = data.map((cell, index) => ({
-        title: measures[index].qFallbackTitle,
-        value: cell.qText
-      }));
     }).then(object => this.qlikObj.push(object));
 
     //Table view data

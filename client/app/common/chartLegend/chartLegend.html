@@ -1,6 +1,6 @@
 <ul class="legend">
-  <li ng-repeat="legend in $ctrl.legendList">
-    <span class="color" ng-style="{background:legend.color}"></span>
+  <li ng-repeat="legend in $ctrl.legends" ng-click="$ctrl.toggleLegend(legend)">
+    <span class="color" ng-style="{background:$ctrl.getColor(legend)}"></span>
     {{legend.value}}
   </li>
 </ul>

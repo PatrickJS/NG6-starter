@@ -4,7 +4,9 @@ import './chartLegend.scss';
 
 let chartLegendComponent = {
   bindings: {
-    legendList: '<'
+    legendList: '<',
+    qlikField: '<',
+    onLegendSelected: '&'
   },
   template,
   controller

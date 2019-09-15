@@ -4,9 +4,7 @@ import './compareTable.scss';
 
 let compareTableComponent = {
   bindings: {
-    refData: '<',
-    compData: '<',
-    ecartData: '<',
+    data: '<',
     refColor: '<',
     refType: '<'
   },

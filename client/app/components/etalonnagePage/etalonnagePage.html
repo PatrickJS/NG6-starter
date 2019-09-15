@@ -78,9 +78,11 @@
                         ng-show="$ctrl.stack.value!='Type de coûts' && ($ctrl.stackMode=='%' ||  $ctrl.stackMode=='$')"
                         class="etalonnage-sub-chart"></div>
                       <div id="QV05" ng-show="$ctrl.stack.value=='Type de coûts'" class="etalonnage-cost-chart"></div>
-                      <chart-legend ng-show="$ctrl.stack.value!='Type de coûts'" legend-list="$ctrl.legendList">
+                      <chart-legend ng-show="$ctrl.stack.value!='Type de coûts'" legend-list="$ctrl.legendList"
+                        qlik-field="$ctrl.legendField">
                       </chart-legend>
-                      <chart-legend ng-show="$ctrl.stack.value=='Type de coûts'" legend-list="$ctrl.legendList2">
+                      <chart-legend ng-show="$ctrl.stack.value=='Type de coûts'" legend-list="$ctrl.legendList2"
+                        qlik-field="$ctrl.legendField2">
                       </chart-legend>
                     </div>
                   </div>
