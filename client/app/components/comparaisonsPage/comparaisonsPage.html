@@ -83,9 +83,11 @@
                       <div id="QV04a" ng-show="$ctrl.stack.value!='Type de coûts'"></div>
                       <div id="QV04b" ng-show="$ctrl.stack.value=='Type de coûts'"></div>
                     </div>
-                    <chart-legend ng-show="$ctrl.stack.value!='Type de coûts'" legend-list="$ctrl.legendList">
+                    <chart-legend ng-show="$ctrl.stack.value!='Type de coûts'" legend-list="$ctrl.legendList"
+                      qlik-field="$ctrl.legendField">
                     </chart-legend>
-                    <chart-legend ng-show="$ctrl.stack.value=='Type de coûts'" legend-list="$ctrl.legendList2">
+                    <chart-legend ng-show="$ctrl.stack.value=='Type de coûts'" legend-list="$ctrl.legendList2"
+                      qlik-field="$ctrl.legendField2">
                     </chart-legend>
                   </div>
                 </div>

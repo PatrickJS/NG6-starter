@@ -36,11 +36,13 @@ class etalonnagePageController {
     $('#QV03b').css("height", (windowHeight - offset) + 97);
     $('#QV04').css("height", (windowHeight - offset) * 0.4);
     $('#QV05').css("height", (windowHeight - offset) * 0.4);
+    $('#QV06').css("height", (windowHeight - offset) * 0.4);
 
     this.qlikService.getVisualization("QV01", this.config["etalonnage-main-chart"]);
     this.qlikService.getVisualization("QV02", this.config["etalonnage-sub-chart"]);
     this.qlikService.getVisualization("QV04", this.config["etalonnage-sub-chart-2"]);
     this.qlikService.getVisualization("QV05", this.config["etalonnage-cost-chart"]);
+    this.qlikService.getVisualization("QV06", this.config["etalonnage-cost-chart-2"]);
     this.qlikService.getVisualization("CurrentSelections", "CurrentSelections");
 
     //Bind Reference values to each measure tile in right menu
@@ -140,7 +142,7 @@ class etalonnagePageController {
     }).then(object => this.qlikObj.push(object));
 
     //Bind legend values to stack bar chart for Type de coût
-    this.qlikService.bindVisualizationData(this.config["etalonnage-sub-chart-2-legend"], cube => {
+    this.qlikService.bindVisualizationData(this.config["etalonnage-cost-chart-legend"], cube => {
       let data = cube.qHyperCube.qDataPages[0].qMatrix;
 
       this.legendList2 = data.map(row => ({

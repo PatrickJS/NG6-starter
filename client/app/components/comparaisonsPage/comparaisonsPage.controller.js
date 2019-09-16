@@ -135,16 +135,18 @@ class ComparaisonsPageController {
         value: row[0].qText,
         color: row[1].qText
       }));
+      this.legendField = cube.qHyperCube.qDimensionInfo[0].qFallbackTitle;
     }).then(object => this.qlikObj.push(object));
 
     //Bind legend values to stack bar chart for Type de coût
-    this.qlikService.bindVisualizationData(this.config["etalonnage-sub-chart-2-legend"], cube => {
+    this.qlikService.bindVisualizationData(this.config["etalonnage-cost-chart-legend"], cube => {
       let data = cube.qHyperCube.qDataPages[0].qMatrix;
 
       this.legendList2 = data.map(row => ({
         value: row[0].qText,
         color: row[1].qText
       }));
+      this.legendField2 = cube.qHyperCube.qDimensionInfo[0].qFallbackTitle;
     }).then(object => this.qlikObj.push(object));
   }
 
