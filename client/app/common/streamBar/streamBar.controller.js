@@ -40,6 +40,24 @@ class StreamBarController {
       streamField.selectValues([stream.title], true);
       qlikService.select(_this.qlikField, [stream.value], "GrRef", true);
       qlikService.select(_this.qlikField, [stream.value], "GrComp", true);
+
+
+      
+      // if (stream.value === "Urgence" || stream.value === "Amb autres"){
+      //   streamField.selectValues([stream.value]);
+      //   qlikService.select(_this.qlikField, [stream.value], "GrRef");
+      //   qlikService.select(_this.qlikField, [stream.value], "GrComp");
+      // }else{
+      //   if(selected.length === 1 && selected[0].value==="Urgence" || selected[0].value === "Amb autres" ) {
+      //     streamField.selectValues([stream.value]);
+      //     qlikService.select(_this.qlikField, [stream.value], "GrRef");
+      //     qlikService.select(_this.qlikField, [stream.value], "GrComp");
+      //   }else{
+      //     streamField.selectValues([stream.value], true);
+      //     qlikService.select(_this.qlikField, [stream.value], "GrRef", true);
+      //     qlikService.select(_this.qlikField, [stream.value], "GrComp", true);
+      //   }
+      // } 
     };
 
     _this.$onDestroy = () => {

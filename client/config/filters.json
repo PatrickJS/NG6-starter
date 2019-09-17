@@ -26,34 +26,39 @@
         "Courte durée": [
             {
                 "title": "Généraux",
-                "obj": [
-                    "XvsPJRs",
-                    "tRgeqU",
-                    "UCrAjU",
-                    "pJfUadX"
-                ]
+                "obj": {
+                    "Annee fiscales": "XvsPJRs",
+                    "Types d'épisodes": "tRgeqU",
+                    "Catégories d'épisodes": "UCrAjU",
+                    "Statut d'épisode": "pJfUadX"
+                }
             },
             {
                 "title": "Relatif aux épisodes/patients",
-                "obj": [
-                    "mgKzc",
-                    "mNyMJUw"
-                ]
+                "obj": {
+                    "Genre": "mgKzc", 
+                    "Groupes d'âge": "mNyMJUw",
+                    "CMD":"pBRJY", 
+                    "Destination à la sortie":"abKZDeQ", 
+                    "Type de soins":"YXhNg", 
+                    "Provenance":"SDQdw", 
+                    "Cas typiques/atypiques":"NnMTta", 
+                    "DRG":"bPuWnu", 
+                    "Gravité clinique":"BtEkEd",
+                    "Interverntion principale": "jkpRe",
+                    "Diagnostic principale": "JRAxZ",
+                    "Catégorie d'admission": "GUDVJxk",
+                    "Mode d'arrivée": "qUVue",
+                    "Patient sur civiere":"FBUXj",
+                    "Priorité triage": "xAsUUSw"
+                }
             },
             {
                 "title": "Territoire de résidence",
-                "obj": [
-                    "jmDtBS",
-                    "Dght",
-                    "abKZDeQ",
-                    "YXhNg",
-                    "NnMTta",
-                    "bPuWnu",
-                    "BtEkEd",
-                    "jkpRe",
-                    "JRAxZ",
-                    "GUDVJxk"
-                ]
+                "obj": {
+                    "Municipalité": "jmDtBS",
+                    "Région": "Dght"
+                }
             }
         ],
         "CDJ": [

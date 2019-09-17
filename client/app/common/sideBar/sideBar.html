@@ -27,7 +27,7 @@
           ng-class="{'fa-chevron-down': !filter.active, 'fa-chevron-up': filter.active}"></i></a>
       <ul class="list-unstyled sub-offset-menu" ng-class="{collapse: !filter.active}">
         <a>
-          <div ng-repeat="o in filter.obj" class="sidebar-filter" id="{{o}}"></div>
+          <div ng-repeat="(k,o) in filter.obj" class="sidebar-filter" id="{{o}}"></div>
         </a>
       </ul>
     </li>

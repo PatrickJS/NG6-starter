@@ -32,8 +32,8 @@ class SideBarController {
 
     if (filter.active === true) {
 
-      filter.obj.map(o => {
-        this.qlikService.getVisualization(o, o);
+      Object.keys(filter.obj).map(o => {
+        this.qlikService.getVisualization(filter.obj[o], filter.obj[o]);
       });
 
     }
