@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <ul class="list-unstyled components off-canvas-items ham-menu-items">
+  <ul class="list-unstyled components off-canvas-items ham-menu-items" id="sidebar-menu">
     <li ng-repeat="filter in $ctrl.filters">
       <a class="dropdown-toggle" ng-click="$ctrl.toggle(filter)">{{filter.title}}<i class="fas"
           ng-class="{'fa-chevron-down': !filter.active, 'fa-chevron-up': filter.active}"></i></a>

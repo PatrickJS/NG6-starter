@@ -27,6 +27,19 @@ class SideBarController {
     });
   }
 
+  $onInit() {
+    let resizer = () => {
+      let windowHeight = $(window).height(),
+        offset = 150;
+
+      $("#sidebar-menu").css("height", windowHeight - offset);
+    };
+
+    resizer();
+
+    $(window).resize(resizer);
+  }
+
   toggle(filter) {
     filter.active = !filter.active;
 

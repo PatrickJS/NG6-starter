@@ -1,3 +1,7 @@
-.compareTable {
-  color: red;
+.compare-table {
+  table-layout: fixed;
+
+  .compare-table-title-col{
+    width: 33%;
+  }
 }

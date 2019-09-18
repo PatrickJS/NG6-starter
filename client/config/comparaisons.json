@@ -127,10 +127,10 @@
         },
         {
             "id": 8,
-            "title": "% hospitalise",
+            "title": "% hospitalisé",
             "icon": "fas fa-calendar-alt",
             "color": "orange",
-            "value": "% hospitalise"
+            "value": "% hospitalisé"
         },
         {
             "id": 9,
@@ -141,10 +141,10 @@
         },
         {
             "id": 10,
-            "title": "DMS après dem",
+            "title": "DMS aprés dem",
             "icon": "fas fa-calendar-alt",
             "color": "orange",
-            "value": "DMS après dem"
+            "value": "DMS aprés dem"
         }
     ],
     "stacks": [

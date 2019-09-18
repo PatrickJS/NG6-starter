@@ -27,17 +27,25 @@ class etalonnagePageController {
     this.refType = this.utilService.getTypeByValue(this.stateService.getState('refType'), this.config.refTypes);
     this.stackMode = this.stateService.getState('stackMode');
 
-    //Create charts
-    let windowHeight = $(window).height(),
-      offset = 493;
-    $('#QV01').css("height", (windowHeight - offset) * 0.6);
-    $('#QV02').css("height", (windowHeight - offset) * 0.4);
-    $('#QV03a').css("height", (windowHeight - offset) + 97);
-    $('#QV03b').css("height", (windowHeight - offset) + 97);
-    $('#QV04').css("height", (windowHeight - offset) * 0.4);
-    $('#QV05').css("height", (windowHeight - offset) * 0.4);
-    $('#QV06').css("height", (windowHeight - offset) * 0.4);
+    //calculate chart sizes
+    let resizer = () => {
+      let windowHeight = $(window).height(), offset = 493;
+      let pageHeight = (windowHeight - offset);
+      pageHeight = pageHeight < 500 ? 500 : pageHeight;
 
+      $('#QV01').css("height", pageHeight * 0.6);
+      $('#QV02').css("height", pageHeight * 0.4);
+      $('#QV03a').css("height", pageHeight + 97);
+      $('#QV03b').css("height", pageHeight + 97);
+      $('#QV04').css("height", pageHeight * 0.4);
+      $('#QV05').css("height", pageHeight * 0.4);
+      $('#QV06').css("height", pageHeight * 0.4);
+    };
+
+    resizer();
+    $(window).resize(resizer);
+
+    //Create charts
     this.qlikService.getVisualization("QV01", this.config["etalonnage-main-chart"]);
     this.qlikService.getVisualization("QV02", this.config["etalonnage-sub-chart"]);
     this.qlikService.getVisualization("QV04", this.config["etalonnage-sub-chart-2"]);

@@ -37,27 +37,24 @@ class StreamBarController {
         return;
       }
 
-      streamField.selectValues([stream.title], true);
-      qlikService.select(_this.qlikField, [stream.value], "GrRef", true);
-      qlikService.select(_this.qlikField, [stream.value], "GrComp", true);
-
-
-      
-      // if (stream.value === "Urgence" || stream.value === "Amb autres"){
-      //   streamField.selectValues([stream.value]);
-      //   qlikService.select(_this.qlikField, [stream.value], "GrRef");
-      //   qlikService.select(_this.qlikField, [stream.value], "GrComp");
-      // }else{
-      //   if(selected.length === 1 && selected[0].value==="Urgence" || selected[0].value === "Amb autres" ) {
-      //     streamField.selectValues([stream.value]);
-      //     qlikService.select(_this.qlikField, [stream.value], "GrRef");
-      //     qlikService.select(_this.qlikField, [stream.value], "GrComp");
-      //   }else{
-      //     streamField.selectValues([stream.value], true);
-      //     qlikService.select(_this.qlikField, [stream.value], "GrRef", true);
-      //     qlikService.select(_this.qlikField, [stream.value], "GrComp", true);
-      //   }
-      // } 
+      //When selecting Urgence and Amb autres, just do a clear selection
+      if (stream.value === "Urgence" || stream.value === "Amb autres") {
+        streamField.selectValues([stream.value]);
+        qlikService.select(_this.qlikField, [stream.value], "GrRef");
+        qlikService.select(_this.qlikField, [stream.value], "GrComp");
+      } else {
+        //When jumping from Urgence and Amb autres to CD/CDJ, just do a clear selection
+        if (selected.length === 1 && selected[0].value === "Urgence" || selected[0].value === "Amb autres") {
+          streamField.selectValues([stream.value]);
+          qlikService.select(_this.qlikField, [stream.value], "GrRef");
+          qlikService.select(_this.qlikField, [stream.value], "GrComp");
+        } else {
+          //When selecting CD and CDJ, do a toggle selection instead
+          streamField.selectValues([stream.value], true);
+          qlikService.select(_this.qlikField, [stream.value], "GrRef", true);
+          qlikService.select(_this.qlikField, [stream.value], "GrComp", true);
+        }
+      }
     };
 
     _this.$onDestroy = () => {

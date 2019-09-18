@@ -27,23 +27,28 @@ class ComparaisonsPageController {
     if (stackMode === '$') { stackMode = '%' }
     this.stackMode = stackMode;
 
-    let windowHeight = $(window).height(),
-      offset = 296;
+    //calculate chart sizes
+    let resizer = () => {
+      let windowHeight = $(window).height(), offset = 493;
+      let pageHeight = (windowHeight - offset);
+      pageHeight = pageHeight < 500 ? 500 : pageHeight;
 
-    //Écarts table
-    $('#QV01').css("height", (windowHeight - offset));
+      //Écarts table
+      $('#QV01').css("height", pageHeight + 197);
+      //KPI compare chart
+      $('#QV02').css("height", pageHeight * 0.5);
+      //Distribution stack chart
+      $('#QV03a').css("height", pageHeight * 0.5);
+      $('#QV03b').css("height", pageHeight * 0.5);
+      $('#QV04a').css("height", pageHeight * 0.5);
+      $('#QV04b').css("height", pageHeight * 0.5);
+      $('#QV05').css("height", pageHeight + 97);
+    }
 
-    offset = 493;
-    //KPI compare chart
-    $('#QV02').css("height", (windowHeight - offset) * 0.5);
+    resizer();
+    $(window).resize(resizer);
 
-    //Distribution stack chart
-    $('#QV03a').css("height", (windowHeight - offset) * 0.5);
-    $('#QV03b').css("height", (windowHeight - offset) * 0.5);
-    $('#QV04a').css("height", (windowHeight - offset) * 0.5);
-    $('#QV04b').css("height", (windowHeight - offset) * 0.5);
-    $('#QV05').css("height", (windowHeight - offset) + 97);
-
+    //Create charts
     this.qlikService.getVisualization("QV02", this.config["comparaisons-kpi-chart"]);
     this.qlikService.getVisualization("QV03a", this.config["comparaisons-distribution-#-chart"]);
     this.qlikService.getVisualization("QV03b", this.config["comparaisons-distribution-#-chart-cost"]);

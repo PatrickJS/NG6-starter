@@ -7,11 +7,8 @@ class ChartLegendController {
   }
 
   $onChanges(changeObj) {
-    console.log(changeObj);
-
     if (changeObj.qlikField && changeObj.qlikField.currentValue && changeObj.qlikField.currentValue !== changeObj.qlikField.previousValue) {
       //When legend field has been changed, switch the field listener to that field
-      console.log("field changeds");
 
       this.fieldListener = () => {
 
