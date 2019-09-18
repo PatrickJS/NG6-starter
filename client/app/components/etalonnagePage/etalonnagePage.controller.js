@@ -104,7 +104,8 @@ class etalonnagePageController {
       this.sharpTableHeaders = headers;
 
       this.qlikService.resize();
-    }).then(object => this.qlikObj.push(object));
+    })
+    this.sharpTableObj.then(object => this.qlikObj.push(object));
 
     //Bind % table view to the page
     this.perentageTableObj = this.qlikService.bindVisualizationData(this.config["etalonnage-percentage-table"], cube => {
@@ -135,7 +136,8 @@ class etalonnagePageController {
       this.percentageTableHeaders = headers;
 
       this.qlikService.resize();
-    }).then(object => this.qlikObj.push(object));
+    });
+    this.perentageTableObj.then(object => this.qlikObj.push(object));
 
     //Bind legend values to stack bar chart
     this.qlikService.bindVisualizationData(this.config["etalonnage-sub-chart-legend"], cube => {
