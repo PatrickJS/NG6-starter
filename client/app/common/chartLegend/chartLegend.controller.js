@@ -14,7 +14,7 @@ class ChartLegendController {
 
         this.legends = this.field.rows.map(legend => ({
           value: legend.qText,
-          active: true
+          active: false
         }));
 
         this.field.OnData.unbind(this.fieldListener);
