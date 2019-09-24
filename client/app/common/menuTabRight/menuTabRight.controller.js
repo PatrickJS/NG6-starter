@@ -15,8 +15,10 @@ class menuTabRightController {
     this.$onDestroy = () => {
       console.log('menuTabRight component Destroyed');
       if (this.showCompare) {
-        this.refGroupCountModel.Validated.unbind(this.refGroupCountListener);
-        this.compGroupCountModel.Validated.unbind(this.compGroupCountListener);
+        this.refGroupCountModelEstab.Validated.unbind(this.refGroupCountEstabListener);
+        this.refGroupCountModelInst.Validated.unbind(this.refGroupCountInstListener);
+        this.compGroupCountModelEstab.Validated.unbind(this.compGroupCountEstabListener);
+        this.compGroupCountModelInst.Validated.unbind(this.compGroupCountInstListener);
       }
 
       this.dimensionField.OnData.unbind(this.dimensionFieldListener);
@@ -38,9 +40,9 @@ class menuTabRightController {
     if (stack) this.stack = stack;
 
     if (this.showCompare)
-      this.qlikService.getVisualization("LIST01", this.qlikConfig['group-ref-list']).then(model => {
-        this.refGroupCountModel = model;
-        this.refGroupCount = model.layout.title;
+      this.qlikService.getVisualization("LIST01a", this.qlikConfig['group-ref-list-estab']).then(model => {
+        this.refGroupCountModelEstab = model;
+        this.refGroupCountEstab = model.layout.title;
 
         $('.reference-lists').find('.ref-list').click(function (e) {
           var $this = $(this);
@@ -60,23 +62,48 @@ class menuTabRightController {
           }
         });
 
-        this.refGroupCountListener = () => {
-          _this.refGroupCount = model.layout.title;
+        this.refGroupCountEstabListener = () => {
+          _this.refGroupCountEstab = model.layout.title;
         };
-        model.Validated.bind(this.refGroupCountListener);
+        model.Validated.bind(this.refGroupCountEstabListener);
       });
 
     if (this.showCompare)
-      this.qlikService.getVisualization("LIST02", this.qlikConfig['group-comp-list']).then(model => {
-        this.compGroupCountModel = model;
-        this.compGroupCount = model.layout.title;
+      this.qlikService.getVisualization("LIST01b", this.qlikConfig['group-ref-list-inst']).then(model => {
+        this.refGroupCountModelInst = model;
+        this.refGroupCountInst = model.layout.title;
 
-        this.compGroupCountListener = () => {
-          _this.compGroupCount = model.layout.title;
+        this.refGroupCountInstListener = () => {
+          _this.refGroupCountInst = model.layout.title;
         };
 
-        model.Validated.bind(this.compGroupCountListener);
+        model.Validated.bind(this.refGroupCountInstListener);
       });
+
+    if (this.showCompare)
+      this.qlikService.getVisualization("LIST02a", this.qlikConfig['group-comp-list-estab']).then(model => {
+        this.compGroupCountModelEstab = model;
+        this.compGroupCountEstab = model.layout.title;
+
+        this.compGroupCountEstabListener = () => {
+          _this.compGroupCountEstab = model.layout.title;
+        };
+
+        model.Validated.bind(this.compGroupCountEstabListener);
+      });
+
+    if (this.showCompare)
+      this.qlikService.getVisualization("LIST02b", this.qlikConfig['group-comp-list-inst']).then(model => {
+        this.compGroupCountModelInst = model;
+        this.compGroupCountInst = model.layout.title;
+
+        this.compGroupCountInstListener = () => {
+          _this.compGroupCountInst = model.layout.title;
+        };
+
+        model.Validated.bind(this.compGroupCountInstListener);
+      });
+
 
     //refType handling
     this.refType = this.utilService.getTypeByValue(this.stateService.getState('refType'), this.qlikConfig.refTypes);

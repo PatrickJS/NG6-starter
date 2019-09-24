@@ -20,17 +20,19 @@
 
       <div class="reference-lists" ng-if="$ctrl.showCompare">
         <div class="ref-list col-ref">
-          <span class="title"><strong>Gr réf. </strong> <span class="badge">{{$ctrl.refGroupCount}}</span></span>
+          <span class="title"><strong>Gr réf. </strong> <span
+              class="badge">{{$ctrl.dimension.id==1 ? $ctrl.refGroupCountEstab : $ctrl.refGroupCountInst}}</span></span>
           <div class="ref-dropdown">
-            <div class="ref-dropdown-wrap filter-list" id="LIST01">
-            </div>
+            <div class="ref-dropdown-wrap filter-list" id="LIST01a" ng-show="$ctrl.dimension.id==1"></div>
+            <div class="ref-dropdown-wrap filter-list" id="LIST01b" ng-show="$ctrl.dimension.id==2"></div>
           </div>
         </div>
         <div class="ref-list col-comp">
-          <span class="title"><strong>Gr comp. </strong> <span class="badge">{{$ctrl.compGroupCount}}</span></span>
+          <span class="title"><strong>Gr comp. </strong> <span
+              class="badge">{{$ctrl.dimension.id==1 ? $ctrl.compGroupCountEstab: $ctrl.compGroupCountInst}}</span></span>
           <div class="ref-dropdown">
-            <div class="ref-dropdown-wrap filter-list" id="LIST02">
-            </div>
+            <div class="ref-dropdown-wrap filter-list" id="LIST02a" ng-show="$ctrl.dimension.id==1"></div>
+            <div class="ref-dropdown-wrap filter-list" id="LIST02b" ng-show="$ctrl.dimension.id==2"></div>
           </div>
         </div>
       </div>
