@@ -1,15 +1,5 @@
 <p align="center">
-  <a href="http://courses.angularclass.com/courses/angular-2-fundamentals" target="_blank">
-    <img width="438" alt="Angular 2 Fundamentals" src="https://cloud.githubusercontent.com/assets/1016365/17200649/085798c6-543c-11e6-8ad0-2484f0641624.png">
-  </a>
-</p>
-
----
-
-<p align="center">
-  <a href="https://angularclass.com" target="_blank">
-    <img src="https://cloud.githubusercontent.com/assets/1016365/9864650/93a5660a-5b00-11e5-8716-a0d538d12913.png" alt="ng6-starter" width="480px;" >
-  </a>
+  <img src="https://cloud.githubusercontent.com/assets/1016365/9864650/93a5660a-5b00-11e5-8716-a0d538d12913.png" alt="ng6-starter" width="480px;" >
   <!-- old img url: http://res.cloudinary.com/angularclass/image/upload/v1431802814/ng6_vrmd60.png -->
 </p>
 
@@ -168,15 +158,8 @@ Because the argument to `--name` applies to the folder name **and** the actual c
 > Contact us, anytime, regarding anything about this project.
 
 * [Gitter: angularclass/NG6-starter](https://gitter.im/angularclass/NG6-starter)
-* [Twitter: @AngularClass](https://twitter.com/AngularClass)
+* [Twitter: @PatrickJS__](https://twitter.com/PatrickJS__)
 
 ___
 
-enjoy — **AngularClass** 
-
-<br><br>
-
-[![AngularClass](https://cloud.githubusercontent.com/assets/1016365/9863770/cb0620fc-5af7-11e5-89df-d4b0b2cdfc43.png  "Angular Class")](https://angularclass.com)
-##[AngularClass](https://angularclass.com)
-> Learn AngularJS, Angular 2, and Modern Web Development from the best.
-> Looking for corporate Angular training, want to host us, or Angular consulting? hello@angularclass.com
+enjoy — **PatrickJS** 
