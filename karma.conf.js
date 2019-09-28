@@ -1,3 +1,5 @@
+const webpackConfig  = require('./webpack.config');
+
 module.exports = function (config) {
   config.set({
     // base path used to resolve all patterns
@@ -28,14 +30,7 @@ module.exports = function (config) {
 
     webpack: {
       devtool: 'inline-source-map',
-      module: {
-        loaders: [
-          { test: /\.js/, exclude: [/app\/lib/, /node_modules/], loader: 'babel' },
-          { test: /\.html$/, loader: 'raw' },
-          { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
-          { test: /\.css$/, loader: 'style!css' }
-        ]
-      }
+      module: webpackConfig.module
     },
 
     webpackServer: {
