@@ -1,11 +1,20 @@
 var webpack = require('webpack');
 var path    = require('path');
-var config  = require('./webpack.config');
+var config  = require('../webpack.config');
 
+config.mode = 'development';
 config.output = {
   filename: '[name].bundle.js',
-  publicPath: '/',
-  path: path.resolve(__dirname, 'client')
+  path: path.resolve(__dirname, '..', 'client')
+};
+
+config.devServer = {
+  port: 3000,
+  contentBase: '../client',
+  hot: true,
+  stats: { colors: true },
+  inline: true,
+  historyApiFallback: true
 };
 
 config.plugins = config.plugins.concat([

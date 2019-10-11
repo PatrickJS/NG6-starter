@@ -4,13 +4,36 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
-  entry: {},
+  entry: {
+    app: [
+      'babel-polyfill',
+      path.join(__dirname, 'client', 'app/app.js')
+    ]
+  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: "all"
+  //   }
+  // },
   module: {
-    loaders: [
-       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
-       { test: /\.html$/, loader: 'raw' },
-       { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
-       { test: /\.css$/, loader: 'style!css' }
+    rules: [
+       {
+         test: /\.js$/,
+         exclude: [/app\/lib/, /node_modules/],
+         loader: 'babel-loader'
+       },
+       {
+         test: /\.html$/,
+         loader: 'raw-loader'
+       },
+       {
+         test: /\.(scss|sass)$/,
+         loader: 'style-loader!css-loader!sass-loader'
+       },
+       {
+         test: /\.css$/,
+         loader: 'style-loader!css-loader'
+       }
     ]
   },
   plugins: [
@@ -20,16 +43,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'client/index.html',
       inject: 'body',
-      hash: true
+      hash: true,
+      chunks: ['vendor', 'app']
     }),
-
-    // Automatically move all modules defined outside of application directory to vendor bundle.
-    // If you are using more complicated project structure, consider to specify common chunks manually.
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: function (module, count) {
-        return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
-      }
-    })
   ]
 };
