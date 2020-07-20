@@ -1,11 +1,9 @@
 import template from './about.html';
-import controller from './about.controller';
+import { AboutController } from './about.controller';
 import './about.scss';
 
-let aboutComponent = {
+export const AboutComponent = {
   bindings: {},
   template,
-  controller
+  controller: AboutController
 };
-
-export default aboutComponent;

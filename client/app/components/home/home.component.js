@@ -1,11 +1,9 @@
 import template from './home.html';
-import controller from './home.controller';
+import { HomeController } from './home.controller';
 import './home.scss';
 
-let homeComponent = {
+export const HomeComponent = {
   bindings: {},
   template,
-  controller
+  controller: HomeController
 };
-
-export default homeComponent;
