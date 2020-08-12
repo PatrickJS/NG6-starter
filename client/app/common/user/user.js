@@ -1,10 +1,4 @@
 import angular from 'angular';
-import UserFactory from './user.factory';
+import { UserFactory } from './user.factory';
 
-let userModule = angular.module('user', [])
-
-.factory('User', UserFactory)
-  
-.name;
-
-export default userModule;
+export const UserModule = angular.module('user', []).factory('User', UserFactory).name;

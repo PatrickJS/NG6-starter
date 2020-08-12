@@ -1,11 +1,9 @@
 import template from './hero.html';
-import controller from './hero.controller';
+import { HeroController } from './hero.controller';
 import './hero.scss';
 
-let heroComponent = {
+export const HeroComponent = {
   bindings: {},
   template,
-  controller
+  controller: HeroController
 };
-
-export default heroComponent;

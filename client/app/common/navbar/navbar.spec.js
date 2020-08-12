@@ -1,4 +1,4 @@
-import NavbarModule from './navbar'
+import { NavbarModule } from './navbar';
 
 describe('Navbar', () => {
   let $rootScope, $state, $location, $componentController, $compile;
@@ -26,7 +26,8 @@ describe('Navbar', () => {
       });
     });
 
-    it('has a name property', () => { // erase if removing this.name from the controller
+    it('has a name property', () => {
+      // erase if removing this.name from the controller
       expect(controller).to.have.property('name');
     });
   });
@@ -44,6 +45,5 @@ describe('Navbar', () => {
     it('has name in template', () => {
       expect(template.find('h1').find('a').html()).to.eq('navbar');
     });
-
   });
 });

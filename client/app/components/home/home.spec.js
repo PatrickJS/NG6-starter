@@ -1,4 +1,4 @@
-import HomeModule from './home'
+import HomeModule from './home';
 
 describe('Home', () => {
   let $rootScope, $state, $location, $componentController, $compile;
@@ -31,7 +31,8 @@ describe('Home', () => {
       });
     });
 
-    it('has a name property', () => { // erase if removing this.name from the controller
+    it('has a name property', () => {
+      // erase if removing this.name from the controller
       expect(controller).to.have.property('name');
     });
   });
@@ -49,6 +50,5 @@ describe('Home', () => {
     it('has name in template', () => {
       expect(template.find('h1').html()).to.eq('Found in home.html');
     });
-
   });
 });
